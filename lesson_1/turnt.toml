@@ -1,0 +1,1 @@
+command = "bril2json < arithmetic_series.bril | brili 0; bril2json < arithmetic_series.bril | brili 1; bril2json < arithmetic_series.bril | brili 7; bril2json < arithmetic_series.bril | brili 100000"
