@@ -1,0 +1,13 @@
+main:
+B0:
+  in:  {}
+  out: {('def', 'B0', 0), ('def', 'B0', 1)}
+header:
+  in:  {('def', 'B0', 0), ('def', 'B0', 1), ('def', 'body', 0), ('def', 'body', 1), ('def', 'body', 2), ('def', 'header', 0), ('def', 'header', 1)}
+  out: {('def', 'B0', 0), ('def', 'B0', 1), ('def', 'body', 0), ('def', 'body', 1), ('def', 'body', 2), ('def', 'header', 0), ('def', 'header', 1)}
+body:
+  in:  {('def', 'B0', 0), ('def', 'B0', 1), ('def', 'body', 0), ('def', 'body', 1), ('def', 'body', 2), ('def', 'header', 0), ('def', 'header', 1)}
+  out: {('def', 'body', 0), ('def', 'body', 1), ('def', 'body', 2), ('def', 'header', 0), ('def', 'header', 1)}
+end:
+  in:  {('def', 'B0', 0), ('def', 'B0', 1), ('def', 'body', 0), ('def', 'body', 1), ('def', 'body', 2), ('def', 'header', 0), ('def', 'header', 1)}
+  out: {('def', 'B0', 0), ('def', 'B0', 1), ('def', 'body', 0), ('def', 'body', 1), ('def', 'body', 2), ('def', 'header', 0), ('def', 'header', 1)}

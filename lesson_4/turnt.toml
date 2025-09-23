@@ -1,0 +1,11 @@
+[envs.rd]
+command = "bril2json < {filename} | python3 /home/adnan/Documents/classes/pl/hw3/reaching_definitions.py"
+output."rd.out" = "-"
+
+[envs.lv]
+command = "bril2json < {filename} | python3 /home/adnan/Documents/classes/pl/hw3/live_variables.py"
+output."lv.out" = "-"
+
+[envs.iv]
+command = "bril2json < {filename} | python3 /home/adnan/Documents/classes/pl/hw3/initialized_variables.py"
+output."iv.out" = "-"

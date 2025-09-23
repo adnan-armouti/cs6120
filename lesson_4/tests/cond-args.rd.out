@@ -1,0 +1,13 @@
+main:
+B0:
+  in:  {('arg', 'cond')}
+  out: {('arg', 'cond'), ('def', 'B0', 0), ('def', 'B0', 1)}
+left:
+  in:  {('arg', 'cond'), ('def', 'B0', 0), ('def', 'B0', 1)}
+  out: {('arg', 'cond'), ('def', 'B0', 0), ('def', 'left', 0), ('def', 'left', 1)}
+right:
+  in:  {('arg', 'cond'), ('def', 'B0', 0), ('def', 'B0', 1)}
+  out: {('arg', 'cond'), ('def', 'B0', 1), ('def', 'right', 0), ('def', 'right', 1)}
+end:
+  in:  {('arg', 'cond'), ('def', 'B0', 0), ('def', 'B0', 1), ('def', 'left', 0), ('def', 'left', 1), ('def', 'right', 0), ('def', 'right', 1)}
+  out: {('arg', 'cond'), ('def', 'B0', 0), ('def', 'B0', 1), ('def', 'end', 0), ('def', 'left', 0), ('def', 'left', 1), ('def', 'right', 0), ('def', 'right', 1)}

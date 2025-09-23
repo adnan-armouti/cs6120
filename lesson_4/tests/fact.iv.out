@@ -1,0 +1,13 @@
+main:
+B0:
+  in:  {}
+  out: {i, result}
+header:
+  in:  {i, result}
+  out: {cond, i, result, zero}
+body:
+  in:  {cond, i, result, zero}
+  out: {cond, i, one, result, zero}
+end:
+  in:  {cond, i, result, zero}
+  out: {cond, i, result, zero}
