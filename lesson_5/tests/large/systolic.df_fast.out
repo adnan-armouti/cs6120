@@ -1,0 +1,160 @@
+Function rand:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function init_matrix:
+  Dominators:
+    B0: {B0}
+    loop: {B0, loop}
+    body: {B0, body, loop}
+    done: {B0, done, loop}
+  Immediate Dominator:
+    B0: None
+    loop: B0
+    body: loop
+    done: loop
+  Dominator Tree children:
+    B0: loop
+    loop: body, done
+  Dominance Frontier:
+    B0: {}
+    loop: {loop}
+    body: {loop}
+    done: {}
+  [check-fast] CHK agrees with our results.
+Function print_matrix:
+  Dominators:
+    B0: {B0}
+    row_loop: {B0, row_loop}
+    row_body: {B0, row_body, row_loop}
+    col_loop: {B0, col_loop, row_body, row_loop}
+    col_body: {B0, col_body, col_loop, row_body, row_loop}
+    row_end: {B0, col_loop, row_body, row_end, row_loop}
+    done: {B0, done, row_loop}
+  Immediate Dominator:
+    B0: None
+    row_loop: B0
+    row_body: row_loop
+    col_loop: row_body
+    col_body: col_loop
+    row_end: col_loop
+    done: row_loop
+  Dominator Tree children:
+    B0: row_loop
+    row_loop: done, row_body
+    row_body: col_loop
+    col_loop: col_body, row_end
+  Dominance Frontier:
+    B0: {}
+    row_loop: {row_loop}
+    row_body: {row_loop}
+    col_loop: {col_loop, row_loop}
+    col_body: {col_loop}
+    row_end: {row_loop}
+    done: {}
+  [check-fast] CHK agrees with our results.
+Function get_element:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function set_element:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function systolic_gemm:
+  Dominators:
+    B0: {B0}
+    compute_00: {B0, compute_00}
+    body_00: {B0, body_00, compute_00}
+    done_00: {B0, compute_00, done_00}
+    compute_01: {B0, compute_00, compute_01, done_00}
+    body_01: {B0, body_01, compute_00, compute_01, done_00}
+    done_01: {B0, compute_00, compute_01, done_00, done_01}
+    compute_10: {B0, compute_00, compute_01, compute_10, done_00, done_01}
+    body_10: {B0, body_10, compute_00, compute_01, compute_10, done_00, done_01}
+    done_10: {B0, compute_00, compute_01, compute_10, done_00, done_01, done_10}
+    compute_11: {B0, compute_00, compute_01, compute_10, compute_11, done_00, done_01, done_10}
+    body_11: {B0, body_11, compute_00, compute_01, compute_10, compute_11, done_00, done_01, done_10}
+    done_11: {B0, compute_00, compute_01, compute_10, compute_11, done_00, done_01, done_10, done_11}
+  Immediate Dominator:
+    B0: None
+    compute_00: B0
+    body_00: compute_00
+    done_00: compute_00
+    compute_01: done_00
+    body_01: compute_01
+    done_01: compute_01
+    compute_10: done_01
+    body_10: compute_10
+    done_10: compute_10
+    compute_11: done_10
+    body_11: compute_11
+    done_11: compute_11
+  Dominator Tree children:
+    B0: compute_00
+    compute_00: body_00, done_00
+    done_00: compute_01
+    compute_01: body_01, done_01
+    done_01: compute_10
+    compute_10: body_10, done_10
+    done_10: compute_11
+    compute_11: body_11, done_11
+  Dominance Frontier:
+    B0: {}
+    compute_00: {compute_00}
+    body_00: {compute_00}
+    done_00: {}
+    compute_01: {compute_01}
+    body_01: {compute_01}
+    done_01: {}
+    compute_10: {compute_10}
+    body_10: {compute_10}
+    done_10: {}
+    compute_11: {compute_11}
+    body_11: {compute_11}
+    done_11: {}
+  [check-fast] CHK agrees with our results.
+Function systolic_timed_gemm:
+  Dominators:
+    B0: {B0}
+    cycle_loop: {B0, cycle_loop}
+    cycle_body: {B0, cycle_body, cycle_loop}
+    cycles_done: {B0, cycle_loop, cycles_done}
+  Immediate Dominator:
+    B0: None
+    cycle_loop: B0
+    cycle_body: cycle_loop
+    cycles_done: cycle_loop
+  Dominator Tree children:
+    B0: cycle_loop
+    cycle_loop: cycle_body, cycles_done
+  Dominance Frontier:
+    B0: {}
+    cycle_loop: {cycle_loop}
+    cycle_body: {cycle_loop}
+    cycles_done: {}
+  [check-fast] CHK agrees with our results.
+Function main:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.

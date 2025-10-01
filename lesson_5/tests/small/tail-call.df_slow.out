@@ -1,0 +1,16 @@
+Function main:
+  Dominators:
+    B0: {B0}
+    inc_depth: {B0, inc_depth}
+    end: {B0, end}
+  Immediate Dominator:
+    B0: None
+    inc_depth: B0
+    end: B0
+  Dominator Tree children:
+    B0: end, inc_depth
+  Dominance Frontier:
+    B0: {}
+    inc_depth: {end}
+    end: {}
+  [check-slow] dom sets agree with slow test.

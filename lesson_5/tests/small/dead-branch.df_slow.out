@@ -1,0 +1,27 @@
+Function main:
+  Dominators:
+    B0: {B0}
+    loop_start: {B0, loop_start}
+    loop_body: {B0, loop_body, loop_start}
+    then: {B0, loop_body, loop_start, then}
+    else: {B0, else, loop_body, loop_start}
+    loop_end: {B0, loop_end, loop_start}
+  Immediate Dominator:
+    B0: None
+    loop_start: B0
+    loop_body: loop_start
+    then: loop_body
+    else: loop_body
+    loop_end: loop_start
+  Dominator Tree children:
+    B0: loop_start
+    loop_start: loop_body, loop_end
+    loop_body: else, then
+  Dominance Frontier:
+    B0: {}
+    loop_start: {loop_start}
+    loop_body: {loop_start}
+    then: {else}
+    else: {loop_start}
+    loop_end: {}
+  [check-slow] dom sets agree with slow test.

@@ -1,0 +1,25 @@
+Function main:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-slow] dom sets agree with slow test.
+Function fact:
+  Dominators:
+    B0: {B0}
+    then.0: {B0, then.0}
+    else.0: {B0, else.0}
+  Immediate Dominator:
+    B0: None
+    then.0: B0
+    else.0: B0
+  Dominator Tree children:
+    B0: else.0, then.0
+  Dominance Frontier:
+    B0: {}
+    then.0: {}
+    else.0: {}
+  [check-slow] dom sets agree with slow test.

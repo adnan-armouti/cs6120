@@ -1,0 +1,41 @@
+Function main:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function cordic:
+  Dominators:
+    B0: {B0}
+    for.cond.3: {B0, for.cond.3}
+    for.body.3: {B0, for.body.3, for.cond.3}
+    then.9: {B0, for.body.3, for.cond.3, then.9}
+    else.9: {B0, else.9, for.body.3, for.cond.3}
+    endif.9: {B0, endif.9, for.body.3, for.cond.3}
+    for.end.3: {B0, for.cond.3, for.end.3}
+  Immediate Dominator:
+    B0: None
+    for.cond.3: B0
+    for.body.3: for.cond.3
+    then.9: for.body.3
+    else.9: for.body.3
+    endif.9: for.body.3
+    for.end.3: for.cond.3
+  Dominator Tree children:
+    B0: for.cond.3
+    for.cond.3: for.body.3, for.end.3
+    for.body.3: else.9, endif.9, then.9
+  Dominance Frontier:
+    B0: {}
+    for.cond.3: {for.cond.3}
+    for.body.3: {for.cond.3}
+    then.9: {endif.9}
+    else.9: {endif.9}
+    endif.9: {for.cond.3}
+    for.end.3: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.

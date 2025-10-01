@@ -1,0 +1,162 @@
+Function swap:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function median_of_three:
+  Dominators:
+    B0: {B0}
+    swap_mid_j: {B0, swap_mid_j}
+    no_swap_mid_j: {B0, no_swap_mid_j}
+    swap_mid_i: {B0, no_swap_mid_j, swap_mid_i}
+    no_swap_mid_i: {B0, no_swap_mid_i, no_swap_mid_j}
+    swap_i_j: {B0, no_swap_mid_i, no_swap_mid_j, swap_i_j}
+    no_swap_i_j: {B0, no_swap_i_j, no_swap_mid_i, no_swap_mid_j}
+  Immediate Dominator:
+    B0: None
+    swap_mid_j: B0
+    no_swap_mid_j: B0
+    swap_mid_i: no_swap_mid_j
+    no_swap_mid_i: no_swap_mid_j
+    swap_i_j: no_swap_mid_i
+    no_swap_i_j: no_swap_mid_i
+  Dominator Tree children:
+    B0: no_swap_mid_j, swap_mid_j
+    no_swap_mid_j: no_swap_mid_i, swap_mid_i
+    no_swap_mid_i: no_swap_i_j, swap_i_j
+  Dominance Frontier:
+    B0: {}
+    swap_mid_j: {no_swap_mid_j}
+    no_swap_mid_j: {}
+    swap_mid_i: {}
+    no_swap_mid_i: {}
+    swap_i_j: {no_swap_i_j}
+    no_swap_i_j: {}
+  [check-fast] CHK agrees with our results.
+Function partition:
+  Dominators:
+    B0: {B0}
+    while.header: {B0, while.header}
+    while.body: {B0, while.body, while.header}
+    while.body.inversion: {B0, while.body, while.body.inversion, while.header}
+    while.body.no_inversion: {B0, while.body, while.body.no_inversion, while.header}
+    while.exit: {B0, while.exit, while.header}
+  Immediate Dominator:
+    B0: None
+    while.header: B0
+    while.body: while.header
+    while.body.inversion: while.body
+    while.body.no_inversion: while.body
+    while.exit: while.header
+  Dominator Tree children:
+    B0: while.header
+    while.header: while.body, while.exit
+    while.body: while.body.inversion, while.body.no_inversion
+  Dominance Frontier:
+    B0: {}
+    while.header: {while.header}
+    while.body: {while.header}
+    while.body.inversion: {while.header}
+    while.body.no_inversion: {while.header}
+    while.exit: {}
+  [check-fast] CHK agrees with our results.
+Function qsort:
+  Dominators:
+    B0: {B0}
+    recurse: {B0, recurse}
+    base: {B0, base}
+  Immediate Dominator:
+    B0: None
+    recurse: B0
+    base: B0
+  Dominator Tree children:
+    B0: base, recurse
+  Dominance Frontier:
+    B0: {}
+    recurse: {base}
+    base: {}
+  [check-fast] CHK agrees with our results.
+Function is_nondecreasing:
+  Dominators:
+    B0: {B0}
+    loop.header: {B0, loop.header}
+    loop.body: {B0, loop.body, loop.header}
+    inversion: {B0, inversion, loop.body, loop.header}
+    no_inversion: {B0, loop.body, loop.header, no_inversion}
+    loop.exit: {B0, loop.exit, loop.header}
+  Immediate Dominator:
+    B0: None
+    loop.header: B0
+    loop.body: loop.header
+    inversion: loop.body
+    no_inversion: loop.body
+    loop.exit: loop.header
+  Dominator Tree children:
+    B0: loop.header
+    loop.header: loop.body, loop.exit
+    loop.body: inversion, no_inversion
+  Dominance Frontier:
+    B0: {}
+    loop.header: {loop.header}
+    loop.body: {loop.header}
+    inversion: {}
+    no_inversion: {loop.header}
+    loop.exit: {}
+  [check-fast] CHK agrees with our results.
+Function rand:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function randarray:
+  Dominators:
+    B0: {B0}
+    loop: {B0, loop}
+    body: {B0, body, loop}
+    loop_end: {B0, body, loop, loop_end}
+    done: {B0, done, loop}
+  Immediate Dominator:
+    B0: None
+    loop: B0
+    body: loop
+    loop_end: body
+    done: loop
+  Dominator Tree children:
+    B0: loop
+    loop: body, done
+    body: loop_end
+  Dominance Frontier:
+    B0: {}
+    loop: {loop}
+    body: {loop}
+    loop_end: {loop}
+    done: {}
+  [check-fast] CHK agrees with our results.
+Function main:
+  Dominators:
+    B0: {B0}
+    loop.header: {B0, loop.header}
+    loop.body: {B0, loop.body, loop.header}
+    loop.exit: {B0, loop.exit, loop.header}
+  Immediate Dominator:
+    B0: None
+    loop.header: B0
+    loop.body: loop.header
+    loop.exit: loop.header
+  Dominator Tree children:
+    B0: loop.header
+    loop.header: loop.body, loop.exit
+  Dominance Frontier:
+    B0: {}
+    loop.header: {loop.header}
+    loop.body: {loop.header}
+    loop.exit: {}
+  [check-fast] CHK agrees with our results.

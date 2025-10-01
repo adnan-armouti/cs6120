@@ -1,0 +1,141 @@
+Function rand:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function randarray:
+  Dominators:
+    B0: {B0}
+    loop: {B0, loop}
+    body: {B0, body, loop}
+    if_body: {B0, body, if_body, loop}
+    if_done: {B0, body, if_done, loop}
+    loop_end: {B0, body, if_done, loop, loop_end}
+    done: {B0, done, loop}
+  Immediate Dominator:
+    B0: None
+    loop: B0
+    body: loop
+    if_body: body
+    if_done: body
+    loop_end: if_done
+    done: loop
+  Dominator Tree children:
+    B0: loop
+    loop: body, done
+    body: if_body, if_done
+    if_done: loop_end
+  Dominance Frontier:
+    B0: {}
+    loop: {loop}
+    body: {loop}
+    if_body: {if_done}
+    if_done: {loop}
+    loop_end: {loop}
+    done: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function printarray:
+  Dominators:
+    B0: {B0}
+    loop: {B0, loop}
+    body: {B0, body, loop}
+    loop_end: {B0, body, loop, loop_end}
+    done: {B0, done, loop}
+  Immediate Dominator:
+    B0: None
+    loop: B0
+    body: loop
+    loop_end: body
+    done: loop
+  Dominator Tree children:
+    B0: loop
+    loop: body, done
+    body: loop_end
+  Dominance Frontier:
+    B0: {}
+    loop: {loop}
+    body: {loop}
+    loop_end: {loop}
+    done: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function zeroarray:
+  Dominators:
+    B0: {B0}
+    loop: {B0, loop}
+    body: {B0, body, loop}
+    loop_end: {B0, body, loop, loop_end}
+    done: {B0, done, loop}
+  Immediate Dominator:
+    B0: None
+    loop: B0
+    body: loop
+    loop_end: body
+    done: loop
+  Dominator Tree children:
+    B0: loop
+    loop: body, done
+    body: loop_end
+  Dominance Frontier:
+    B0: {}
+    loop: {loop}
+    body: {loop}
+    loop_end: {loop}
+    done: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function adj2csr:
+  Dominators:
+    B0: {B0}
+    iter_row: {B0, iter_row}
+    iter_col: {B0, iter_col, iter_row}
+    col_body: {B0, col_body, iter_col, iter_row}
+    if_body: {B0, col_body, if_body, iter_col, iter_row}
+    col_end: {B0, col_body, col_end, iter_col, iter_row}
+    col_done: {B0, col_done, iter_col, iter_row}
+    row_end: {B0, col_done, iter_col, iter_row, row_end}
+    row_done: {B0, iter_row, row_done}
+  Immediate Dominator:
+    B0: None
+    iter_row: B0
+    iter_col: iter_row
+    col_body: iter_col
+    if_body: col_body
+    col_end: col_body
+    col_done: iter_col
+    row_end: col_done
+    row_done: iter_row
+  Dominator Tree children:
+    B0: iter_row
+    iter_row: iter_col, row_done
+    iter_col: col_body, col_done
+    col_body: col_end, if_body
+    col_done: row_end
+  Dominance Frontier:
+    B0: {}
+    iter_row: {iter_row}
+    iter_col: {iter_col, iter_row}
+    col_body: {iter_col}
+    if_body: {col_end}
+    col_end: {iter_col}
+    col_done: {iter_row}
+    row_end: {iter_row}
+    row_done: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function main:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.

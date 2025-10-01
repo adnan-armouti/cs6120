@@ -1,0 +1,209 @@
+Function main:
+  Dominators:
+    B0: {B0}
+    then.18: {B0, then.18}
+    else.18: {B0, else.18}
+    then.23: {B0, else.18, then.23}
+    else.23: {B0, else.18, else.23}
+    then.28: {B0, else.18, else.23, then.28}
+    else.28: {B0, else.18, else.23, else.28}
+    endif.28: {B0, else.18, else.23, endif.28}
+    endif.23: {B0, else.18, endif.23}
+    endif.18: {B0, endif.18}
+    for.cond.37: {B0, endif.18, for.cond.37}
+    for.body.37: {B0, endif.18, for.body.37, for.cond.37}
+    then.46: {B0, endif.18, for.body.37, for.cond.37, then.46}
+    else.46: {B0, else.46, endif.18, for.body.37, for.cond.37}
+    endif.46: {B0, endif.18, endif.46, for.body.37, for.cond.37}
+    for.end.37: {B0, endif.18, for.cond.37, for.end.37}
+    then.68: {B0, endif.18, for.cond.37, for.end.37, then.68}
+    else.68: {B0, else.68, endif.18, for.cond.37, for.end.37}
+    then.73: {B0, else.68, endif.18, for.cond.37, for.end.37, then.73}
+    else.73: {B0, else.68, else.73, endif.18, for.cond.37, for.end.37}
+    then.78: {B0, else.68, else.73, endif.18, for.cond.37, for.end.37, then.78}
+    else.78: {B0, else.68, else.73, else.78, endif.18, for.cond.37, for.end.37}
+    then.83: {B0, else.68, else.73, else.78, endif.18, for.cond.37, for.end.37, then.83}
+    else.83: {B0, else.68, else.73, else.78, else.83, endif.18, for.cond.37, for.end.37}
+    then.88: {B0, else.68, else.73, else.78, else.83, endif.18, for.cond.37, for.end.37, then.88}
+    else.88: {B0, else.68, else.73, else.78, else.83, else.88, endif.18, for.cond.37, for.end.37}
+    then.93: {B0, else.68, else.73, else.78, else.83, else.88, endif.18, for.cond.37, for.end.37, then.93}
+    else.93: {B0, else.68, else.73, else.78, else.83, else.88, else.93, endif.18, for.cond.37, for.end.37}
+    then.98: {B0, else.68, else.73, else.78, else.83, else.88, else.93, endif.18, for.cond.37, for.end.37, then.98}
+    else.98: {B0, else.68, else.73, else.78, else.83, else.88, else.93, else.98, endif.18, for.cond.37, for.end.37}
+    then.103: {B0, else.68, else.73, else.78, else.83, else.88, else.93, else.98, endif.18, for.cond.37, for.end.37, then.103}
+    else.103: {B0, else.103, else.68, else.73, else.78, else.83, else.88, else.93, else.98, endif.18, for.cond.37, for.end.37}
+    then.108: {B0, else.103, else.68, else.73, else.78, else.83, else.88, else.93, else.98, endif.18, for.cond.37, for.end.37, then.108}
+    else.108: {B0, else.103, else.108, else.68, else.73, else.78, else.83, else.88, else.93, else.98, endif.18, for.cond.37, for.end.37}
+    then.113: {B0, else.103, else.108, else.68, else.73, else.78, else.83, else.88, else.93, else.98, endif.18, for.cond.37, for.end.37, then.113}
+    else.113: {B0, else.103, else.108, else.113, else.68, else.73, else.78, else.83, else.88, else.93, else.98, endif.18, for.cond.37, for.end.37}
+    then.118: {B0, else.103, else.108, else.113, else.68, else.73, else.78, else.83, else.88, else.93, else.98, endif.18, for.cond.37, for.end.37, then.118}
+    else.118: {B0, else.103, else.108, else.113, else.118, else.68, else.73, else.78, else.83, else.88, else.93, else.98, endif.18, for.cond.37, for.end.37}
+    endif.118: {B0, else.103, else.108, else.113, else.68, else.73, else.78, else.83, else.88, else.93, else.98, endif.118, endif.18, for.cond.37, for.end.37}
+    endif.113: {B0, else.103, else.108, else.68, else.73, else.78, else.83, else.88, else.93, else.98, endif.113, endif.18, for.cond.37, for.end.37}
+    endif.108: {B0, else.103, else.68, else.73, else.78, else.83, else.88, else.93, else.98, endif.108, endif.18, for.cond.37, for.end.37}
+    endif.103: {B0, else.68, else.73, else.78, else.83, else.88, else.93, else.98, endif.103, endif.18, for.cond.37, for.end.37}
+    endif.98: {B0, else.68, else.73, else.78, else.83, else.88, else.93, endif.18, endif.98, for.cond.37, for.end.37}
+    endif.93: {B0, else.68, else.73, else.78, else.83, else.88, endif.18, endif.93, for.cond.37, for.end.37}
+    endif.88: {B0, else.68, else.73, else.78, else.83, endif.18, endif.88, for.cond.37, for.end.37}
+    endif.83: {B0, else.68, else.73, else.78, endif.18, endif.83, for.cond.37, for.end.37}
+    endif.78: {B0, else.68, else.73, endif.18, endif.78, for.cond.37, for.end.37}
+    endif.73: {B0, else.68, endif.18, endif.73, for.cond.37, for.end.37}
+    endif.68: {B0, endif.18, endif.68, for.cond.37, for.end.37}
+    then.130: {B0, endif.18, endif.68, for.cond.37, for.end.37, then.130}
+    then.134: {B0, endif.18, endif.68, for.cond.37, for.end.37, then.130, then.134}
+    else.134: {B0, else.134, endif.18, endif.68, for.cond.37, for.end.37, then.130}
+    then.143: {B0, else.134, endif.18, endif.68, for.cond.37, for.end.37, then.130, then.143}
+    else.143: {B0, else.134, else.143, endif.18, endif.68, for.cond.37, for.end.37, then.130}
+    endif.143: {B0, else.134, endif.143, endif.18, endif.68, for.cond.37, for.end.37, then.130}
+    endif.134: {B0, endif.134, endif.18, endif.68, for.cond.37, for.end.37, then.130}
+    else.130: {B0, else.130, endif.18, endif.68, for.cond.37, for.end.37}
+    endif.130: {B0, endif.130, endif.18, endif.68, for.cond.37, for.end.37}
+  Immediate Dominator:
+    B0: None
+    then.18: B0
+    else.18: B0
+    then.23: else.18
+    else.23: else.18
+    then.28: else.23
+    else.28: else.23
+    endif.28: else.23
+    endif.23: else.18
+    endif.18: B0
+    for.cond.37: endif.18
+    for.body.37: for.cond.37
+    then.46: for.body.37
+    else.46: for.body.37
+    endif.46: for.body.37
+    for.end.37: for.cond.37
+    then.68: for.end.37
+    else.68: for.end.37
+    then.73: else.68
+    else.73: else.68
+    then.78: else.73
+    else.78: else.73
+    then.83: else.78
+    else.83: else.78
+    then.88: else.83
+    else.88: else.83
+    then.93: else.88
+    else.93: else.88
+    then.98: else.93
+    else.98: else.93
+    then.103: else.98
+    else.103: else.98
+    then.108: else.103
+    else.108: else.103
+    then.113: else.108
+    else.113: else.108
+    then.118: else.113
+    else.118: else.113
+    endif.118: else.113
+    endif.113: else.108
+    endif.108: else.103
+    endif.103: else.98
+    endif.98: else.93
+    endif.93: else.88
+    endif.88: else.83
+    endif.83: else.78
+    endif.78: else.73
+    endif.73: else.68
+    endif.68: for.end.37
+    then.130: endif.68
+    then.134: then.130
+    else.134: then.130
+    then.143: else.134
+    else.143: else.134
+    endif.143: else.134
+    endif.134: then.130
+    else.130: endif.68
+    endif.130: endif.68
+  Dominator Tree children:
+    B0: else.18, endif.18, then.18
+    else.18: else.23, endif.23, then.23
+    else.23: else.28, endif.28, then.28
+    endif.18: for.cond.37
+    for.cond.37: for.body.37, for.end.37
+    for.body.37: else.46, endif.46, then.46
+    for.end.37: else.68, endif.68, then.68
+    else.68: else.73, endif.73, then.73
+    else.73: else.78, endif.78, then.78
+    else.78: else.83, endif.83, then.83
+    else.83: else.88, endif.88, then.88
+    else.88: else.93, endif.93, then.93
+    else.93: else.98, endif.98, then.98
+    else.98: else.103, endif.103, then.103
+    else.103: else.108, endif.108, then.108
+    else.108: else.113, endif.113, then.113
+    else.113: else.118, endif.118, then.118
+    endif.68: else.130, endif.130, then.130
+    then.130: else.134, endif.134, then.134
+    else.134: else.143, endif.143, then.143
+  Dominance Frontier:
+    B0: {}
+    then.18: {endif.18}
+    else.18: {endif.18}
+    then.23: {endif.23}
+    else.23: {endif.23}
+    then.28: {endif.28}
+    else.28: {endif.28}
+    endif.28: {endif.23}
+    endif.23: {endif.18}
+    endif.18: {}
+    for.cond.37: {for.cond.37}
+    for.body.37: {for.cond.37}
+    then.46: {endif.46}
+    else.46: {endif.46}
+    endif.46: {for.cond.37}
+    for.end.37: {}
+    then.68: {endif.68}
+    else.68: {endif.68}
+    then.73: {endif.73}
+    else.73: {endif.73}
+    then.78: {endif.78}
+    else.78: {endif.78}
+    then.83: {endif.83}
+    else.83: {endif.83}
+    then.88: {endif.88}
+    else.88: {endif.88}
+    then.93: {endif.93}
+    else.93: {endif.93}
+    then.98: {endif.98}
+    else.98: {endif.98}
+    then.103: {endif.103}
+    else.103: {endif.103}
+    then.108: {endif.108}
+    else.108: {endif.108}
+    then.113: {endif.113}
+    else.113: {endif.113}
+    then.118: {endif.118}
+    else.118: {endif.118}
+    endif.118: {endif.113}
+    endif.113: {endif.108}
+    endif.108: {endif.103}
+    endif.103: {endif.98}
+    endif.98: {endif.93}
+    endif.93: {endif.88}
+    endif.88: {endif.83}
+    endif.83: {endif.78}
+    endif.78: {endif.73}
+    endif.73: {endif.68}
+    endif.68: {}
+    then.130: {endif.130}
+    then.134: {endif.134}
+    else.134: {endif.134}
+    then.143: {endif.143}
+    else.143: {endif.143}
+    endif.143: {endif.134}
+    endif.134: {endif.130}
+    else.130: {endif.130}
+    endif.130: {}
+  [check-fast] CHK agrees with our results.
+Function modulo:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.

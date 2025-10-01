@@ -1,0 +1,97 @@
+Function main:
+  Dominators:
+    B0: {B0}
+    for.cond.20: {B0, for.cond.20}
+    for.body.20: {B0, for.body.20, for.cond.20}
+    for.cond.27: {B0, for.body.20, for.cond.20, for.cond.27}
+    for.body.27: {B0, for.body.20, for.body.27, for.cond.20, for.cond.27}
+    then.37: {B0, for.body.20, for.body.27, for.cond.20, for.cond.27, then.37}
+    else.37: {B0, else.37, for.body.20, for.body.27, for.cond.20, for.cond.27}
+    endif.37: {B0, endif.37, for.body.20, for.body.27, for.cond.20, for.cond.27}
+    for.end.27: {B0, for.body.20, for.cond.20, for.cond.27, for.end.27}
+    for.end.20: {B0, for.cond.20, for.end.20}
+  Immediate Dominator:
+    B0: None
+    for.cond.20: B0
+    for.body.20: for.cond.20
+    for.cond.27: for.body.20
+    for.body.27: for.cond.27
+    then.37: for.body.27
+    else.37: for.body.27
+    endif.37: for.body.27
+    for.end.27: for.cond.27
+    for.end.20: for.cond.20
+  Dominator Tree children:
+    B0: for.cond.20
+    for.cond.20: for.body.20, for.end.20
+    for.body.20: for.cond.27
+    for.cond.27: for.body.27, for.end.27
+    for.body.27: else.37, endif.37, then.37
+  Dominance Frontier:
+    B0: {}
+    for.cond.20: {for.cond.20}
+    for.body.20: {for.cond.20}
+    for.cond.27: {for.cond.20, for.cond.27}
+    for.body.27: {for.cond.27}
+    then.37: {endif.37}
+    else.37: {endif.37}
+    endif.37: {for.cond.27}
+    for.end.27: {for.cond.20}
+    for.end.20: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function f:
+  Dominators:
+    B0: {B0}
+    then.7: {B0, then.7}
+    then.11: {B0, then.11, then.7}
+    B1: {B1}
+    else.11: {B0, else.11, then.7}
+    endif.11: {B0, else.11, endif.11, then.7}
+    else.7: {B0, else.7}
+    endif.7: {B0, endif.7}
+  Immediate Dominator:
+    B0: None
+    then.7: B0
+    then.11: then.7
+    B1: None
+    else.11: then.7
+    endif.11: else.11
+    else.7: B0
+    endif.7: B0
+  Dominator Tree children:
+    B0: else.7, endif.7, then.7
+    then.7: else.11, then.11
+    else.11: endif.11
+  Dominance Frontier:
+    B0: {}
+    then.7: {endif.7}
+    then.11: {}
+    B1: {endif.11}
+    else.11: {endif.7}
+    endif.11: {endif.7}
+    else.7: {endif.7}
+    endif.7: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function pow10:
+  Dominators:
+    B0: {B0}
+    for.cond.0: {B0, for.cond.0}
+    for.body.0: {B0, for.body.0, for.cond.0}
+    for.end.0: {B0, for.cond.0, for.end.0}
+  Immediate Dominator:
+    B0: None
+    for.cond.0: B0
+    for.body.0: for.cond.0
+    for.end.0: for.cond.0
+  Dominator Tree children:
+    B0: for.cond.0
+    for.cond.0: for.body.0, for.end.0
+  Dominance Frontier:
+    B0: {}
+    for.cond.0: {for.cond.0}
+    for.body.0: {for.cond.0}
+    for.end.0: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.

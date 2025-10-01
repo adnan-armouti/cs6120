@@ -1,0 +1,119 @@
+Function main:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function convolve:
+  Dominators:
+    B0: {B0}
+    loop1: {B0, loop1}
+    body1: {B0, body1, loop1}
+    loop2: {B0, body1, loop1, loop2}
+    body2: {B0, body1, body2, loop1, loop2}
+    loop3: {B0, body1, body2, loop1, loop2, loop3}
+    body3: {B0, body1, body2, body3, loop1, loop2, loop3}
+    loop4: {B0, body1, body2, body3, loop1, loop2, loop3, loop4}
+    body4: {B0, body1, body2, body3, body4, loop1, loop2, loop3, loop4}
+    done4: {B0, body1, body2, body3, done4, loop1, loop2, loop3, loop4}
+    done3: {B0, body1, body2, done3, loop1, loop2, loop3}
+    done2: {B0, body1, done2, loop1, loop2}
+    done1: {B0, done1, loop1}
+  Immediate Dominator:
+    B0: None
+    loop1: B0
+    body1: loop1
+    loop2: body1
+    body2: loop2
+    loop3: body2
+    body3: loop3
+    loop4: body3
+    body4: loop4
+    done4: loop4
+    done3: loop3
+    done2: loop2
+    done1: loop1
+  Dominator Tree children:
+    B0: loop1
+    loop1: body1, done1
+    body1: loop2
+    loop2: body2, done2
+    body2: loop3
+    loop3: body3, done3
+    body3: loop4
+    loop4: body4, done4
+  Dominance Frontier:
+    B0: {}
+    loop1: {loop1}
+    body1: {loop1}
+    loop2: {loop1, loop2}
+    body2: {loop2}
+    loop3: {loop2, loop3}
+    body3: {loop3}
+    loop4: {loop3, loop4}
+    body4: {loop4}
+    done4: {loop3}
+    done3: {loop2}
+    done2: {loop1}
+    done1: {}
+  [check-fast] CHK agrees with our results.
+Function rand:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function randarray:
+  Dominators:
+    B0: {B0}
+    loop: {B0, loop}
+    body: {B0, body, loop}
+    loop_end: {B0, body, loop, loop_end}
+    done: {B0, done, loop}
+  Immediate Dominator:
+    B0: None
+    loop: B0
+    body: loop
+    loop_end: body
+    done: loop
+  Dominator Tree children:
+    B0: loop
+    loop: body, done
+    body: loop_end
+  Dominance Frontier:
+    B0: {}
+    loop: {loop}
+    body: {loop}
+    loop_end: {loop}
+    done: {}
+  [check-fast] CHK agrees with our results.
+Function printarray:
+  Dominators:
+    B0: {B0}
+    loop: {B0, loop}
+    body: {B0, body, loop}
+    loop_end: {B0, body, loop, loop_end}
+    done: {B0, done, loop}
+  Immediate Dominator:
+    B0: None
+    loop: B0
+    body: loop
+    loop_end: body
+    done: loop
+  Dominator Tree children:
+    B0: loop
+    loop: body, done
+    body: loop_end
+  Dominance Frontier:
+    B0: {}
+    loop: {loop}
+    body: {loop}
+    loop_end: {loop}
+    done: {}
+  [check-fast] CHK agrees with our results.

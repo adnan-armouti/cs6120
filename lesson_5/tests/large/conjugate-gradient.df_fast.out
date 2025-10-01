@@ -1,0 +1,222 @@
+Function main:
+  Dominators:
+    B0: {B0}
+    for.set.cond: {B0, for.set.cond}
+    for.set.body: {B0, for.set.body, for.set.cond}
+    for.set.end: {B0, for.set.cond, for.set.end}
+  Immediate Dominator:
+    B0: None
+    for.set.cond: B0
+    for.set.body: for.set.cond
+    for.set.end: for.set.cond
+  Dominator Tree children:
+    B0: for.set.cond
+    for.set.cond: for.set.body, for.set.end
+  Dominance Frontier:
+    B0: {}
+    for.set.cond: {for.set.cond}
+    for.set.body: {for.set.cond}
+    for.set.end: {}
+  [check-fast] CHK agrees with our results.
+Function vec_mul:
+  Dominators:
+    B0: {B0}
+    for.cond: {B0, for.cond}
+    for.body: {B0, for.body, for.cond}
+    for.end: {B0, for.cond, for.end}
+  Immediate Dominator:
+    B0: None
+    for.cond: B0
+    for.body: for.cond
+    for.end: for.cond
+  Dominator Tree children:
+    B0: for.cond
+    for.cond: for.body, for.end
+  Dominance Frontier:
+    B0: {}
+    for.cond: {for.cond}
+    for.body: {for.cond}
+    for.end: {}
+  [check-fast] CHK agrees with our results.
+Function vec_copy:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function dot_p:
+  Dominators:
+    B0: {B0}
+    for.cond: {B0, for.cond}
+    for.body: {B0, for.body, for.cond}
+    for.end: {B0, for.cond, for.end}
+  Immediate Dominator:
+    B0: None
+    for.cond: B0
+    for.body: for.cond
+    for.end: for.cond
+  Dominator Tree children:
+    B0: for.cond
+    for.cond: for.body, for.end
+  Dominance Frontier:
+    B0: {}
+    for.cond: {for.cond}
+    for.body: {for.cond}
+    for.end: {}
+  [check-fast] CHK agrees with our results.
+Function vec_sub:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function vec_add:
+  Dominators:
+    B0: {B0}
+    for.cond: {B0, for.cond}
+    for.body: {B0, for.body, for.cond}
+    for.end: {B0, for.cond, for.end}
+  Immediate Dominator:
+    B0: None
+    for.cond: B0
+    for.body: for.cond
+    for.end: for.cond
+  Dominator Tree children:
+    B0: for.cond
+    for.cond: for.body, for.end
+  Dominance Frontier:
+    B0: {}
+    for.cond: {for.cond}
+    for.body: {for.cond}
+    for.end: {}
+  [check-fast] CHK agrees with our results.
+Function vec_add_inp:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function vec_sub_inp:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function mat_vec:
+  Dominators:
+    B0: {B0}
+    for.row.cond: {B0, for.row.cond}
+    for.row.body: {B0, for.row.body, for.row.cond}
+    for.col.cond: {B0, for.col.cond, for.row.body, for.row.cond}
+    for.col.body: {B0, for.col.body, for.col.cond, for.row.body, for.row.cond}
+    for.col.end: {B0, for.col.cond, for.col.end, for.row.body, for.row.cond}
+    for.row.end: {B0, for.row.cond, for.row.end}
+  Immediate Dominator:
+    B0: None
+    for.row.cond: B0
+    for.row.body: for.row.cond
+    for.col.cond: for.row.body
+    for.col.body: for.col.cond
+    for.col.end: for.col.cond
+    for.row.end: for.row.cond
+  Dominator Tree children:
+    B0: for.row.cond
+    for.row.cond: for.row.body, for.row.end
+    for.row.body: for.col.cond
+    for.col.cond: for.col.body, for.col.end
+  Dominance Frontier:
+    B0: {}
+    for.row.cond: {for.row.cond}
+    for.row.body: {for.row.cond}
+    for.col.cond: {for.col.cond, for.row.cond}
+    for.col.body: {for.col.cond}
+    for.col.end: {for.row.cond}
+    for.row.end: {}
+  [check-fast] CHK agrees with our results.
+Function get_sym:
+  Dominators:
+    B0: {B0}
+    for.zero.cond: {B0, for.zero.cond}
+    for.zero.body: {B0, for.zero.body, for.zero.cond}
+    for.zero.end: {B0, for.zero.cond, for.zero.end}
+    for.cond: {B0, for.cond, for.zero.cond, for.zero.end}
+    for.body: {B0, for.body, for.cond, for.zero.cond, for.zero.end}
+    for.end: {B0, for.cond, for.end, for.zero.cond, for.zero.end}
+  Immediate Dominator:
+    B0: None
+    for.zero.cond: B0
+    for.zero.body: for.zero.cond
+    for.zero.end: for.zero.cond
+    for.cond: for.zero.end
+    for.body: for.cond
+    for.end: for.cond
+  Dominator Tree children:
+    B0: for.zero.cond
+    for.zero.cond: for.zero.body, for.zero.end
+    for.zero.end: for.cond
+    for.cond: for.body, for.end
+  Dominance Frontier:
+    B0: {}
+    for.zero.cond: {for.zero.cond}
+    for.zero.body: {for.zero.cond}
+    for.zero.end: {}
+    for.cond: {for.cond}
+    for.body: {for.cond}
+    for.end: {}
+  [check-fast] CHK agrees with our results.
+Function disp_vec:
+  Dominators:
+    B0: {B0}
+    for.cond: {B0, for.cond}
+    for.body: {B0, for.body, for.cond}
+    for.end: {B0, for.cond, for.end}
+  Immediate Dominator:
+    B0: None
+    for.cond: B0
+    for.body: for.cond
+    for.end: for.cond
+  Dominator Tree children:
+    B0: for.cond
+    for.cond: for.body, for.end
+  Dominance Frontier:
+    B0: {}
+    for.cond: {for.cond}
+    for.body: {for.cond}
+    for.end: {}
+  [check-fast] CHK agrees with our results.
+Function cg:
+  Dominators:
+    B0: {B0}
+    for.cond: {B0, for.cond}
+    for.body: {B0, for.body, for.cond}
+    cont: {B0, cont, for.body, for.cond}
+    for.end: {B0, for.cond, for.end}
+  Immediate Dominator:
+    B0: None
+    for.cond: B0
+    for.body: for.cond
+    cont: for.body
+    for.end: for.cond
+  Dominator Tree children:
+    B0: for.cond
+    for.cond: for.body, for.end
+    for.body: cont
+  Dominance Frontier:
+    B0: {}
+    for.cond: {for.cond}
+    for.body: {for.cond, for.end}
+    cont: {for.cond}
+    for.end: {}
+  [check-fast] CHK agrees with our results.

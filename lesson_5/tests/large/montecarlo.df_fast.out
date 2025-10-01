@@ -1,0 +1,181 @@
+Function xor:
+  Dominators:
+    B0: {B0}
+    loop_start: {B0, loop_start}
+    loop_body: {B0, loop_body, loop_start}
+    loop_end: {B0, loop_end, loop_start}
+  Immediate Dominator:
+    B0: None
+    loop_start: B0
+    loop_body: loop_start
+    loop_end: loop_start
+  Dominator Tree children:
+    B0: loop_start
+    loop_start: loop_body, loop_end
+  Dominance Frontier:
+    B0: {}
+    loop_start: {loop_start}
+    loop_body: {loop_start}
+    loop_end: {}
+  [check-fast] CHK agrees with our results.
+Function shift_left:
+  Dominators:
+    B0: {B0}
+    loop_start: {B0, loop_start}
+    loop_body: {B0, loop_body, loop_start}
+    loop_end: {B0, loop_end, loop_start}
+  Immediate Dominator:
+    B0: None
+    loop_start: B0
+    loop_body: loop_start
+    loop_end: loop_start
+  Dominator Tree children:
+    B0: loop_start
+    loop_start: loop_body, loop_end
+  Dominance Frontier:
+    B0: {}
+    loop_start: {loop_start}
+    loop_body: {loop_start}
+    loop_end: {}
+  [check-fast] CHK agrees with our results.
+Function shift_right:
+  Dominators:
+    B0: {B0}
+    loop_start: {B0, loop_start}
+    loop_body: {B0, loop_body, loop_start}
+    loop_end: {B0, loop_end, loop_start}
+  Immediate Dominator:
+    B0: None
+    loop_start: B0
+    loop_body: loop_start
+    loop_end: loop_start
+  Dominator Tree children:
+    B0: loop_start
+    loop_start: loop_body, loop_end
+  Dominance Frontier:
+    B0: {}
+    loop_start: {loop_start}
+    loop_body: {loop_start}
+    loop_end: {}
+  [check-fast] CHK agrees with our results.
+Function xor64_shift64:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function bit_length:
+  Dominators:
+    B0: {B0}
+    loop_start: {B0, loop_start}
+    loop_body: {B0, loop_body, loop_start}
+    loop_end: {B0, loop_end, loop_start}
+  Immediate Dominator:
+    B0: None
+    loop_start: B0
+    loop_body: loop_start
+    loop_end: loop_start
+  Dominator Tree children:
+    B0: loop_start
+    loop_start: loop_body, loop_end
+  Dominance Frontier:
+    B0: {}
+    loop_start: {loop_start}
+    loop_body: {loop_start}
+    loop_end: {}
+  [check-fast] CHK agrees with our results.
+Function to_float:
+  Dominators:
+    B0: {B0}
+    no_skip_ret: {B0, no_skip_ret}
+    skip_ret: {B0, skip_ret}
+    no_skip: {B0, no_skip, skip_ret}
+    skip: {B0, skip, skip_ret}
+    B1: {B0, B1, B2, end_if, greater, is_int_min, is_negative, is_positive, k_join, less, no_int_min, no_skip, no_skip_ret, skip, skip_ret}
+    is_negative: {B0, is_negative, skip, skip_ret}
+    is_int_min: {B0, is_int_min, is_negative, skip, skip_ret}
+    no_int_min: {B0, is_negative, no_int_min, skip, skip_ret}
+    is_positive: {B0, is_positive, skip, skip_ret}
+    k_join: {B0, k_join, skip, skip_ret}
+    B2: {B0, B1, B2, end_if, greater, is_int_min, is_negative, is_positive, k_join, less, no_int_min, no_skip, no_skip_ret, skip, skip_ret}
+    greater: {B0, greater, k_join, skip, skip_ret}
+    less: {B0, k_join, less, skip, skip_ret}
+    end_if: {B0, end_if, k_join, skip, skip_ret}
+  Immediate Dominator:
+    B0: None
+    no_skip_ret: B0
+    skip_ret: B0
+    no_skip: skip_ret
+    skip: skip_ret
+    B1: None
+    is_negative: skip
+    is_int_min: is_negative
+    no_int_min: is_negative
+    is_positive: skip
+    k_join: skip
+    B2: None
+    greater: k_join
+    less: k_join
+    end_if: k_join
+  Dominator Tree children:
+    B0: no_skip_ret, skip_ret
+    skip_ret: no_skip, skip
+    skip: is_negative, is_positive, k_join
+    is_negative: is_int_min, no_int_min
+    k_join: end_if, greater, less
+  Dominance Frontier:
+    B0: {}
+    no_skip_ret: {}
+    skip_ret: {}
+    no_skip: {skip}
+    skip: {}
+    B1: {is_negative}
+    is_negative: {k_join}
+    is_int_min: {}
+    no_int_min: {k_join}
+    is_positive: {k_join}
+    k_join: {}
+    B2: {greater}
+    greater: {end_if}
+    less: {end_if}
+    end_if: {}
+  [check-fast] CHK agrees with our results.
+Function to_unit_float:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function main:
+  Dominators:
+    B0: {B0}
+    loop_start: {B0, loop_start}
+    loop_body: {B0, loop_body, loop_start}
+    inc_circle: {B0, inc_circle, loop_body, loop_start}
+    skip_inc: {B0, loop_body, loop_start, skip_inc}
+    loop_end: {B0, loop_end, loop_start}
+  Immediate Dominator:
+    B0: None
+    loop_start: B0
+    loop_body: loop_start
+    inc_circle: loop_body
+    skip_inc: loop_body
+    loop_end: loop_start
+  Dominator Tree children:
+    B0: loop_start
+    loop_start: loop_body, loop_end
+    loop_body: inc_circle, skip_inc
+  Dominance Frontier:
+    B0: {}
+    loop_start: {loop_start}
+    loop_body: {loop_start}
+    inc_circle: {skip_inc}
+    skip_inc: {loop_start}
+    loop_end: {}
+  [check-fast] CHK agrees with our results.

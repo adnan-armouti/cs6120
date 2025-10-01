@@ -1,0 +1,82 @@
+Function rand:
+  Dominators:
+    B0: {B0}
+    negate: {B0, negate}
+    done: {B0, done}
+  Immediate Dominator:
+    B0: None
+    negate: B0
+    done: B0
+  Dominator Tree children:
+    B0: done, negate
+  Dominance Frontier:
+    B0: {}
+    negate: {done}
+    done: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function step:
+  Dominators:
+    B0: {B0}
+    loop: {B0, loop}
+    then_i2: {B0, loop, then_i2}
+    else_i2: {B0, else_i2, loop}
+    then_i2p1: {B0, else_i2, loop, then_i2p1}
+    else_i2p1: {B0, else_i2, else_i2p1, loop}
+  Immediate Dominator:
+    B0: None
+    loop: B0
+    then_i2: loop
+    else_i2: loop
+    then_i2p1: else_i2
+    else_i2p1: else_i2
+  Dominator Tree children:
+    B0: loop
+    loop: else_i2, then_i2
+    else_i2: else_i2p1, then_i2p1
+  Dominance Frontier:
+    B0: {}
+    loop: {loop}
+    then_i2: {}
+    else_i2: {loop}
+    then_i2p1: {}
+    else_i2p1: {loop}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function main:
+  Dominators:
+    B0: {B0}
+    cont_init: {B0, cont_init}
+    end_init: {B0, cont_init, end_init}
+    loop: {B0, cont_init, end_init, loop}
+    cont: {B0, cont, cont_init, end_init, loop}
+    end: {B0, cont, cont_init, end, end_init, loop}
+    print_dash: {B0, cont, cont_init, end, end_init, loop, print_dash}
+    home: {B0, cont, cont_init, end, end_init, home, loop}
+  Immediate Dominator:
+    B0: None
+    cont_init: B0
+    end_init: cont_init
+    loop: end_init
+    cont: loop
+    end: cont
+    print_dash: end
+    home: end
+  Dominator Tree children:
+    B0: cont_init
+    cont_init: end_init
+    end_init: loop
+    loop: cont
+    cont: end
+    end: home, print_dash
+  Dominance Frontier:
+    B0: {}
+    cont_init: {cont_init}
+    end_init: {}
+    loop: {loop}
+    cont: {cont, loop}
+    end: {loop}
+    print_dash: {loop}
+    home: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.

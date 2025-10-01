@@ -1,0 +1,205 @@
+Function main:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function next_board:
+  Dominators:
+    B0: {B0}
+    compare: {B0, compare}
+    continue: {B0, compare, continue}
+    exit: {B0, compare, exit}
+  Immediate Dominator:
+    B0: None
+    compare: B0
+    continue: compare
+    exit: compare
+  Dominator Tree children:
+    B0: compare
+    compare: continue, exit
+  Dominance Frontier:
+    B0: {}
+    compare: {compare}
+    continue: {compare}
+    exit: {}
+  [check-fast] CHK agrees with our results.
+Function next_cell:
+  Dominators:
+    B0: {B0}
+    B1: {B0, B1, alive, alive1, dead, exit, should_die, should_live}
+    alive: {B0, alive}
+    alive1: {B0, alive, alive1}
+    dead: {B0, dead}
+    should_live: {B0, should_live}
+    should_die: {B0, should_die}
+    exit: {B0, exit}
+  Immediate Dominator:
+    B0: None
+    B1: None
+    alive: B0
+    alive1: alive
+    dead: B0
+    should_live: B0
+    should_die: B0
+    exit: B0
+  Dominator Tree children:
+    B0: alive, dead, exit, should_die, should_live
+    alive: alive1
+  Dominance Frontier:
+    B0: {}
+    B1: {alive}
+    alive: {should_die, should_live}
+    alive1: {should_die, should_live}
+    dead: {should_die, should_live}
+    should_live: {exit}
+    should_die: {exit}
+    exit: {}
+  [check-fast] CHK agrees with our results.
+Function test_neighbors:
+  Dominators:
+    B0: {B0}
+    comparison: {B0, comparison}
+    body: {B0, body, comparison}
+    exit: {B0, comparison, exit}
+  Immediate Dominator:
+    B0: None
+    comparison: B0
+    body: comparison
+    exit: comparison
+  Dominator Tree children:
+    B0: comparison
+    comparison: body, exit
+  Dominance Frontier:
+    B0: {}
+    comparison: {comparison}
+    body: {comparison}
+    exit: {}
+  [check-fast] CHK agrees with our results.
+Function alive:
+  Dominators:
+    B0: {B0}
+    a: {B0, a}
+    a.bis: {B0, a, a.bis}
+    b: {B0, a, b}
+    c: {B0, a, a.bis, c}
+    d: {B0, d}
+    d.bis: {B0, d, d.bis}
+    e: {B0, d, e}
+    f: {B0, d, d.bis, f}
+    g: {B0, d, d.bis, g}
+    g.bis: {B0, d, d.bis, g, g.bis}
+    g.bis2: {B0, d, d.bis, g, g.bis, g.bis2}
+    h: {B0, d, d.bis, g, g.bis, h}
+    i: {B0, d, d.bis, g, g.bis, h, i}
+    exit: {B0, d, d.bis, exit, g}
+  Immediate Dominator:
+    B0: None
+    a: B0
+    a.bis: a
+    b: a
+    c: a.bis
+    d: B0
+    d.bis: d
+    e: d
+    f: d.bis
+    g: d.bis
+    g.bis: g
+    g.bis2: g.bis
+    h: g.bis
+    i: h
+    exit: g
+  Dominator Tree children:
+    B0: a, d
+    a: a.bis, b
+    a.bis: c
+    d: d.bis, e
+    d.bis: f, g
+    g: exit, g.bis
+    g.bis: g.bis2, h
+    h: i
+  Dominance Frontier:
+    B0: {}
+    a: {d}
+    a.bis: {d}
+    b: {a.bis}
+    c: {d}
+    d: {}
+    d.bis: {}
+    e: {d.bis}
+    f: {g}
+    g: {}
+    g.bis: {exit}
+    g.bis2: {h}
+    h: {exit}
+    i: {exit}
+    exit: {}
+  [check-fast] CHK agrees with our results.
+Function rand:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function rand_array:
+  Dominators:
+    B0: {B0}
+    compare: {B0, compare}
+    continue: {B0, compare, continue}
+    exit: {B0, compare, exit}
+  Immediate Dominator:
+    B0: None
+    compare: B0
+    continue: compare
+    exit: compare
+  Dominator Tree children:
+    B0: compare
+    compare: continue, exit
+  Dominance Frontier:
+    B0: {}
+    compare: {compare}
+    continue: {compare}
+    exit: {}
+  [check-fast] CHK agrees with our results.
+Function print_array:
+  Dominators:
+    B0: {B0}
+    compare: {B0, compare}
+    continue: {B0, compare, continue}
+    exit: {B0, compare, exit}
+  Immediate Dominator:
+    B0: None
+    compare: B0
+    continue: compare
+    exit: compare
+  Dominator Tree children:
+    B0: compare
+    compare: continue, exit
+  Dominance Frontier:
+    B0: {}
+    compare: {compare}
+    continue: {compare}
+    exit: {}
+  [check-fast] CHK agrees with our results.
+Function mod:
+  Dominators:
+    B0: {B0}
+    adjust: {B0, adjust}
+    exit: {B0, exit}
+  Immediate Dominator:
+    B0: None
+    adjust: B0
+    exit: B0
+  Dominator Tree children:
+    B0: adjust, exit
+  Dominance Frontier:
+    B0: {}
+    adjust: {exit}
+    exit: {}
+  [check-fast] CHK agrees with our results.

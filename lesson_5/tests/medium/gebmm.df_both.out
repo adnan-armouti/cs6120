@@ -1,0 +1,142 @@
+Function main:
+  Dominators:
+    B0: {B0}
+    row_loop: {B0, row_loop}
+    col_loop: {B0, col_loop, row_loop}
+    inner_loop: {B0, col_loop, inner_loop, row_loop}
+    multiply: {B0, col_loop, inner_loop, multiply, row_loop}
+    end_col: {B0, col_loop, end_col, inner_loop, row_loop}
+    add_dp: {B0, add_dp, col_loop, end_col, inner_loop, row_loop}
+    return: {B0, return, row_loop}
+  Immediate Dominator:
+    B0: None
+    row_loop: B0
+    col_loop: row_loop
+    inner_loop: col_loop
+    multiply: inner_loop
+    end_col: inner_loop
+    add_dp: end_col
+    return: row_loop
+  Dominator Tree children:
+    B0: row_loop
+    row_loop: col_loop, return
+    col_loop: inner_loop
+    inner_loop: end_col, multiply
+    end_col: add_dp
+  Dominance Frontier:
+    B0: {}
+    row_loop: {row_loop}
+    col_loop: {col_loop, row_loop}
+    inner_loop: {col_loop, inner_loop}
+    multiply: {inner_loop}
+    end_col: {col_loop}
+    add_dp: {col_loop}
+    return: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function mat_bitsel:
+  Dominators:
+    B0: {B0}
+    ret_one: {B0, ret_one}
+    ret_zero: {B0, ret_zero}
+  Immediate Dominator:
+    B0: None
+    ret_one: B0
+    ret_zero: B0
+  Dominator Tree children:
+    B0: ret_one, ret_zero
+  Dominance Frontier:
+    B0: {}
+    ret_one: {}
+    ret_zero: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function mat_packed_index:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function pow2:
+  Dominators:
+    B0: {B0}
+    loop: {B0, loop}
+    multiply: {B0, loop, multiply}
+    return: {B0, loop, return}
+  Immediate Dominator:
+    B0: None
+    loop: B0
+    multiply: loop
+    return: loop
+  Dominator Tree children:
+    B0: loop
+    loop: multiply, return
+  Dominance Frontier:
+    B0: {}
+    loop: {loop}
+    multiply: {loop}
+    return: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function bitsel:
+  Dominators:
+    B0: {B0}
+    loop: {B0, loop}
+    divide: {B0, divide, loop}
+    return: {B0, loop, return}
+  Immediate Dominator:
+    B0: None
+    loop: B0
+    divide: loop
+    return: loop
+  Dominator Tree children:
+    B0: loop
+    loop: divide, return
+  Dominance Frontier:
+    B0: {}
+    loop: {loop}
+    divide: {loop}
+    return: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function abs:
+  Dominators:
+    B0: {B0}
+    negative: {B0, negative}
+    positive: {B0, positive}
+  Immediate Dominator:
+    B0: None
+    negative: B0
+    positive: B0
+  Dominator Tree children:
+    B0: negative, positive
+  Dominance Frontier:
+    B0: {}
+    negative: {positive}
+    positive: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function is_even:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.
+Function is_odd:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-slow] dom sets agree with slow test.
+  [check-fast] CHK agrees with our results.

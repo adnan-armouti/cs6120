@@ -1,0 +1,196 @@
+Function rem:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function divides:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function prepend:
+  Dominators:
+    B0: {B0}
+    repeat: {B0, repeat}
+    next: {B0, next, repeat}
+    exit: {B0, exit, repeat}
+  Immediate Dominator:
+    B0: None
+    repeat: B0
+    next: repeat
+    exit: repeat
+  Dominator Tree children:
+    B0: repeat
+    repeat: exit, next
+  Dominance Frontier:
+    B0: {}
+    repeat: {repeat}
+    next: {repeat}
+    exit: {}
+  [check-fast] CHK agrees with our results.
+Function prime_factor:
+  Dominators:
+    B0: {B0}
+    continue: {B0, continue}
+    yay: {B0, continue, yay}
+    inc: {B0, continue, inc}
+    giveup: {B0, continue, giveup, inc}
+  Immediate Dominator:
+    B0: None
+    continue: B0
+    yay: continue
+    inc: continue
+    giveup: inc
+  Dominator Tree children:
+    B0: continue
+    continue: inc, yay
+    inc: giveup
+  Dominance Frontier:
+    B0: {}
+    continue: {continue}
+    yay: {}
+    inc: {continue}
+    giveup: {}
+  [check-fast] CHK agrees with our results.
+Function prime_factors:
+  Dominators:
+    B0: {B0}
+    continue: {B0, continue}
+    next: {B0, continue, next}
+    repeat: {B0, continue, next, repeat}
+    divided: {B0, continue, divided, next, repeat}
+    exit: {B0, continue, exit}
+  Immediate Dominator:
+    B0: None
+    continue: B0
+    next: continue
+    repeat: next
+    divided: repeat
+    exit: continue
+  Dominator Tree children:
+    B0: continue
+    continue: exit, next
+    next: repeat
+    repeat: divided
+  Dominance Frontier:
+    B0: {}
+    continue: {continue}
+    next: {continue}
+    repeat: {continue, repeat}
+    divided: {continue}
+    exit: {}
+  [check-fast] CHK agrees with our results.
+Function modexp:
+  Dominators:
+    B0: {B0}
+    exp_zero: {B0, exp_zero}
+    not_zero: {B0, not_zero}
+    exp_one: {B0, exp_one, not_zero}
+    not_one: {B0, not_one, not_zero}
+    post_multiply: {B0, not_one, not_zero, post_multiply}
+    no_post: {B0, no_post, not_one, not_zero}
+    exit: {B0, exit, no_post, not_one, not_zero}
+  Immediate Dominator:
+    B0: None
+    exp_zero: B0
+    not_zero: B0
+    exp_one: not_zero
+    not_one: not_zero
+    post_multiply: not_one
+    no_post: not_one
+    exit: no_post
+  Dominator Tree children:
+    B0: exp_zero, not_zero
+    not_zero: exp_one, not_one
+    not_one: no_post, post_multiply
+    no_post: exit
+  Dominance Frontier:
+    B0: {}
+    exp_zero: {}
+    not_zero: {}
+    exp_one: {}
+    not_one: {}
+    post_multiply: {no_post}
+    no_post: {}
+    exit: {}
+  [check-fast] CHK agrees with our results.
+Function check_ord:
+  Dominators:
+    B0: {B0}
+    check_power: {B0, check_power}
+    next1: {B0, check_power, next1}
+    next2: {B0, check_power, next1, next2}
+    ret_true: {B0, check_power, ret_true}
+    ret_false: {B0, check_power, next1, ret_false}
+  Immediate Dominator:
+    B0: None
+    check_power: B0
+    next1: check_power
+    next2: next1
+    ret_true: check_power
+    ret_false: next1
+  Dominator Tree children:
+    B0: check_power
+    check_power: next1, ret_true
+    next1: next2, ret_false
+  Dominance Frontier:
+    B0: {}
+    check_power: {check_power}
+    next1: {check_power}
+    next2: {check_power}
+    ret_true: {}
+    ret_false: {}
+  [check-fast] CHK agrees with our results.
+Function search_primitive:
+  Dominators:
+    B0: {B0}
+    eval: {B0, eval}
+    keep_trying: {B0, eval, keep_trying}
+    ret: {B0, eval, keep_trying, ret}
+    inc: {B0, eval, inc, keep_trying}
+    done_guess: {B0, done_guess, eval}
+  Immediate Dominator:
+    B0: None
+    eval: B0
+    keep_trying: eval
+    ret: keep_trying
+    inc: keep_trying
+    done_guess: eval
+  Dominator Tree children:
+    B0: eval
+    eval: done_guess, keep_trying
+    keep_trying: inc, ret
+  Dominance Frontier:
+    B0: {}
+    eval: {eval}
+    keep_trying: {eval}
+    ret: {}
+    inc: {eval}
+    done_guess: {}
+  [check-fast] CHK agrees with our results.
+Function phi:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function main:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.

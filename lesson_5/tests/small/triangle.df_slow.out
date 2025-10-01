@@ -1,0 +1,29 @@
+Function tri:
+  Dominators:
+    B0: {B0}
+    c: {B0, c}
+    c_gt: {B0, c, c_gt}
+    c_le: {B0, c, c_le}
+  Immediate Dominator:
+    B0: None
+    c: B0
+    c_gt: c
+    c_le: c
+  Dominator Tree children:
+    B0: c
+    c: c_gt, c_le
+  Dominance Frontier:
+    B0: {}
+    c: {c}
+    c_gt: {}
+    c_le: {c}
+  [check-slow] dom sets agree with slow test.
+Function main:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-slow] dom sets agree with slow test.

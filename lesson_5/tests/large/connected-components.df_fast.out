@@ -1,0 +1,199 @@
+Function print_through:
+  Dominators:
+    B0: {B0}
+    loop: {B0, loop}
+    printmore: {B0, loop, printmore}
+    loopcheck: {B0, loop, loopcheck, printmore}
+    done: {B0, done, loop}
+  Immediate Dominator:
+    B0: None
+    loop: B0
+    printmore: loop
+    loopcheck: printmore
+    done: loop
+  Dominator Tree children:
+    B0: loop
+    loop: done, printmore
+    printmore: loopcheck
+  Dominance Frontier:
+    B0: {}
+    loop: {loop}
+    printmore: {loop}
+    loopcheck: {loop}
+    done: {}
+  [check-fast] CHK agrees with our results.
+Function push:
+  Dominators:
+    B0: {B0}
+    push_empty: {B0, push_empty}
+    push_nonempty: {B0, push_nonempty}
+    copyloop: {B0, copyloop, push_nonempty}
+    copy: {B0, copy, copyloop, push_nonempty}
+    loop_end: {B0, copy, copyloop, loop_end, push_nonempty}
+    done: {B0, copyloop, done, push_nonempty}
+  Immediate Dominator:
+    B0: None
+    push_empty: B0
+    push_nonempty: B0
+    copyloop: push_nonempty
+    copy: copyloop
+    loop_end: copy
+    done: copyloop
+  Dominator Tree children:
+    B0: push_empty, push_nonempty
+    push_nonempty: copyloop
+    copyloop: copy, done
+    copy: loop_end
+  Dominance Frontier:
+    B0: {}
+    push_empty: {}
+    push_nonempty: {}
+    copyloop: {copyloop}
+    copy: {copyloop}
+    loop_end: {copyloop}
+    done: {}
+  [check-fast] CHK agrees with our results.
+Function pop:
+  Dominators:
+    B0: {B0}
+    pop_one: {B0, pop_one}
+    pop_multiple: {B0, pop_multiple}
+    copyloop: {B0, copyloop, pop_multiple}
+    copy: {B0, copy, copyloop, pop_multiple}
+    loop_end: {B0, copy, copyloop, loop_end, pop_multiple}
+    done: {B0, copyloop, done, pop_multiple}
+  Immediate Dominator:
+    B0: None
+    pop_one: B0
+    pop_multiple: B0
+    copyloop: pop_multiple
+    copy: copyloop
+    loop_end: copy
+    done: copyloop
+  Dominator Tree children:
+    B0: pop_multiple, pop_one
+    pop_multiple: copyloop
+    copyloop: copy, done
+    copy: loop_end
+  Dominance Frontier:
+    B0: {}
+    pop_one: {}
+    pop_multiple: {}
+    copyloop: {copyloop}
+    copy: {copyloop}
+    loop_end: {copyloop}
+    done: {}
+  [check-fast] CHK agrees with our results.
+Function first_unvisited:
+  Dominators:
+    B0: {B0}
+    loop: {B0, loop}
+    continue: {B0, continue, loop}
+    terminate: {B0, loop, terminate}
+  Immediate Dominator:
+    B0: None
+    loop: B0
+    continue: loop
+    terminate: loop
+  Dominator Tree children:
+    B0: loop
+    loop: continue, terminate
+  Dominance Frontier:
+    B0: {}
+    loop: {loop}
+    continue: {loop}
+    terminate: {}
+  [check-fast] CHK agrees with our results.
+Function dfs:
+  Dominators:
+    B0: {B0}
+    populate_visited: {B0, populate_visited}
+    keep_looping: {B0, keep_looping, populate_visited}
+    rest: {B0, populate_visited, rest}
+    component_loop: {B0, component_loop, populate_visited, rest}
+    dfs_init: {B0, component_loop, dfs_init, populate_visited, rest}
+    dfs_loop: {B0, component_loop, dfs_init, dfs_loop, populate_visited, rest}
+    trav_loop: {B0, component_loop, dfs_init, dfs_loop, populate_visited, rest, trav_loop}
+    neighbor_loop: {B0, component_loop, dfs_init, dfs_loop, neighbor_loop, populate_visited, rest, trav_loop}
+    iter: {B0, component_loop, dfs_init, dfs_loop, iter, neighbor_loop, populate_visited, rest, trav_loop}
+    push_stack: {B0, component_loop, dfs_init, dfs_loop, iter, neighbor_loop, populate_visited, push_stack, rest, trav_loop}
+    no_push: {B0, component_loop, dfs_init, dfs_loop, iter, neighbor_loop, no_push, populate_visited, rest, trav_loop}
+    break: {B0, break, component_loop, dfs_init, dfs_loop, neighbor_loop, populate_visited, rest, trav_loop}
+    terminate: {B0, component_loop, dfs_init, dfs_loop, populate_visited, rest, terminate}
+    end: {B0, component_loop, end, populate_visited, rest}
+  Immediate Dominator:
+    B0: None
+    populate_visited: B0
+    keep_looping: populate_visited
+    rest: populate_visited
+    component_loop: rest
+    dfs_init: component_loop
+    dfs_loop: dfs_init
+    trav_loop: dfs_loop
+    neighbor_loop: trav_loop
+    iter: neighbor_loop
+    push_stack: iter
+    no_push: iter
+    break: neighbor_loop
+    terminate: dfs_loop
+    end: component_loop
+  Dominator Tree children:
+    B0: populate_visited
+    populate_visited: keep_looping, rest
+    rest: component_loop
+    component_loop: dfs_init, end
+    dfs_init: dfs_loop
+    dfs_loop: terminate, trav_loop
+    trav_loop: neighbor_loop
+    neighbor_loop: break, iter
+    iter: no_push, push_stack
+  Dominance Frontier:
+    B0: {}
+    populate_visited: {populate_visited}
+    keep_looping: {populate_visited}
+    rest: {}
+    component_loop: {component_loop}
+    dfs_init: {component_loop}
+    dfs_loop: {component_loop, dfs_loop}
+    trav_loop: {dfs_loop}
+    neighbor_loop: {dfs_loop, neighbor_loop}
+    iter: {neighbor_loop}
+    push_stack: {no_push}
+    no_push: {neighbor_loop}
+    break: {dfs_loop}
+    terminate: {component_loop}
+    end: {}
+  [check-fast] CHK agrees with our results.
+Function insert_edge:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function main:
+  Dominators:
+    B0: {B0}
+    init_loop: {B0, init_loop}
+    continue: {B0, continue, init_loop}
+    fill_edges: {B0, fill_edges, init_loop}
+    compute_components: {B0, compute_components, fill_edges, init_loop}
+  Immediate Dominator:
+    B0: None
+    init_loop: B0
+    continue: init_loop
+    fill_edges: init_loop
+    compute_components: fill_edges
+  Dominator Tree children:
+    B0: init_loop
+    init_loop: continue, fill_edges
+    fill_edges: compute_components
+  Dominance Frontier:
+    B0: {}
+    init_loop: {init_loop}
+    continue: {init_loop}
+    fill_edges: {}
+    compute_components: {}
+  [check-fast] CHK agrees with our results.

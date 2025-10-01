@@ -1,0 +1,14 @@
+[envs.df_slow]
+default = false
+command = "bril2json < {filename} | python3 ../../df.py --check_slow"
+output."df_slow.out" = "-"
+
+[envs.df_fast]
+command = "bril2json < {filename} | python3 ../../df.py --check_fast"
+output."df_fast.out" = "-"
+
+[envs.df_both]
+default = false
+command = "bril2json < {filename} | python3 ../../df.py --check_slow --check_fast"
+output."df_both.out" = "-"
+

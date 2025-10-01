@@ -1,0 +1,187 @@
+Function xor:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function getbit:
+  Dominators:
+    B0: {B0}
+    loop_cond: {B0, loop_cond}
+    loop_body: {B0, loop_body, loop_cond}
+    loop_exit: {B0, loop_cond, loop_exit}
+  Immediate Dominator:
+    B0: None
+    loop_cond: B0
+    loop_body: loop_cond
+    loop_exit: loop_cond
+  Dominator Tree children:
+    B0: loop_cond
+    loop_cond: loop_body, loop_exit
+  Dominance Frontier:
+    B0: {}
+    loop_cond: {loop_cond}
+    loop_body: {loop_cond}
+    loop_exit: {}
+  [check-fast] CHK agrees with our results.
+Function rand:
+  Dominators:
+    B0: {B0}
+    add_one: {B0, add_one}
+    end: {B0, end}
+  Immediate Dominator:
+    B0: None
+    add_one: B0
+    end: B0
+  Dominator Tree children:
+    B0: add_one, end
+  Dominance Frontier:
+    B0: {}
+    add_one: {end}
+    end: {}
+  [check-fast] CHK agrees with our results.
+Function mod:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.
+Function gen_uniform_csr:
+  Dominators:
+    B0: {B0}
+    loop_gen_rptr_cond: {B0, loop_gen_rptr_cond}
+    loop_gen_rptr_body: {B0, loop_gen_rptr_body, loop_gen_rptr_cond}
+    loop_gen_rptr_exit: {B0, loop_gen_rptr_cond, loop_gen_rptr_exit}
+    loop_gen_cidx_cond: {B0, loop_gen_cidx_cond, loop_gen_rptr_cond, loop_gen_rptr_exit}
+    loop_gen_cidx_body: {B0, loop_gen_cidx_body, loop_gen_cidx_cond, loop_gen_rptr_cond, loop_gen_rptr_exit}
+    loop_gen_cidx_exit: {B0, loop_gen_cidx_cond, loop_gen_cidx_exit, loop_gen_rptr_cond, loop_gen_rptr_exit}
+    loop_gen_vals_cond: {B0, loop_gen_cidx_cond, loop_gen_cidx_exit, loop_gen_rptr_cond, loop_gen_rptr_exit, loop_gen_vals_cond}
+    loop_gen_vals_body: {B0, loop_gen_cidx_cond, loop_gen_cidx_exit, loop_gen_rptr_cond, loop_gen_rptr_exit, loop_gen_vals_body, loop_gen_vals_cond}
+    loop_gen_vals_exit: {B0, loop_gen_cidx_cond, loop_gen_cidx_exit, loop_gen_rptr_cond, loop_gen_rptr_exit, loop_gen_vals_cond, loop_gen_vals_exit}
+  Immediate Dominator:
+    B0: None
+    loop_gen_rptr_cond: B0
+    loop_gen_rptr_body: loop_gen_rptr_cond
+    loop_gen_rptr_exit: loop_gen_rptr_cond
+    loop_gen_cidx_cond: loop_gen_rptr_exit
+    loop_gen_cidx_body: loop_gen_cidx_cond
+    loop_gen_cidx_exit: loop_gen_cidx_cond
+    loop_gen_vals_cond: loop_gen_cidx_exit
+    loop_gen_vals_body: loop_gen_vals_cond
+    loop_gen_vals_exit: loop_gen_vals_cond
+  Dominator Tree children:
+    B0: loop_gen_rptr_cond
+    loop_gen_rptr_cond: loop_gen_rptr_body, loop_gen_rptr_exit
+    loop_gen_rptr_exit: loop_gen_cidx_cond
+    loop_gen_cidx_cond: loop_gen_cidx_body, loop_gen_cidx_exit
+    loop_gen_cidx_exit: loop_gen_vals_cond
+    loop_gen_vals_cond: loop_gen_vals_body, loop_gen_vals_exit
+  Dominance Frontier:
+    B0: {}
+    loop_gen_rptr_cond: {loop_gen_rptr_cond}
+    loop_gen_rptr_body: {loop_gen_rptr_cond}
+    loop_gen_rptr_exit: {}
+    loop_gen_cidx_cond: {loop_gen_cidx_cond}
+    loop_gen_cidx_body: {loop_gen_cidx_cond}
+    loop_gen_cidx_exit: {}
+    loop_gen_vals_cond: {loop_gen_vals_cond}
+    loop_gen_vals_body: {loop_gen_vals_cond}
+    loop_gen_vals_exit: {}
+  [check-fast] CHK agrees with our results.
+Function gen_vec:
+  Dominators:
+    B0: {B0}
+    loop_cond: {B0, loop_cond}
+    loop_body: {B0, loop_body, loop_cond}
+    loop_exit: {B0, loop_cond, loop_exit}
+  Immediate Dominator:
+    B0: None
+    loop_cond: B0
+    loop_body: loop_cond
+    loop_exit: loop_cond
+  Dominator Tree children:
+    B0: loop_cond
+    loop_cond: loop_body, loop_exit
+  Dominance Frontier:
+    B0: {}
+    loop_cond: {loop_cond}
+    loop_body: {loop_cond}
+    loop_exit: {}
+  [check-fast] CHK agrees with our results.
+Function csr_spmv:
+  Dominators:
+    B0: {B0}
+    loop_init_cond: {B0, loop_init_cond}
+    loop_init_body: {B0, loop_init_body, loop_init_cond}
+    loop_init_exit: {B0, loop_init_cond, loop_init_exit}
+    loop_rows_cond: {B0, loop_init_cond, loop_init_exit, loop_rows_cond}
+    loop_rows_body: {B0, loop_init_cond, loop_init_exit, loop_rows_body, loop_rows_cond}
+    loop_nnzs_cond: {B0, loop_init_cond, loop_init_exit, loop_nnzs_cond, loop_rows_body, loop_rows_cond}
+    loop_nnzs_body: {B0, loop_init_cond, loop_init_exit, loop_nnzs_body, loop_nnzs_cond, loop_rows_body, loop_rows_cond}
+    loop_nnzs_exit: {B0, loop_init_cond, loop_init_exit, loop_nnzs_cond, loop_nnzs_exit, loop_rows_body, loop_rows_cond}
+    loop_rows_exit: {B0, loop_init_cond, loop_init_exit, loop_rows_cond, loop_rows_exit}
+  Immediate Dominator:
+    B0: None
+    loop_init_cond: B0
+    loop_init_body: loop_init_cond
+    loop_init_exit: loop_init_cond
+    loop_rows_cond: loop_init_exit
+    loop_rows_body: loop_rows_cond
+    loop_nnzs_cond: loop_rows_body
+    loop_nnzs_body: loop_nnzs_cond
+    loop_nnzs_exit: loop_nnzs_cond
+    loop_rows_exit: loop_rows_cond
+  Dominator Tree children:
+    B0: loop_init_cond
+    loop_init_cond: loop_init_body, loop_init_exit
+    loop_init_exit: loop_rows_cond
+    loop_rows_cond: loop_rows_body, loop_rows_exit
+    loop_rows_body: loop_nnzs_cond
+    loop_nnzs_cond: loop_nnzs_body, loop_nnzs_exit
+  Dominance Frontier:
+    B0: {}
+    loop_init_cond: {loop_init_cond}
+    loop_init_body: {loop_init_cond}
+    loop_init_exit: {}
+    loop_rows_cond: {loop_rows_cond}
+    loop_rows_body: {loop_rows_cond}
+    loop_nnzs_cond: {loop_nnzs_cond, loop_rows_cond}
+    loop_nnzs_body: {loop_nnzs_cond}
+    loop_nnzs_exit: {loop_rows_cond}
+    loop_rows_exit: {}
+  [check-fast] CHK agrees with our results.
+Function print_arr:
+  Dominators:
+    B0: {B0}
+    loop_cond: {B0, loop_cond}
+    loop_body: {B0, loop_body, loop_cond}
+    loop_exit: {B0, loop_cond, loop_exit}
+  Immediate Dominator:
+    B0: None
+    loop_cond: B0
+    loop_body: loop_cond
+    loop_exit: loop_cond
+  Dominator Tree children:
+    B0: loop_cond
+    loop_cond: loop_body, loop_exit
+  Dominance Frontier:
+    B0: {}
+    loop_cond: {loop_cond}
+    loop_body: {loop_cond}
+    loop_exit: {}
+  [check-fast] CHK agrees with our results.
+Function main:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-fast] CHK agrees with our results.

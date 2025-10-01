@@ -1,0 +1,29 @@
+Function main:
+  Dominators:
+    B0: {B0}
+  Immediate Dominator:
+    B0: None
+  Dominator Tree children:
+  Dominance Frontier:
+    B0: {}
+  [check-slow] dom sets agree with slow test.
+Function pow:
+  Dominators:
+    B0: {B0}
+    for.cond.1: {B0, for.cond.1}
+    for.body.1: {B0, for.body.1, for.cond.1}
+    for.end.1: {B0, for.cond.1, for.end.1}
+  Immediate Dominator:
+    B0: None
+    for.cond.1: B0
+    for.body.1: for.cond.1
+    for.end.1: for.cond.1
+  Dominator Tree children:
+    B0: for.cond.1
+    for.cond.1: for.body.1, for.end.1
+  Dominance Frontier:
+    B0: {}
+    for.cond.1: {for.cond.1}
+    for.body.1: {for.cond.1}
+    for.end.1: {}
+  [check-slow] dom sets agree with slow test.
