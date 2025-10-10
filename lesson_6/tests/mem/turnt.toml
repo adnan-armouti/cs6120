@@ -1,0 +1,7 @@
+[envs.original]
+command = "bril2json < {filename} | brili {args}"
+output."original.out" = "-"
+
+[envs.roundtrip]
+command = "bril2json < {filename} | python3 /home/adnan/Documents/classes/pl/hw6/to_ssa.py | python3 /home/adnan/Documents/classes/pl/hw6/from_ssa.py | brili {args}"
+output."roundtrip.out" = "-"
