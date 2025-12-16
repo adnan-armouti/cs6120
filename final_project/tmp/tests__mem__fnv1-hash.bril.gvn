@@ -1,0 +1,97 @@
+@main {
+  size.1: int = const 512;
+  arr.1: ptr<int> = alloc size.1;
+  call @fill_array arr.1 size.1;
+  hash.1: int = call @fnv1a_hash arr.1 size.1;
+  print hash.1;
+  free arr.1;
+}
+@fnv1a_hash(loc.3: ptr<int>, size: int): int {
+  FNV_prime.1: int = const 16777619;
+  hash.5: int = const 2166136261;
+  one.1: int = const 1;
+  i.3: int = const 0;
+  continue.1: bool = lt i.3 size;
+  hash.3: int = id hash.5;
+  br continue.1 .loop .exit;
+.loop:
+  byte.1: int = load loc.3;
+  hash.4: int = call @XOR hash.3 byte.1;
+  hash.5: int = mul hash.4 FNV_prime.1;
+  loc.3: ptr<int> = ptradd loc.3 one.1;
+  i.3: int = add i.3 one.1;
+  continue.2: bool = lt i.3 size;
+  hash.3: int = id hash.5;
+  br continue.2 .loop .exit;
+.exit:
+  ret hash.5;
+}
+@fill_array(loc.3: ptr<int>, size: int) {
+  one.1: int = const 1;
+  curr.3: int = const 0;
+.loop:
+  store loc.3 curr.3;
+  loc.3: ptr<int> = ptradd loc.3 one.1;
+  curr.3: int = add curr.3 one.1;
+  continue.1: bool = lt curr.3 size;
+  br continue.1 .loop .exit;
+.exit:
+  nop;
+}
+@XOR(a: int, b: int): int {
+  and_val.1: int = call @AND a b;
+  or_val.1: int = call @OR a b;
+  ans.1: int = sub or_val.1 and_val.1;
+  ret ans.1;
+}
+@OR(a: int, b: int): int {
+  oper.1: bool = const true;
+  v1.1: int = call @loop_subroutine a b oper.1;
+  ret v1.1;
+}
+@AND(a: int, b: int): int {
+  oper.1: bool = const false;
+  v1.1: int = call @loop_subroutine a b oper.1;
+  ret v1.1;
+}
+@loop_subroutine(a.2: int, b.2: int, c: bool): int {
+  i.3: int = const 0;
+  n.1: int = const 63;
+  one.1: int = const 1;
+  two.1: int = const 2;
+  to_add.3: int = id one.1;
+  ans.2: int = id i.3;
+.loop:
+  cond.1: bool = le i.3 n.1;
+  br cond.1 .here .end;
+.here:
+  mod2a.1: bool = call @mod2 a.2;
+  mod2b.1: bool = call @mod2 b.2;
+  cond_add.3: bool = and mod2a.1 mod2b.1;
+  br c .doOr .stay;
+.doOr:
+  cond_add.3: bool = or mod2a.1 mod2b.1;
+.stay:
+  ans.4: int = id ans.2;
+  br cond_add.3 .add .end_loop;
+.add:
+  ans.4: int = add ans.2 to_add.3;
+.end_loop:
+  a.2: int = div a.2 two.1;
+  b.2: int = div b.2 two.1;
+  to_add.3: int = mul to_add.3 two.1;
+  i.3: int = add i.3 one.1;
+  ans.2: int = id ans.4;
+  jmp .loop;
+.end:
+  ret ans.2;
+}
+@mod2(a: int): bool {
+  two.1: int = const 2;
+  tmp.1: int = div a two.1;
+  tmp2.1: int = mul tmp.1 two.1;
+  tmp3.1: int = sub a tmp2.1;
+  one.1: int = const 1;
+  ans.1: bool = eq one.1 tmp3.1;
+  ret ans.1;
+}

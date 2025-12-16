@@ -1,0 +1,21 @@
+@main(starting_m: int) {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  cond_m.1: bool = eq starting_m zero.1;
+  br cond_m.1 .end .m_nonzero;
+.m_nonzero:
+  m.2: int = sub starting_m one.1;
+  call @main m.2;
+  cond_m.2: bool = eq m.2 zero.1;
+  br cond_m.2 .end .m_nonzero2;
+.m_nonzero2:
+  m.3: int = sub m.2 one.1;
+  call @main m.3;
+  cond_m.3: bool = eq m.3 zero.1;
+  br cond_m.3 .end .m_nonzero3;
+.m_nonzero3:
+  m.4: int = sub m.3 one.1;
+  call @main m.4;
+.end:
+  print starting_m;
+}

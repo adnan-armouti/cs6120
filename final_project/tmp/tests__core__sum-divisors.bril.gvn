@@ -1,0 +1,45 @@
+@main(n: int) {
+  i.1: int = const 0;
+  one.1: int = const 1;
+  non.1: int = const -1;
+  nlz.1: bool = lt n i.1;
+  n.1: int = id n;
+  res.2: int = id i.1;
+  i.2: int = id i.1;
+  br nlz.1 .neg .begin;
+.neg:
+  n.1: int = mul n non.1;
+  res.2: int = id i.1;
+  i.2: int = id i.1;
+.begin:
+  i.3: int = add i.2 one.1;
+  isq.1: int = mul i.3 i.3;
+  sqgt.1: bool = gt isq.1 n.1;
+  br sqgt.1 .end .check;
+.check:
+  m.1: int = call @mod n.1 i.3;
+  eqz.1: bool = eq m.1 i.1;
+  i.2: int = id i.3;
+  br eqz.1 .body .begin;
+.body:
+  print i.3;
+  res.3: int = add res.2 i.3;
+  d.1: int = div n.1 i.3;
+  deqi.1: bool = eq d.1 i.3;
+  res.2: int = id res.3;
+  i.2: int = id i.3;
+  br deqi.1 .begin .then;
+.then:
+  print d.1;
+  res.2: int = add res.3 d.1;
+  i.2: int = id i.3;
+  jmp .begin;
+.end:
+  print res.2;
+}
+@mod(dividend: int, divisor: int): int {
+  quot.1: int = div dividend divisor;
+  prod.1: int = mul divisor quot.1;
+  diff.1: int = sub dividend prod.1;
+  ret diff.1;
+}

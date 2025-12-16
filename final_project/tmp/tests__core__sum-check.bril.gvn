@@ -1,0 +1,30 @@
+@main(n: int) {
+  first.1: int = call @sum_by_loop n;
+  second.1: int = call @sum_by_formula n;
+  isSame.1: bool = eq first.1 second.1;
+  print first.1;
+  print second.1;
+  print isSame.1;
+}
+@sum_by_loop(n: int): int {
+  one.1: int = const 1;
+  sum.3: int = const 0;
+  i.2: int = id one.1;
+.for_start:
+  con.1: bool = le i.2 n;
+  br con.1 .for .end;
+.for:
+  sum.3: int = add sum.3 i.2;
+  i.2: int = add i.2 one.1;
+  jmp .for_start;
+.end:
+  ret sum.3;
+}
+@sum_by_formula(n: int): int {
+  one.1: int = const 1;
+  two.1: int = const 2;
+  n_1.1: int = add one.1 n;
+  multi.1: int = mul n_1.1 n;
+  sum.1: int = div multi.1 two.1;
+  ret sum.1;
+}

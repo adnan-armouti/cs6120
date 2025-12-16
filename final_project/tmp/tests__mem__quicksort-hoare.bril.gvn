@@ -1,0 +1,150 @@
+@swap(arr: ptr<int>, i: int, j: int) {
+  i_ptr.1: ptr<int> = ptradd arr i;
+  j_ptr.1: ptr<int> = ptradd arr j;
+  i_value.1: int = load i_ptr.1;
+  j_value.1: int = load j_ptr.1;
+  store j_ptr.1 i_value.1;
+  store i_ptr.1 j_value.1;
+}
+@median_of_three(arr: ptr<int>, i: int, j: int) {
+  twice_mid.1: int = add i j;
+  two.1: int = const 2;
+  mid.1: int = div twice_mid.1 two.1;
+  i_ptr.1: ptr<int> = ptradd arr i;
+  mid_ptr.1: ptr<int> = ptradd arr mid.1;
+  j_ptr.1: ptr<int> = ptradd arr j;
+  i_value.1: int = load i_ptr.1;
+  mid_value.1: int = load mid_ptr.1;
+  j_value.1: int = load j_ptr.1;
+  should_swap_mid_j.1: bool = lt mid_value.1 j_value.1;
+  br should_swap_mid_j.1 .swap_mid_j .no_swap_mid_j;
+.swap_mid_j:
+  call @swap arr mid.1 j;
+.no_swap_mid_j:
+  should_swap_mid_i.1: bool = lt mid_value.1 i_value.1;
+  br should_swap_mid_i.1 .swap_mid_i .no_swap_mid_i;
+.swap_mid_i:
+  call @swap arr mid.1 i;
+  ret;
+.no_swap_mid_i:
+  should_swap_i_j.1: bool = lt i_value.1 j_value.1;
+  br should_swap_i_j.1 .swap_i_j .no_swap_i_j;
+.swap_i_j:
+  call @swap arr i j;
+.no_swap_i_j:
+}
+@partition(arr: ptr<int>, h: int, k: int): int {
+  call @median_of_three arr h k;
+  pivot_ptr.1: ptr<int> = ptradd arr h;
+  pivot.1: int = load pivot_ptr.1;
+  one.1: int = const 1;
+  t.3: int = add h one.1;
+  curr_ptr.2: ptr<int> = ptradd arr t.3;
+  j.2: int = id k;
+.while.header:
+  cond.1: bool = le t.3 j.2;
+  br cond.1 .while.body .while.exit;
+.while.body:
+  curr_elt.1: int = load curr_ptr.2;
+  had_inversion.1: bool = gt curr_elt.1 pivot.1;
+  br had_inversion.1 .while.body.inversion .while.body.no_inversion;
+.while.body.inversion:
+  call @swap arr t.3 j.2;
+  j.2: int = sub j.2 one.1;
+  jmp .while.header;
+.while.body.no_inversion:
+  t.3: int = add t.3 one.1;
+  curr_ptr.2: ptr<int> = ptradd curr_ptr.2 one.1;
+  jmp .while.header;
+.while.exit:
+  call @swap arr h j.2;
+  ret j.2;
+}
+@qsort(arr: ptr<int>, h: int, k: int) {
+  done.1: bool = ge h k;
+  br done.1 .base .recurse;
+.recurse:
+  j.1: int = call @partition arr h k;
+  one.1: int = const 1;
+  left_end.1: int = sub j.1 one.1;
+  right_begin.1: int = add j.1 one.1;
+  call @qsort arr h left_end.1;
+  call @qsort arr right_begin.1 k;
+.base:
+}
+@is_nondecreasing(curr_ptr.3: ptr<int>, len: int): bool {
+  iter.1: int = const 1;
+  iter.3: int = id iter.1;
+.loop.header:
+  done.1: bool = ge iter.3 len;
+  br done.1 .loop.exit .loop.body;
+.loop.body:
+  iter.3: int = add iter.3 iter.1;
+  curr_value.1: int = load curr_ptr.3;
+  curr_ptr.3: ptr<int> = ptradd curr_ptr.3 iter.1;
+  next_value.1: int = load curr_ptr.3;
+  has_inversion.1: bool = gt curr_value.1 next_value.1;
+  br has_inversion.1 .inversion .no_inversion;
+.inversion:
+  fls.1: bool = const false;
+  ret fls.1;
+.no_inversion:
+  jmp .loop.header;
+.loop.exit:
+  tru.1: bool = const true;
+  ret tru.1;
+}
+@rand(seq: ptr<int>, max: int): int {
+  a.1: int = const 25214903917;
+  c.1: int = const 11;
+  m.1: int = const 281474976710656;
+  x.1: int = load seq;
+  ax.1: int = mul a.1 x.1;
+  axpc.1: int = add ax.1 c.1;
+  next.1: int = div axpc.1 m.1;
+  next.2: int = mul next.1 m.1;
+  next.3: int = sub axpc.1 next.2;
+  store seq next.3;
+  val.1: int = div next.3 max;
+  val.2: int = mul val.1 max;
+  val.3: int = sub next.3 val.2;
+  ret val.3;
+}
+@randarray(size: int, rng: ptr<int>): ptr<int> {
+  arr.1: ptr<int> = alloc size;
+  i.1: int = const 0;
+  max.1: int = const 1000;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .done;
+.body:
+  val.1: int = call @rand rng max.1;
+  loc.1: ptr<int> = ptradd arr.1 i.1;
+  store loc.1 val.1;
+.loop_end:
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret arr.1;
+}
+@main(narrays.1: int, len: int, seed: int) {
+  one.1: int = const 1;
+  rng.1: ptr<int> = alloc one.1;
+  store rng.1 seed;
+  zero.1: int = const 0;
+  last_index.1: int = sub len one.1;
+.loop.header:
+  done.1: bool = eq narrays.1 zero.1;
+  br done.1 .loop.exit .loop.body;
+.loop.body:
+  arr.1: ptr<int> = call @randarray len rng.1;
+  call @qsort arr.1 zero.1 last_index.1;
+  success.1: bool = call @is_nondecreasing arr.1 len;
+  print success.1;
+  free arr.1;
+  narrays.1: int = sub narrays.1 one.1;
+  jmp .loop.header;
+.loop.exit:
+  free rng.1;
+}

@@ -1,0 +1,14 @@
+@main(width1: int, height1: int, width2: int, height2: int) {
+  output.1: bool = call @fitsInside width1 height1 width2 height2;
+  print output.1;
+}
+@fitsInside(w1: int, h1: int, w2: int, h2: int): bool {
+  width_check.1: bool = le w1 w2;
+  height_check.1: bool = le h1 h2;
+  first_check.1: bool = and width_check.1 height_check.1;
+  widthheight_check.1: bool = le w1 h2;
+  heightwidth_check.1: bool = le h1 w2;
+  second_check.1: bool = and widthheight_check.1 heightwidth_check.1;
+  ret_val.1: bool = or first_check.1 second_check.1;
+  ret ret_val.1;
+}

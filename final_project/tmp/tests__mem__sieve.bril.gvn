@@ -1,0 +1,87 @@
+@printUnmarked(table: ptr<bool>, tableSize: int) {
+  idx.1: int = const 0;
+.print.unmarked.for.cond:
+  continue.1: bool = lt idx.1 tableSize;
+  br continue.1 .print.unmarked.for.body .print.unmarked.for.end;
+.print.unmarked.for.body:
+  offsetTable.1: ptr<bool> = ptradd table idx.1;
+  marked.1: bool = load offsetTable.1;
+  br marked.1 .print.unmarked.skip.print .print.unmarked.print;
+.print.unmarked.print:
+  print idx.1;
+.print.unmarked.skip.print:
+  one.2: int = const 1;
+  idx.1: int = add idx.1 one.2;
+  jmp .print.unmarked.for.cond;
+.print.unmarked.for.end:
+  ret;
+}
+@findNextP(table: ptr<bool>, tableSize: int, p.2: int): int {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+.find.next.p.continue:
+  p.3: int = add p.2 one.1;
+  inBounds.1: bool = lt p.3 tableSize;
+  br inBounds.1 .find.next.p.in.bounds .find.next.p.not.in.bounds;
+.find.next.p.in.bounds:
+  offsetTable.1: ptr<bool> = ptradd table p.3;
+  marked.1: bool = load offsetTable.1;
+  p.2: int = id p.3;
+  br marked.1 .find.next.p.continue .find.next.p.done;
+.find.next.p.done:
+  ret p.3;
+.find.next.p.not.in.bounds:
+  ret zero.1;
+}
+@markMultiples(table: ptr<bool>, tableSize: int, p: int) {
+  one.1: int = const 1;
+  t.1: bool = const true;
+  m.3: int = id one.1;
+.mark.multiples.continue:
+  m.3: int = add m.3 one.1;
+  mTimesP.1: int = mul m.3 p;
+  offsetTable.1: ptr<bool> = ptradd table mTimesP.1;
+  finished.1: bool = ge mTimesP.1 tableSize;
+  br finished.1 .mark.multiples.done .mark.multiples.store;
+.mark.multiples.store:
+  store offsetTable.1 t.1;
+  jmp .mark.multiples.continue;
+.mark.multiples.done:
+  ret;
+}
+@populateTable(table: ptr<bool>, tableSize: int) {
+  one.1: int = const 1;
+  two.1: int = const 2;
+  f.1: bool = const false;
+  t.1: bool = const true;
+  store table t.1;
+  offsetTable.1: ptr<bool> = ptradd table one.1;
+  store offsetTable.1 t.1;
+.populate.table.for.cond:
+  continue.1: bool = lt two.1 tableSize;
+  br continue.1 .populate.table.for.body .populate.table.for.end;
+.populate.table.for.body:
+  offsetTable.2: ptr<bool> = ptradd table two.1;
+  store offsetTable.2 f.1;
+  two.1: int = add two.1 one.1;
+  jmp .populate.table.for.cond;
+.populate.table.for.end:
+  ret;
+}
+@printPrimesUpTo(n: int) {
+  zero.1: int = const 0;
+  p.3: int = const 2;
+  table.1: ptr<bool> = alloc n;
+  call @populateTable table.1 n;
+.print.primes.up.to.continue:
+  call @markMultiples table.1 n p.3;
+  p.3: int = call @findNextP table.1 n p.3;
+  finished.1: bool = eq p.3 zero.1;
+  br finished.1 .print.primes.up.to.done .print.primes.up.to.continue;
+.print.primes.up.to.done:
+  call @printUnmarked table.1 n;
+  free table.1;
+}
+@main(input: int) {
+  call @printPrimesUpTo input;
+}

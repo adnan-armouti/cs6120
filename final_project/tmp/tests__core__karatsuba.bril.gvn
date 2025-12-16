@@ -1,0 +1,87 @@
+@main(x: int, y: int) {
+  result.1: int = call @karatsuba x y;
+  print result.1;
+}
+@karatsuba(x: int, y: int): int {
+  one.1: int = const 1;
+  two.1: int = const 2;
+  base.1: int = const 10;
+  x_digits.1: int = call @num_digits x;
+  y_digits.1: int = call @num_digits y;
+  x_1_digit.1: bool = eq x_digits.1 one.1;
+  y_1_digit.1: bool = eq y_digits.1 one.1;
+  cond.1: bool = or x_1_digit.1 y_1_digit.1;
+  br cond.1 .then .else;
+.then:
+  result.3: int = mul x y;
+  jmp .end;
+.else:
+  n.1: int = call @max x_digits.1 y_digits.1;
+  n2.1: int = div n.1 two.1;
+  pow_n2.1: int = call @pow base.1 n2.1;
+  a.1: int = div x pow_n2.1;
+  b.1: int = call @mod x pow_n2.1;
+  c.1: int = div y pow_n2.1;
+  d.1: int = call @mod y pow_n2.1;
+  z0.1: int = call @karatsuba b.1 d.1;
+  a_plus_b.1: int = add a.1 b.1;
+  c_plus_d.1: int = add c.1 d.1;
+  z1.1: int = call @karatsuba a_plus_b.1 c_plus_d.1;
+  z2.1: int = call @karatsuba a.1 c.1;
+  hi_shift_factor.1: int = mul n2.1 two.1;
+  hi_shift.1: int = call @pow base.1 hi_shift_factor.1;
+  hi_shifted.1: int = mul z2.1 hi_shift.1;
+  mid.1: int = sub z1.1 z2.1;
+  mid.2: int = sub mid.1 z0.1;
+  mid_shifted.1: int = mul mid.2 pow_n2.1;
+  result.1: int = add hi_shifted.1 mid_shifted.1;
+  result.3: int = add result.1 z0.1;
+  jmp .end;
+.end:
+  ret result.3;
+}
+@num_digits(n: int): int {
+  one.1: int = const 1;
+  base.1: int = const 10;
+  power.2: int = id one.1;
+  digits.3: int = id one.1;
+.while.cond:
+  temp.1: int = div n power.2;
+  is_term.1: bool = lt temp.1 base.1;
+  br is_term.1 .while.finish .while.body;
+.while.body:
+  digits.3: int = add digits.3 one.1;
+  power.2: int = mul power.2 base.1;
+  jmp .while.cond;
+.while.finish:
+  ret digits.3;
+}
+@max(a: int, b: int): int {
+  cond.1: bool = gt a b;
+  br cond.1 .then .else;
+.then:
+  ret a;
+.else:
+  ret b;
+}
+@mod(a: int, b: int): int {
+  c.1: int = div a b;
+  d.1: int = mul c.1 b;
+  remainder.1: int = sub a d.1;
+  ret remainder.1;
+}
+@pow(x: int, n: int): int {
+  _i.2: int = const 0;
+  v10.1: int = id x;
+.for.cond.1:
+  v5.1: int = const 1;
+  v6.1: int = sub n v5.1;
+  v7.1: bool = lt _i.2 v6.1;
+  br v7.1 .for.body.1 .for.end.1;
+.for.body.1:
+  v10.1: int = mul v10.1 x;
+  _i.2: int = add _i.2 v5.1;
+  jmp .for.cond.1;
+.for.end.1:
+  ret v10.1;
+}

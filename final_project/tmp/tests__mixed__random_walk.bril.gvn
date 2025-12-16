@@ -1,0 +1,100 @@
+@rand(state: ptr<int>, max: int): int {
+  a.1: int = const 1588635695;
+  c.1: int = const 0;
+  m.1: int = const 4294967291;
+  x.1: int = load state;
+  ax.1: int = mul a.1 x.1;
+  axpc.1: int = add ax.1 c.1;
+  next.1: int = div axpc.1 m.1;
+  next.2: int = mul next.1 m.1;
+  next.3: int = sub axpc.1 next.2;
+  store state next.3;
+  val.1: int = div next.3 max;
+  val.2: int = mul val.1 max;
+  val.3: int = sub next.3 val.2;
+  zero.1: int = const 0;
+  minus.1: int = const -1;
+  neg.1: bool = lt val.3 zero.1;
+  val.4: int = id val.3;
+  br neg.1 .negate .done;
+.negate:
+  val.4: int = mul val.3 minus.1;
+.done:
+  ret val.4;
+}
+@step(n: int, loc: ptr<int>, rand_state: ptr<int>) {
+  one.1: int = const 1;
+  two.1: int = const 2;
+  n2.1: int = mul two.1 n;
+  rnd.1: int = call @rand rand_state n2.1;
+  i.2: int = const 0;
+.loop:
+  i2.1: int = mul i.2 two.1;
+  i2p1.1: int = add i2.1 one.1;
+  loc_i.1: ptr<int> = ptradd loc i.2;
+  rnd_eq_i2.1: bool = eq i2.1 rnd.1;
+  br rnd_eq_i2.1 .then_i2 .else_i2;
+.then_i2:
+  coord.3: int = load loc_i.1;
+  coord.4: int = sub coord.3 one.1;
+  store loc_i.1 coord.4;
+  ret;
+.else_i2:
+  rnd_eq_i2p1.1: bool = eq i2p1.1 rnd.1;
+  br rnd_eq_i2p1.1 .then_i2p1 .else_i2p1;
+.then_i2p1:
+  coord.1: int = load loc_i.1;
+  coord.2: int = add coord.1 one.1;
+  store loc_i.1 coord.2;
+  ret;
+.else_i2p1:
+  i.2: int = add i.2 one.1;
+  jmp .loop;
+}
+@main(n: int, seed: int) {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  limit.1: int = const 100000;
+  rand_state.1: ptr<int> = alloc one.1;
+  loc.1: ptr<int> = alloc n;
+  fortyfive.1: int = const 45;
+  dash.1: char = int2char fortyfive.1;
+  store rand_state.1 seed;
+  i.3: int = const 0;
+.cont_init:
+  loc_i.1: ptr<int> = ptradd loc.1 i.3;
+  store loc_i.1 zero.1;
+  print zero.1;
+  i.3: int = add i.3 one.1;
+  i_eq_n.1: bool = eq i.3 n;
+  br i_eq_n.1 .end_init .cont_init;
+.end_init:
+  print dash.1;
+  steps.3: int = const 0;
+.loop:
+  call @step n loc.1 rand_state.1;
+  steps.3: int = add steps.3 one.1;
+  i.6: int = const 0;
+  back_home.2: bool = const true;
+.cont:
+  loc_i.2: ptr<int> = ptradd loc.1 i.6;
+  coord.1: int = load loc_i.2;
+  print coord.1;
+  coord_eq_0.1: bool = eq coord.1 zero.1;
+  back_home.3: bool = and coord_eq_0.1 back_home.2;
+  i.6: int = add i.6 one.1;
+  i_eq_n.2: bool = eq i.6 n;
+  back_home.2: bool = id back_home.3;
+  br i_eq_n.2 .end .cont;
+.end:
+  steps_eq_limit.1: bool = eq steps.3 limit.1;
+  stop.1: bool = or back_home.3 steps_eq_limit.1;
+  br stop.1 .home .print_dash;
+.print_dash:
+  print dash.1;
+  jmp .loop;
+.home:
+  free rand_state.1;
+  free loc.1;
+  ret;
+}

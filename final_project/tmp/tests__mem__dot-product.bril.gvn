@@ -1,0 +1,59 @@
+@dot_product(vectorA: ptr<int>, vectorB: ptr<int>, size: int): int {
+  one.1: int = const 1;
+  index.3: int = const 0;
+  answer.2: int = id index.3;
+.loop:
+  ptrA.1: ptr<int> = ptradd vectorA index.3;
+  ptrB.1: ptr<int> = ptradd vectorB index.3;
+  valA.1: int = load ptrA.1;
+  valB.1: int = load ptrB.1;
+  tmp.1: int = mul valA.1 valB.1;
+  answer.3: int = add answer.2 tmp.1;
+  index.3: int = add index.3 one.1;
+  cond.1: bool = lt index.3 size;
+  answer.2: int = id answer.3;
+  br cond.1 .loop .done;
+.done:
+  ret answer.3;
+}
+@main {
+  a.1: int = const 25;
+  b.1: int = const 50;
+  c.1: int = const 100;
+  d.1: int = const 150;
+  e.1: int = const 250;
+  f.1: int = const 2;
+  g.1: int = const 10;
+  h.1: int = const 20;
+  i.1: int = const 30;
+  j.1: int = const 40;
+  one.1: int = const 1;
+  zero.1: int = const 0;
+  size.1: int = const 5;
+  vectorA.1: ptr<int> = alloc size.1;
+  indexPtr.1: ptr<int> = ptradd vectorA.1 zero.1;
+  store indexPtr.1 a.1;
+  indexPtr.2: ptr<int> = ptradd indexPtr.1 one.1;
+  store indexPtr.2 b.1;
+  indexPtr.3: ptr<int> = ptradd indexPtr.2 one.1;
+  store indexPtr.3 c.1;
+  indexPtr.4: ptr<int> = ptradd indexPtr.3 one.1;
+  store indexPtr.4 d.1;
+  indexPtr.5: ptr<int> = ptradd indexPtr.4 one.1;
+  store indexPtr.5 e.1;
+  vectorB.1: ptr<int> = alloc size.1;
+  indexPtr.6: ptr<int> = ptradd vectorB.1 zero.1;
+  store indexPtr.6 f.1;
+  indexPtr.7: ptr<int> = ptradd indexPtr.6 one.1;
+  store indexPtr.7 g.1;
+  indexPtr.8: ptr<int> = ptradd indexPtr.7 one.1;
+  store indexPtr.8 h.1;
+  indexPtr.9: ptr<int> = ptradd indexPtr.8 one.1;
+  store indexPtr.9 i.1;
+  indexPtr.10: ptr<int> = ptradd indexPtr.9 one.1;
+  store indexPtr.10 j.1;
+  val.1: int = call @dot_product vectorA.1 vectorB.1 size.1;
+  print val.1;
+  free vectorA.1;
+  free vectorB.1;
+}

@@ -1,0 +1,60 @@
+@main {
+  v0.1: int = const 20;
+  call @relative_primes v0.1;
+}
+@mod(a: int, b: int): int {
+  v2.1: int = div a b;
+  v3.1: int = mul v2.1 b;
+  v4.1: int = sub a v3.1;
+  ret v4.1;
+}
+@gcd(a: int, b: int): int {
+  v3.1: bool = gt b a;
+  br v3.1 .then.0 .else.0;
+.then.0:
+  b.1: int = id a;
+  a.1: int = id b;
+  jmp .endif.0;
+.else.0:
+  b.1: int = id b;
+  a.1: int = id a;
+.endif.0:
+  v9.1: int = const 0;
+  v10.1: bool = eq a.1 v9.1;
+  br v10.1 .then.7 .else.7;
+.then.7:
+  ret b.1;
+  jmp .endif.7;
+.else.7:
+  v15.1: bool = eq b.1 v9.1;
+  br v15.1 .then.12 .else.12;
+.then.12:
+  ret a.1;
+  jmp .endif.12;
+.else.12:
+.endif.12:
+.endif.7:
+  remainder.1: int = call @mod a.1 b.1;
+  g.1: int = call @gcd b.1 remainder.1;
+  ret g.1;
+}
+@relative_primes(a: int) {
+  b.2: int = id a;
+.for.cond.0:
+  v3.1: int = const 1;
+  v4.1: bool = ge b.2 v3.1;
+  br v4.1 .for.body.0 .for.end.0;
+.for.body.0:
+  g.1: int = call @gcd a b.2;
+  v9.1: int = const 1;
+  v10.1: bool = eq g.1 v9.1;
+  br v10.1 .then.7 .else.7;
+.then.7:
+  print b.2;
+  jmp .endif.7;
+.else.7:
+.endif.7:
+  b.2: int = sub b.2 v9.1;
+  jmp .for.cond.0;
+.for.end.0:
+}

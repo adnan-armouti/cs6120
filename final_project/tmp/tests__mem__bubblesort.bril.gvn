@@ -1,0 +1,80 @@
+@pack(size: int, n1: int, n2: int, n3: int, n4: int, n5: int): ptr<int> {
+  one.1: int = const 1;
+  i.1: int = const 0;
+  array.1: ptr<int> = alloc size;
+  loc.1: ptr<int> = ptradd array.1 i.1;
+  store loc.1 n1;
+  i.2: int = add i.1 one.1;
+  loc.2: ptr<int> = ptradd array.1 i.2;
+  store loc.2 n2;
+  i.3: int = add i.2 one.1;
+  loc.3: ptr<int> = ptradd array.1 i.3;
+  store loc.3 n3;
+  i.4: int = add i.3 one.1;
+  loc.4: ptr<int> = ptradd array.1 i.4;
+  store loc.4 n4;
+  i.5: int = add i.4 one.1;
+  loc.5: ptr<int> = ptradd array.1 i.5;
+  store loc.5 n5;
+  ret array.1;
+}
+@print_array(array: ptr<int>, size: int) {
+  i.1: int = const 0;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .done;
+.body:
+  loc.1: ptr<int> = ptradd array i.1;
+  val.1: int = load loc.1;
+  print val.1;
+.loop_end:
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret;
+}
+@swap_cond(array: ptr<int>, j: int) {
+  one.1: int = const 1;
+  j_add_1.1: int = add j one.1;
+  loc.1: ptr<int> = ptradd array j;
+  loc_next.1: ptr<int> = ptradd array j_add_1.1;
+  elem_a.1: int = load loc.1;
+  elem_b.1: int = load loc_next.1;
+  cond.1: bool = gt elem_a.1 elem_b.1;
+  br cond.1 .swap .done;
+.swap:
+  store loc.1 elem_b.1;
+  store loc_next.1 elem_a.1;
+.done:
+  ret;
+}
+@main(size: int, n1: int, n2: int, n3: int, n4: int, n5: int) {
+  array.1: ptr<int> = call @pack size n1 n2 n3 n4 n5;
+  one.1: int = const 1;
+  i.1: int = const 0;
+  sizei.1: int = sub size one.1;
+  j.5: int = id i.1;
+.loopi:
+  condi.1: bool = lt i.1 sizei.1;
+  br condi.1 .bodyi .donei;
+.bodyi:
+  sizej.1: int = sub size i.1;
+  sizej.2: int = sub sizej.1 one.1;
+.loopj:
+  condj.1: bool = lt j.5 sizej.2;
+  br condj.1 .bodyj .donej;
+.bodyj:
+  call @swap_cond array.1 j.5;
+.loop_endj:
+  j.5: int = add j.5 one.1;
+  jmp .loopj;
+.donej:
+  j.5: int = const 0;
+.loopi_end:
+  i.1: int = add i.1 one.1;
+  jmp .loopi;
+.donei:
+  call @print_array array.1 size;
+  free array.1;
+}

@@ -1,0 +1,32 @@
+@main(n: int) {
+  ans.1: int = call @count_path n n;
+  print ans.1;
+}
+@count_path(x: int, y: int): int {
+  v2.1: int = const 0;
+  v3.1: bool = eq x v2.1;
+  br v3.1 .then.0 .else.0;
+.then.0:
+  v4.1: int = const 1;
+  ret v4.1;
+.else.0:
+  v8.1: bool = eq y v2.1;
+  br v8.1 .then.5 .else.5;
+.then.5:
+  v9.1: int = const 1;
+  ret v9.1;
+.else.5:
+  v11.1: int = const 1;
+  v12.1: int = sub x v11.1;
+  v14.1: int = call @count_path v12.1 y;
+  v17.1: int = const 1;
+  v18.1: int = sub y v17.1;
+  v19.1: int = call @count_path x v18.1;
+  v20.1: int = add v14.1 v19.1;
+  v22.1: int = const 1;
+  v23.1: int = sub x v22.1;
+  v26.1: int = sub y v22.1;
+  v27.1: int = call @count_path v23.1 v26.1;
+  v28.1: int = add v20.1 v27.1;
+  ret v28.1;
+}

@@ -1,0 +1,36 @@
+@main(min: int, max: int, target: int) {
+  i.1: int = call @midpoint min max;
+  i.5: int = call @midpoint min max;
+  max.2: int = id max;
+  min.2: int = id min;
+.for.cond.6:
+  v11.1: bool = eq i.5 target;
+  v12.1: bool = not v11.1;
+  br v12.1 .for.body.6 .for.end.6;
+.for.body.6:
+  v16.1: bool = gt i.5 target;
+  br v16.1 .then.13 .else.13;
+.then.13:
+  max.2: int = id i.5;
+  jmp .endif.13;
+.else.13:
+  v21.1: bool = lt i.5 target;
+  br v21.1 .then.18 .else.18;
+.then.18:
+  jmp .endif.18;
+.else.18:
+  i.5: int = id min.2;
+.endif.18:
+  min.2: int = id i.5;
+.endif.13:
+  i.5: int = call @midpoint min.2 max.2;
+  jmp .for.cond.6;
+.for.end.6:
+  print i.5;
+}
+@midpoint(min: int, max: int): int {
+  v2.1: int = add max min;
+  v4.1: int = const 2;
+  v5.1: int = div v2.1 v4.1;
+  ret v5.1;
+}

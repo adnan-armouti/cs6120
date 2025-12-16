@@ -1,0 +1,184 @@
+@xor(a.2: int, b.2: int): int {
+  v_two.1: int = const 2;
+  result.1: int = const 0;
+  place.1: int = const 1;
+  result.3: int = id result.1;
+.loop_start:
+  v1.1: bool = eq a.2 result.1;
+  v2.1: bool = eq b.2 result.1;
+  v3.1: bool = and v1.1 v2.1;
+  br v3.1 .loop_end .loop_body;
+.loop_body:
+  v_a1.1: int = div a.2 v_two.1;
+  v_a1.2: int = mul v_two.1 v_a1.1;
+  v_a1.3: int = sub a.2 v_a1.2;
+  v_b1.1: int = div b.2 v_two.1;
+  v_b1.2: int = mul v_two.1 v_b1.1;
+  v_b1.3: int = sub b.2 v_b1.2;
+  v_s.1: int = add v_a1.3 v_b1.3;
+  v_x.1: int = div v_s.1 v_two.1;
+  v_x.2: int = mul v_two.1 v_x.1;
+  v_x.3: int = sub v_s.1 v_x.2;
+  tmp.1: int = mul place.1 v_x.3;
+  result.3: int = add result.3 tmp.1;
+  a.2: int = div a.2 v_two.1;
+  b.2: int = div b.2 v_two.1;
+  place.1: int = mul place.1 v_two.1;
+  jmp .loop_start;
+.loop_end:
+  ret result.3;
+}
+@shift_left(value.1: int, k.2: int): int {
+  literal0.1: int = const 0;
+  literal1.1: int = const 1;
+  literal2.1: int = const 2;
+.loop_start:
+  v0.1: bool = gt k.2 literal0.1;
+  k.2: int = sub k.2 literal1.1;
+  br v0.1 .loop_body .loop_end;
+.loop_body:
+  value.1: int = mul value.1 literal2.1;
+  jmp .loop_start;
+.loop_end:
+  ret value.1;
+}
+@shift_right(value.1: int, k.2: int): int {
+  literal0.1: int = const 0;
+  literal1.1: int = const 1;
+  literal2.1: int = const 2;
+.loop_start:
+  v0.1: bool = gt k.2 literal0.1;
+  k.2: int = sub k.2 literal1.1;
+  br v0.1 .loop_body .loop_end;
+.loop_body:
+  value.1: int = div value.1 literal2.1;
+  jmp .loop_start;
+.loop_end:
+  ret value.1;
+}
+@xor64_shift64(seed: int): int {
+  literal13.1: int = const 13;
+  literal7.1: int = const 7;
+  seed_tmp.1: int = call @shift_left seed literal13.1;
+  seed.1: int = call @xor seed seed_tmp.1;
+  seed_tmp.2: int = call @shift_right seed.1 literal7.1;
+  seed.2: int = call @xor seed.1 seed_tmp.2;
+  seed_tmp.3: int = call @shift_left seed.2 literal7.1;
+  seed.3: int = call @xor seed.2 seed_tmp.3;
+  ret seed.3;
+}
+@bit_length(n.2: int): int {
+  literal_0.1: int = const 0;
+  literal_1.1: int = const 1;
+  literal_2.1: int = const 2;
+  v0.3: int = id literal_0.1;
+.loop_start:
+  v1.1: bool = gt n.2 literal_0.1;
+  n.2: int = div n.2 literal_2.1;
+  br v1.1 .loop_body .loop_end;
+.loop_body:
+  v0.3: int = add v0.3 literal_1.1;
+  jmp .loop_start;
+.loop_end:
+  ret v0.3;
+}
+@to_float(n: int): float {
+  literal_0.1: int = const 0;
+  literal_1.1: int = const 1;
+  literal_52.1: int = const 52;
+  literal_63.1: int = const 63;
+  literal_1023.1: int = const 1023;
+  literal_INTMIN.1: int = const -9223372036854775808;
+  literal_INTMINFLOAT.1: float = const -9.223372036854776e+18;
+  v0.1: bool = eq n literal_0.1;
+  br v0.1 .no_skip_ret .skip_ret;
+.no_skip_ret:
+  float_literal_0.1: float = const 0.0;
+  ret float_literal_0.1;
+.skip_ret:
+  v0.2: bool = lt n literal_0.1;
+  sign.3: int = id literal_0.1;
+  br v0.2 .no_skip .skip;
+.no_skip:
+  sign.3: int = add literal_0.1 literal_1.1;
+.skip:
+  sign.4: int = call @shift_left sign.3 literal_63.1;
+  br v0.2 .is_negative .is_positive;
+.is_negative:
+  is_min.1: bool = eq literal_INTMIN.1 n;
+  br is_min.1 .is_int_min .no_int_min;
+.is_int_min:
+  ret literal_INTMINFLOAT.1;
+.no_int_min:
+  pos_n.1: int = sub literal_0.1 n;
+  k.1: int = call @bit_length pos_n.1;
+  k.4: int = sub k.1 literal_1.1;
+  jmp .k_join;
+.is_positive:
+  k.3: int = call @bit_length n;
+  k.4: int = sub k.3 literal_1.1;
+  pos_n.1: int = add literal_0.1 n;
+.k_join:
+  exp.1: int = add k.4 literal_1023.1;
+  exp.2: int = call @shift_left exp.1 literal_52.1;
+  shifted.1: int = call @shift_left literal_1.1 k.4;
+  mantissa.1: int = sub pos_n.1 shifted.1;
+  test.1: bool = gt k.4 literal_52.1;
+  br test.1 .greater .less;
+.greater:
+  x.1: int = sub k.4 literal_52.1;
+  fraction.1: int = call @shift_right mantissa.1 x.1;
+  jmp .end_if;
+.less:
+  x.2: int = sub literal_52.1 k.4;
+  fraction.1: int = call @shift_left mantissa.1 x.2;
+.end_if:
+  result.1: int = add sign.4 exp.2;
+  result.2: int = add result.1 fraction.1;
+  result_float.1: float = bits2float result.2;
+  ret result_float.1;
+}
+@to_unit_float(n: int): float {
+  literal_32.1: int = const 32;
+  literal_fmax.1: float = const 2147483647;
+  n.1: int = call @shift_left n literal_32.1;
+  n.2: int = call @shift_right n.1 literal_32.1;
+  v0.1: float = call @to_float n.2;
+  v0.2: float = fdiv v0.1 literal_fmax.1;
+  ret v0.2;
+}
+@main(num_it: int, seed.3: int) {
+  literal_1.1: int = const 1;
+  literal_1f.1: float = const 1.0;
+  idx.3: int = const 0;
+  total_cnt.3: int = id idx.3;
+  inside_cnt.2: int = id idx.3;
+.loop_start:
+  progress.1: bool = lt idx.3 num_it;
+  idx.3: int = add literal_1.1 idx.3;
+  br progress.1 .loop_body .loop_end;
+.loop_body:
+  seed.2: int = call @xor64_shift64 seed.3;
+  x_val.1: float = call @to_unit_float seed.2;
+  seed.3: int = call @xor64_shift64 seed.2;
+  y_val.1: float = call @to_unit_float seed.3;
+  x_val.2: float = fmul x_val.1 x_val.1;
+  y_val.2: float = fmul y_val.1 y_val.1;
+  sum.1: float = fadd x_val.2 y_val.2;
+  inside.1: bool = fle sum.1 literal_1f.1;
+  inside_cnt.4: int = id inside_cnt.2;
+  br inside.1 .inc_circle .skip_inc;
+.inc_circle:
+  inside_cnt.4: int = add literal_1.1 inside_cnt.2;
+.skip_inc:
+  total_cnt.3: int = add literal_1.1 total_cnt.3;
+  inside_cnt.2: int = id inside_cnt.4;
+  jmp .loop_start;
+.loop_end:
+  inside_float.1: float = call @to_float inside_cnt.2;
+  total_float.1: float = call @to_float total_cnt.3;
+  area_ratio.1: float = const 4.0;
+  pi_approx.1: float = fdiv inside_float.1 total_float.1;
+  pi_approx.2: float = fmul area_ratio.1 pi_approx.1;
+  print pi_approx.2;
+}

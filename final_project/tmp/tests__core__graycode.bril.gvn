@@ -1,0 +1,45 @@
+@main(n: int) {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  two.1: int = const 2;
+.for.cond:
+  cond.1: bool = lt zero.1 n;
+  br cond.1 .for.body .for.end;
+.for.body:
+  half.1: int = div zero.1 two.1;
+  g.1: int = call @xor zero.1 half.1;
+  print g.1;
+  zero.1: int = add zero.1 one.1;
+  jmp .for.cond;
+.for.end:
+}
+@xor(a.1: int, b.1: int): int {
+  result.1: int = const 0;
+  base.3: int = const 1;
+  two.1: int = const 2;
+  result.3: int = id result.1;
+.loop.cond:
+  more_a.1: bool = gt a.1 result.1;
+  more_b.1: bool = gt b.1 result.1;
+  more.1: bool = or more_a.1 more_b.1;
+  br more.1 .loop.body .loop.end;
+.loop.body:
+  qa.1: int = div a.1 two.1;
+  double_qa.1: int = mul qa.1 two.1;
+  ra.1: int = sub a.1 double_qa.1;
+  qb.1: int = div b.1 two.1;
+  double_qb.1: int = mul qb.1 two.1;
+  rb.1: int = sub b.1 double_qb.1;
+  sum.1: int = add ra.1 rb.1;
+  half_sum.1: int = div sum.1 two.1;
+  double_half_sum.1: int = mul half_sum.1 two.1;
+  rbit.1: int = sub sum.1 double_half_sum.1;
+  contrib.1: int = mul rbit.1 base.3;
+  result.3: int = add result.3 contrib.1;
+  base.3: int = add base.3 base.3;
+  b.1: int = id qb.1;
+  a.1: int = id qa.1;
+  jmp .loop.cond;
+.loop.end:
+  ret result.3;
+}

@@ -1,0 +1,52 @@
+@rand(seq: ptr<int>, max: int): int {
+  a.1: int = const 25214903917;
+  c.1: int = const 11;
+  m.1: int = const 281474976710656;
+  x.1: int = load seq;
+  ax.1: int = mul a.1 x.1;
+  axpc.1: int = add ax.1 c.1;
+  next.1: int = div axpc.1 m.1;
+  next.2: int = mul next.1 m.1;
+  next.3: int = sub axpc.1 next.2;
+  store seq next.3;
+  val.1: int = div next.3 max;
+  val.2: int = mul val.1 max;
+  val.3: int = sub next.3 val.2;
+  ret val.3;
+}
+@randarray(size: int, rng: ptr<int>): ptr<int> {
+  arr.1: ptr<int> = alloc size;
+  i.1: int = const 0;
+  max.1: int = const 1000;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .done;
+.body:
+  val.1: int = call @rand rng max.1;
+  loc.1: ptr<int> = ptradd arr.1 i.1;
+  store loc.1 val.1;
+.loop_end:
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret arr.1;
+}
+@main(size: int, seed: int) {
+  two.1: int = const 2;
+  rng.1: ptr<int> = alloc seed;
+  store rng.1 seed;
+  arr.1: ptr<int> = call @randarray size rng.1;
+  i.1: int = const 0;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .done;
+.body:
+  loc.1: ptr<int> = ptradd arr.1 i.1;
+  val.1: int = load loc.1;
+  val.2: int = mul val.1 two.1;
+  store loc.1 val.2;
+.done:
+  free arr.1;
+  free rng.1;
+}

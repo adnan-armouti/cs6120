@@ -1,0 +1,1232 @@
+[
+  {
+    "file": "tests/core/ackermann.bril",
+    "verdict": "Good!",
+    "output_before": "509\n",
+    "output_after": "509\n",
+    "static_before": 22,
+    "static_after": 22,
+    "dyn_before": 1464231,
+    "dyn_after": 1464231
+  },
+  {
+    "file": "tests/core/arithmetic-series.bril",
+    "verdict": "Good!",
+    "output_before": "28\n",
+    "output_after": "28\n",
+    "static_before": 7,
+    "static_after": 7,
+    "dyn_before": 7,
+    "dyn_after": 7
+  },
+  {
+    "file": "tests/core/armstrong.bril",
+    "verdict": "Good!",
+    "output_before": "true\n",
+    "output_after": "true\n",
+    "static_before": 46,
+    "static_after": 45,
+    "dyn_before": 133,
+    "dyn_after": 130
+  },
+  {
+    "file": "tests/core/bbs.bril",
+    "verdict": "Good!",
+    "output_before": "1\n1\n0\n0\n1\n0\n",
+    "output_after": "1\n1\n0\n0\n1\n0\n",
+    "static_before": 24,
+    "static_after": 23,
+    "dyn_before": 137,
+    "dyn_after": 136
+  },
+  {
+    "file": "tests/core/bin-search.bril",
+    "verdict": "Good!",
+    "output_before": "738\n",
+    "output_after": "738\n",
+    "static_before": 58,
+    "static_after": 32,
+    "dyn_before": 358,
+    "dyn_after": 182
+  },
+  {
+    "file": "tests/core/binary-fmt.bril",
+    "verdict": "Good!",
+    "output_before": "1\n0\n0\n0\n0\n0\n0\n0\n",
+    "output_after": "1\n0\n0\n0\n0\n0\n0\n0\n",
+    "static_before": 15,
+    "static_after": 15,
+    "dyn_before": 100,
+    "dyn_after": 100
+  },
+  {
+    "file": "tests/core/binpow.bril",
+    "verdict": "Good!",
+    "output_before": "2048\n",
+    "output_after": "2048\n",
+    "static_before": 28,
+    "static_after": 28,
+    "dyn_before": 105,
+    "dyn_after": 105
+  },
+  {
+    "file": "tests/core/bitshift.bril",
+    "verdict": "Good!",
+    "output_before": "96\n625\n",
+    "output_after": "96\n625\n",
+    "static_before": 68,
+    "static_after": 37,
+    "dyn_before": 167,
+    "dyn_after": 90
+  },
+  {
+    "file": "tests/core/bitwise-ops.bril",
+    "verdict": "Good!",
+    "output_before": "7\n",
+    "output_after": "7\n",
+    "static_before": 65,
+    "static_after": 65,
+    "dyn_before": 1690,
+    "dyn_after": 1816
+  },
+  {
+    "file": "tests/core/braille.bril",
+    "verdict": "Good!",
+    "output_before": "701110110\n701011111\n711000000\n",
+    "output_after": "701110110\n701011111\n711000000\n",
+    "static_before": 187,
+    "static_after": 136,
+    "dyn_before": 325,
+    "dyn_after": 211
+  },
+  {
+    "file": "tests/core/catalan.bril",
+    "verdict": "Good!",
+    "output_before": "16796\n",
+    "output_after": "16796\n",
+    "static_before": 25,
+    "static_after": 24,
+    "dyn_before": 659378,
+    "dyn_after": 639695
+  },
+  {
+    "file": "tests/core/check-primes.bril",
+    "verdict": "Good!",
+    "output_before": "0\n1\n1\n0\n1\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n1\n0\n0\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n1\n0\n0\n",
+    "output_after": "0\n1\n1\n0\n1\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n1\n0\n0\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n1\n0\n0\n",
+    "static_before": 71,
+    "static_after": 47,
+    "dyn_before": 8468,
+    "dyn_after": 3824
+  },
+  {
+    "file": "tests/core/collatz.bril",
+    "verdict": "Good!",
+    "output_before": "7\n22\n11\n34\n17\n52\n26\n13\n40\n20\n10\n5\n16\n8\n4\n2\n1\n",
+    "output_after": "7\n22\n11\n34\n17\n52\n26\n13\n40\n20\n10\n5\n16\n8\n4\n2\n1\n",
+    "static_before": 23,
+    "static_after": 23,
+    "dyn_before": 169,
+    "dyn_after": 169
+  },
+  {
+    "file": "tests/core/combination.bril",
+    "verdict": "Good!",
+    "output_before": "220\n",
+    "output_after": "220\n",
+    "static_before": 36,
+    "static_after": 36,
+    "dyn_before": 178,
+    "dyn_after": 178
+  },
+  {
+    "file": "tests/core/dayofweek.bril",
+    "verdict": "Good!",
+    "output_before": "4\n",
+    "output_after": "4\n",
+    "static_before": 283,
+    "static_after": 193,
+    "dyn_before": 269,
+    "dyn_after": 130
+  },
+  {
+    "file": "tests/core/delannoy.bril",
+    "verdict": "Good!",
+    "output_before": "265729\n",
+    "output_after": "265729\n",
+    "static_before": 42,
+    "static_after": 28,
+    "dyn_before": 5748752,
+    "dyn_after": 3937289
+  },
+  {
+    "file": "tests/core/digital-root.bril",
+    "verdict": "Good!",
+    "output_before": "4\n9\n15\n6\n10\n1\n4\n10\n1\n6\n10\n1\n7\n7\n",
+    "output_after": "4\n9\n15\n6\n10\n1\n4\n10\n1\n6\n10\n1\n7\n7\n",
+    "static_before": 32,
+    "static_after": 33,
+    "dyn_before": 247,
+    "dyn_after": 256
+  },
+  {
+    "file": "tests/core/euclid.bril",
+    "verdict": "Good!",
+    "output_before": "2\n",
+    "output_after": "2\n",
+    "static_before": 51,
+    "static_after": 23,
+    "dyn_before": 563,
+    "dyn_after": 230
+  },
+  {
+    "file": "tests/core/fact.bril",
+    "verdict": "Good!",
+    "output_before": "2432902008176640000\n",
+    "output_after": "2432902008176640000\n",
+    "static_before": 18,
+    "static_after": 14,
+    "dyn_before": 229,
+    "dyn_after": 167
+  },
+  {
+    "file": "tests/core/factors.bril",
+    "verdict": "Good!",
+    "output_before": "2\n2\n3\n5\n",
+    "output_after": "2\n2\n3\n5\n",
+    "static_before": 20,
+    "static_after": 20,
+    "dyn_before": 72,
+    "dyn_after": 72
+  },
+  {
+    "file": "tests/core/fib_recursive.bril",
+    "verdict": "Good!",
+    "output_before": "55\n",
+    "output_after": "55\n",
+    "static_before": 33,
+    "static_after": 23,
+    "dyn_before": 2693,
+    "dyn_after": 1756
+  },
+  {
+    "file": "tests/core/fitsinside.bril",
+    "verdict": "Good!",
+    "output_before": "true\n",
+    "output_after": "true\n",
+    "static_before": 10,
+    "static_after": 10,
+    "dyn_before": 10,
+    "dyn_after": 10
+  },
+  {
+    "file": "tests/core/fizz-buzz.bril",
+    "verdict": "Good!",
+    "output_before": "1\n2\n-2\n4\n-3\n-2\n7\n8\n-2\n-3\n11\n-2\n13\n14\n-1\n16\n17\n-2\n19\n-3\n-2\n22\n23\n-2\n-3\n26\n-2\n28\n29\n-1\n31\n32\n-2\n34\n-3\n-2\n37\n38\n-2\n-3\n41\n-2\n43\n44\n-1\n46\n47\n-2\n49\n-3\n-2\n52\n53\n-2\n-3\n56\n-2\n58\n59\n-1\n61\n62\n-2\n64\n-3\n-2\n67\n68\n-2\n-3\n71\n-2\n73\n74\n-1\n76\n77\n-2\n79\n-3\n-2\n82\n83\n-2\n-3\n86\n-2\n88\n89\n-1\n91\n92\n-2\n94\n-3\n-2\n97\n98\n-2\n-3\n",
+    "output_after": "1\n2\n-2\n4\n-3\n-2\n7\n8\n-2\n-3\n11\n-2\n13\n14\n-1\n16\n17\n-2\n19\n-3\n-2\n22\n23\n-2\n-3\n26\n-2\n28\n29\n-1\n31\n32\n-2\n34\n-3\n-2\n37\n38\n-2\n-3\n41\n-2\n43\n44\n-1\n46\n47\n-2\n49\n-3\n-2\n52\n53\n-2\n-3\n56\n-2\n58\n59\n-1\n61\n62\n-2\n64\n-3\n-2\n67\n68\n-2\n-3\n71\n-2\n73\n74\n-1\n76\n77\n-2\n79\n-3\n-2\n82\n83\n-2\n-3\n86\n-2\n88\n89\n-1\n91\n92\n-2\n94\n-3\n-2\n97\n98\n-2\n-3\n",
+    "static_before": 69,
+    "static_after": 47,
+    "dyn_before": 3652,
+    "dyn_after": 1997
+  },
+  {
+    "file": "tests/core/gcd.bril",
+    "verdict": "Good!",
+    "output_before": "4\n",
+    "output_after": "4\n",
+    "static_before": 25,
+    "static_after": 23,
+    "dyn_before": 46,
+    "dyn_after": 44
+  },
+  {
+    "file": "tests/core/gebmm.bril",
+    "verdict": "Good!",
+    "output_before": "188\n",
+    "output_after": "188\n",
+    "static_before": 90,
+    "static_after": 98,
+    "dyn_before": 3011,
+    "dyn_after": 3111
+  },
+  {
+    "file": "tests/core/geometric-sum.bril",
+    "verdict": "Good!",
+    "output_before": "242\n",
+    "output_after": "242\n",
+    "static_before": 16,
+    "static_after": 16,
+    "dyn_before": 35,
+    "dyn_after": 35
+  },
+  {
+    "file": "tests/core/gpf.bril",
+    "verdict": "Good!",
+    "output_before": "29\n",
+    "output_after": "29\n",
+    "static_before": 67,
+    "static_after": 71,
+    "dyn_before": 759,
+    "dyn_after": 832
+  },
+  {
+    "file": "tests/core/grad_desc.bril",
+    "verdict": "Good!",
+    "output_before": "2048\n2304\n",
+    "output_after": "2048\n2304\n",
+    "static_before": 21,
+    "static_after": 21,
+    "dyn_before": 229,
+    "dyn_after": 229
+  },
+  {
+    "file": "tests/core/graycode.bril",
+    "verdict": "Good!",
+    "output_before": "0\n1\n3\n2\n6\n7\n5\n4\n12\n13\n15\n14\n10\n11\n9\n8\n",
+    "output_after": "0\n1\n3\n2\n6\n7\n5\n4\n12\n13\n15\n14\n10\n11\n9\n8\n",
+    "static_before": 44,
+    "static_after": 41,
+    "dyn_before": 1259,
+    "dyn_after": 1241
+  },
+  {
+    "file": "tests/core/hamming.bril",
+    "verdict": "Good!",
+    "output_before": "2\n",
+    "output_after": "2\n",
+    "static_before": 33,
+    "static_after": 33,
+    "dyn_before": 117,
+    "dyn_after": 117
+  },
+  {
+    "file": "tests/core/hanoi.bril",
+    "verdict": "Good!",
+    "output_before": "0 2\n0 1\n2 1\n0 2\n1 0\n1 2\n0 2\n",
+    "output_after": "0 2\n0 1\n2 1\n0 2\n1 0\n1 2\n0 2\n",
+    "static_before": 15,
+    "static_after": 15,
+    "dyn_before": 99,
+    "dyn_after": 99
+  },
+  {
+    "file": "tests/core/is-decreasing.bril",
+    "verdict": "Good!",
+    "output_before": "true\n",
+    "output_after": "true\n",
+    "static_before": 38,
+    "static_after": 33,
+    "dyn_before": 127,
+    "dyn_after": 112
+  },
+  {
+    "file": "tests/core/karatsuba.bril",
+    "verdict": "Good!",
+    "output_before": "4267635650\n",
+    "output_after": "4267635650\n",
+    "static_before": 86,
+    "static_after": 75,
+    "dyn_before": 1548,
+    "dyn_after": 1356
+  },
+  {
+    "file": "tests/core/lcm.bril",
+    "verdict": "Good!",
+    "output_before": "192\n",
+    "output_after": "192\n",
+    "static_before": 28,
+    "static_after": 28,
+    "dyn_before": 2326,
+    "dyn_after": 2325
+  },
+  {
+    "file": "tests/core/legendre.bril",
+    "verdict": "Good!",
+    "output_before": "4\n",
+    "output_after": "4\n",
+    "static_before": 47,
+    "static_after": 27,
+    "dyn_before": 153,
+    "dyn_after": 89
+  },
+  {
+    "file": "tests/core/loopfact.bril",
+    "verdict": "Good!",
+    "output_before": "40320\n",
+    "output_after": "40320\n",
+    "static_before": 24,
+    "static_after": 12,
+    "dyn_before": 116,
+    "dyn_after": 54
+  },
+  {
+    "file": "tests/core/mccarthy91.bril",
+    "verdict": "Good!",
+    "output_before": "91\n",
+    "output_after": "91\n",
+    "static_before": 15,
+    "static_after": 15,
+    "dyn_before": 1385,
+    "dyn_after": 1385
+  },
+  {
+    "file": "tests/core/mod_inv.bril",
+    "verdict": "Good!",
+    "output_before": "2393\n",
+    "output_after": "2393\n",
+    "static_before": 59,
+    "static_after": 28,
+    "dyn_before": 558,
+    "dyn_after": 266
+  },
+  {
+    "file": "tests/core/mod_pow.bril",
+    "verdict": "Good!",
+    "output_before": "445\n",
+    "output_after": "445\n",
+    "static_before": 68,
+    "static_after": 38,
+    "dyn_before": 243,
+    "dyn_after": 120
+  },
+  {
+    "file": "tests/core/montgomery.bril",
+    "verdict": "Good!",
+    "output_before": "11\n",
+    "output_after": "11\n",
+    "static_before": 17,
+    "static_after": 17,
+    "dyn_before": 17,
+    "dyn_after": 17
+  },
+  {
+    "file": "tests/core/mountain.bril",
+    "verdict": "Good!",
+    "output_before": "true\n",
+    "output_after": "true\n",
+    "static_before": 38,
+    "static_after": 38,
+    "dyn_before": 100,
+    "dyn_after": 98
+  },
+  {
+    "file": "tests/core/orders.bril",
+    "verdict": "Good!",
+    "output_before": "0 1\n1 96\n2 48\n3 32\n4 24\n5 96\n6 16\n7 96\n8 12\n9 32\n10 48\n11 96\n12 8\n13 96\n14 48\n15 32\n16 6\n17 96\n18 16\n19 96\n20 24\n21 32\n22 48\n23 96\n24 4\n25 96\n26 48\n27 32\n28 24\n29 96\n30 16\n31 96\n32 3\n33 32\n34 48\n35 96\n36 8\n37 96\n38 48\n39 32\n40 12\n41 96\n42 16\n43 96\n44 24\n45 32\n46 48\n47 96\n48 2\n49 96\n50 48\n51 32\n52 24\n53 96\n54 16\n55 96\n56 12\n57 32\n58 48\n59 96\n60 8\n61 96\n62 48\n63 32\n64 3\n65 96\n66 16\n67 96\n68 24\n69 32\n70 48\n71 96\n72 4\n73 96\n74 48\n75 32\n76 24\n77 96\n78 16\n79 96\n80 6\n81 32\n82 48\n83 96\n84 8\n85 96\n86 48\n",
+    "output_after": "0 1\n1 96\n2 48\n3 32\n4 24\n5 96\n6 16\n7 96\n8 12\n9 32\n10 48\n11 96\n12 8\n13 96\n14 48\n15 32\n16 6\n17 96\n18 16\n19 96\n20 24\n21 32\n22 48\n23 96\n24 4\n25 96\n26 48\n27 32\n28 24\n29 96\n30 16\n31 96\n32 3\n33 32\n34 48\n35 96\n36 8\n37 96\n38 48\n39 32\n40 12\n41 96\n42 16\n43 96\n44 24\n45 32\n46 48\n47 96\n48 2\n49 96\n50 48\n51 32\n52 24\n53 96\n54 16\n55 96\n56 12\n57 32\n58 48\n59 96\n60 8\n61 96\n62 48\n63 32\n64 3\n65 96\n66 16\n67 96\n68 24\n69 32\n70 48\n71 96\n72 4\n73 96\n74 48\n75 32\n76 24\n77 96\n78 16\n79 96\n80 6\n81 32\n82 48\n83 96\n84 8\n85 96\n86 48\n",
+    "static_before": 61,
+    "static_after": 62,
+    "dyn_before": 5352,
+    "dyn_after": 5353
+  },
+  {
+    "file": "tests/core/palindrome.bril",
+    "verdict": "Good!",
+    "output_before": "true\n",
+    "output_after": "true\n",
+    "static_before": 70,
+    "static_after": 69,
+    "dyn_before": 298,
+    "dyn_after": 295
+  },
+  {
+    "file": "tests/core/pascals-row.bril",
+    "verdict": "Good!",
+    "output_before": "1\n6\n30\n120\n360\n720\n",
+    "output_after": "1\n6\n30\n120\n360\n720\n",
+    "static_before": 41,
+    "static_after": 18,
+    "dyn_before": 146,
+    "dyn_after": 57
+  },
+  {
+    "file": "tests/core/perfect.bril",
+    "verdict": "Good!",
+    "output_before": "0\n",
+    "output_after": "0\n",
+    "static_before": 30,
+    "static_after": 29,
+    "dyn_before": 232,
+    "dyn_after": 271
+  },
+  {
+    "file": "tests/core/permutation.bril",
+    "verdict": "Good!",
+    "output_before": "120\n",
+    "output_after": "120\n",
+    "static_before": 45,
+    "static_after": 26,
+    "dyn_before": 130,
+    "dyn_after": 65
+  },
+  {
+    "file": "tests/core/primes-between.bril",
+    "verdict": "Good!",
+    "output_before": "2\n3\n5\n7\n11\n13\n17\n19\n23\n29\n31\n37\n41\n43\n47\n53\n59\n61\n67\n71\n73\n79\n83\n89\n97\n101\n103\n107\n109\n113\n127\n131\n137\n139\n149\n151\n157\n163\n167\n173\n179\n181\n191\n193\n197\n199\n211\n223\n227\n229\n233\n239\n241\n251\n257\n263\n269\n271\n277\n281\n283\n293\n307\n311\n313\n317\n331\n337\n347\n349\n353\n359\n367\n373\n379\n383\n389\n397\n401\n409\n419\n421\n431\n433\n439\n443\n449\n457\n461\n463\n467\n479\n487\n491\n499\n503\n509\n521\n523\n541\n547\n557\n563\n569\n571\n577\n587\n593\n599\n601\n607\n613\n617\n619\n631\n641\n643\n647\n653\n659\n661\n673\n677\n683\n691\n701\n709\n719\n727\n733\n739\n743\n7",
+    "output_after": "2\n3\n5\n7\n11\n13\n17\n19\n23\n29\n31\n37\n41\n43\n47\n53\n59\n61\n67\n71\n73\n79\n83\n89\n97\n101\n103\n107\n109\n113\n127\n131\n137\n139\n149\n151\n157\n163\n167\n173\n179\n181\n191\n193\n197\n199\n211\n223\n227\n229\n233\n239\n241\n251\n257\n263\n269\n271\n277\n281\n283\n293\n307\n311\n313\n317\n331\n337\n347\n349\n353\n359\n367\n373\n379\n383\n389\n397\n401\n409\n419\n421\n431\n433\n439\n443\n449\n457\n461\n463\n467\n479\n487\n491\n499\n503\n509\n521\n523\n541\n547\n557\n563\n569\n571\n577\n587\n593\n599\n601\n607\n613\n617\n619\n631\n641\n643\n647\n653\n659\n661\n673\n677\n683\n691\n701\n709\n719\n727\n733\n739\n743\n7",
+    "static_before": 51,
+    "static_after": 49,
+    "dyn_before": 574100,
+    "dyn_after": 611314
+  },
+  {
+    "file": "tests/core/pythagorean_triple.bril",
+    "verdict": "Good!",
+    "output_before": "75 100\n44 117\n35 120\n",
+    "output_after": "75 100\n44 117\n35 120\n",
+    "static_before": 22,
+    "static_after": 22,
+    "dyn_before": 61518,
+    "dyn_after": 61518
+  },
+  {
+    "file": "tests/core/quadratic.bril",
+    "verdict": "Good!",
+    "output_before": "-1\n3\n",
+    "output_after": "-1\n3\n",
+    "static_before": 68,
+    "static_after": 39,
+    "dyn_before": 785,
+    "dyn_after": 374
+  },
+  {
+    "file": "tests/core/recfact.bril",
+    "verdict": "Good!",
+    "output_before": "40320\n",
+    "output_after": "40320\n",
+    "static_before": 26,
+    "static_after": 15,
+    "dyn_before": 104,
+    "dyn_after": 56
+  },
+  {
+    "file": "tests/core/rectangles-area-difference.bril",
+    "verdict": "Good!",
+    "output_before": "50\n78\n28\n",
+    "output_after": "50\n78\n28\n",
+    "static_before": 13,
+    "static_after": 14,
+    "dyn_before": 14,
+    "dyn_after": 15
+  },
+  {
+    "file": "tests/core/relative-primes.bril",
+    "verdict": "Good!",
+    "output_before": "19\n17\n13\n11\n9\n7\n3\n1\n",
+    "output_after": "19\n17\n13\n11\n9\n7\n3\n1\n",
+    "static_before": 84,
+    "static_after": 52,
+    "dyn_before": 1923,
+    "dyn_after": 1122
+  },
+  {
+    "file": "tests/core/reverse.bril",
+    "verdict": "Good!",
+    "output_before": "321\n",
+    "output_after": "321\n",
+    "static_before": 26,
+    "static_after": 23,
+    "dyn_before": 46,
+    "dyn_after": 37
+  },
+  {
+    "file": "tests/core/rot13.bril",
+    "verdict": "Good!",
+    "output_before": "23\n",
+    "output_after": "23\n",
+    "static_before": 11,
+    "static_after": 12,
+    "dyn_before": 8,
+    "dyn_after": 9
+  },
+  {
+    "file": "tests/core/sqrt_bin_search.bril",
+    "verdict": "Good!",
+    "output_before": "6120\n",
+    "output_after": "6120\n",
+    "static_before": 44,
+    "static_after": 20,
+    "dyn_before": 744,
+    "dyn_after": 288
+  },
+  {
+    "file": "tests/core/squares.bril",
+    "verdict": "Good!",
+    "output_before": "1\n4\n9\n16\n25\n36\n49\n64\n81\n100\n121\n144\n169\n196\n225\n256\n289\n324\n361\n400\n441\n484\n529\n576\n625\n676\n729\n784\n841\n900\n",
+    "output_after": "1\n4\n9\n16\n25\n36\n49\n64\n81\n100\n121\n144\n169\n196\n225\n256\n289\n324\n361\n400\n441\n484\n529\n576\n625\n676\n729\n784\n841\n900\n",
+    "static_before": 10,
+    "static_after": 9,
+    "dyn_before": 153,
+    "dyn_after": 152
+  },
+  {
+    "file": "tests/core/sum-bits.bril",
+    "verdict": "Good!",
+    "output_before": "3\n",
+    "output_after": "3\n",
+    "static_before": 19,
+    "static_after": 19,
+    "dyn_before": 73,
+    "dyn_after": 73
+  },
+  {
+    "file": "tests/core/sum-check.bril",
+    "verdict": "Good!",
+    "output_before": "500500\n500500\ntrue\n",
+    "output_after": "500500\n500500\ntrue\n",
+    "static_before": 24,
+    "static_after": 24,
+    "dyn_before": 5018,
+    "dyn_after": 5018
+  },
+  {
+    "file": "tests/core/sum-digits.bril",
+    "verdict": "Good!",
+    "output_before": "45\n",
+    "output_after": "45\n",
+    "static_before": 29,
+    "static_after": 16,
+    "dyn_before": 219,
+    "dyn_after": 105
+  },
+  {
+    "file": "tests/core/sum-divisible-by-m.bril",
+    "verdict": "Good!",
+    "output_before": "15150\n",
+    "output_after": "15150\n",
+    "static_before": 16,
+    "static_after": 8,
+    "dyn_before": 16,
+    "dyn_after": 8
+  },
+  {
+    "file": "tests/core/sum-divisors.bril",
+    "verdict": "Good!",
+    "output_before": "1\n100\n2\n50\n4\n25\n5\n20\n10\n217\n",
+    "output_after": "1\n100\n2\n50\n4\n25\n5\n20\n10\n217\n",
+    "static_before": 34,
+    "static_after": 41,
+    "dyn_before": 159,
+    "dyn_after": 184
+  },
+  {
+    "file": "tests/core/sum-of-cubes.bril",
+    "verdict": "Good!",
+    "output_before": "441\n",
+    "output_after": "441\n",
+    "static_before": 8,
+    "static_after": 7,
+    "dyn_before": 8,
+    "dyn_after": 7
+  },
+  {
+    "file": "tests/core/sum-sq-diff.bril",
+    "verdict": "Good!",
+    "output_before": "25164150\n",
+    "output_after": "25164150\n",
+    "static_before": 66,
+    "static_after": 30,
+    "dyn_before": 3038,
+    "dyn_after": 1117
+  },
+  {
+    "file": "tests/core/sum-to-ten.bril",
+    "verdict": "Good!",
+    "output_before": "55.00000000000000000\n",
+    "output_after": "55.00000000000000000\n",
+    "static_before": 25,
+    "static_after": 13,
+    "dyn_before": 143,
+    "dyn_after": 57
+  },
+  {
+    "file": "tests/core/tail-call.bril",
+    "verdict": "Good!",
+    "output_before": "",
+    "output_after": "",
+    "static_before": 9,
+    "static_after": 9,
+    "dyn_before": 7004,
+    "dyn_after": 7004
+  },
+  {
+    "file": "tests/core/totient.bril",
+    "verdict": "Good!",
+    "output_before": "2023\n1632\n",
+    "output_after": "2023\n1632\n",
+    "static_before": 42,
+    "static_after": 48,
+    "dyn_before": 253,
+    "dyn_after": 318
+  },
+  {
+    "file": "tests/core/triangle.bril",
+    "verdict": "Good!",
+    "output_before": "666\n",
+    "output_after": "666\n",
+    "static_before": 14,
+    "static_after": 14,
+    "dyn_before": 188,
+    "dyn_after": 188
+  },
+  {
+    "file": "tests/core/up-arrow.bril",
+    "verdict": "Good!",
+    "output_before": "65536\n",
+    "output_after": "65536\n",
+    "static_before": 22,
+    "static_after": 22,
+    "dyn_before": 252,
+    "dyn_after": 252
+  },
+  {
+    "file": "tests/float/birthday.bril",
+    "verdict": "Good!",
+    "output_before": "0.50729723432398566\n",
+    "output_after": "0.50729723432398566\n",
+    "static_before": 42,
+    "static_after": 21,
+    "dyn_before": 484,
+    "dyn_after": 188
+  },
+  {
+    "file": "tests/float/conjugate-gradient.bril",
+    "verdict": "Good!",
+    "output_before": "5.00000000000000000\n3.00000000000000000\n2.33333333333333348\n",
+    "output_after": "5.00000000000000000\n3.00000000000000000\n2.33333333333333348\n",
+    "static_before": 209,
+    "static_after": 211,
+    "dyn_before": 1999,
+    "dyn_after": 1940
+  },
+  {
+    "file": "tests/float/cordic.bril",
+    "verdict": "Good!",
+    "output_before": "0.86369602123419631\n",
+    "output_after": "0.86369602123419631\n",
+    "static_before": 262,
+    "static_after": 154,
+    "dyn_before": 517,
+    "dyn_after": 257
+  },
+  {
+    "file": "tests/float/euler.bril",
+    "verdict": "Good!",
+    "output_before": "2.71828182845904553\n",
+    "output_after": "2.71828182845904553\n",
+    "static_before": 48,
+    "static_after": 30,
+    "dyn_before": 1908,
+    "dyn_after": 1211
+  },
+  {
+    "file": "tests/float/exponentiation-by-squaring.bril",
+    "verdict": "Good!",
+    "output_before": "3.08394593452957709e+53\n1.42202344098973190e+137\n",
+    "output_after": "3.08394593452957709e+53\n1.42202344098973190e+137\n",
+    "static_before": 44,
+    "static_after": 48,
+    "dyn_before": 187,
+    "dyn_after": 228
+  },
+  {
+    "file": "tests/float/harmonic-sum.bril",
+    "verdict": "Good!",
+    "output_before": "14.07801616295706282\n",
+    "output_after": "14.07801616295706282\n",
+    "static_before": 27,
+    "static_after": 13,
+    "dyn_before": 10950013,
+    "dyn_after": 4380006
+  },
+  {
+    "file": "tests/float/leibniz.bril",
+    "verdict": "Good!",
+    "output_before": "3.14159365359077425\n",
+    "output_after": "3.14159365359077425\n",
+    "static_before": 29,
+    "static_after": 29,
+    "dyn_before": 12499997,
+    "dyn_after": 10500001
+  },
+  {
+    "file": "tests/float/logistic.bril",
+    "verdict": "Good!",
+    "output_before": "0.75000000000000000\n0.56250000000000000\n0.73828125000000000\n0.57966613769531250\n0.73095991951413453\n0.58997254673407351\n0.72571482250255492\n0.59715845670792034\n0.72168070287040553\n0.60257299792464891\n0.71843634029024994\n0.60685669572180634\n0.71574493973825193\n0.61036236293201407\n0.71346044654418717\n0.61330391328346867\n0.71148666970395669\n0.61582016561258857\n0.70975706771241764\n0.61800591763406476\n0.70822381021002700\n0.61992853458485597\n0.70685143977698706\n0.62163744558656253\n0.70561299549352807\n",
+    "output_after": "0.75000000000000000\n0.56250000000000000\n0.73828125000000000\n0.57966613769531250\n0.73095991951413453\n0.58997254673407351\n0.72571482250255492\n0.59715845670792034\n0.72168070287040553\n0.60257299792464891\n0.71843634029024994\n0.60685669572180634\n0.71574493973825193\n0.61036236293201407\n0.71346044654418717\n0.61330391328346867\n0.71148666970395669\n0.61582016561258857\n0.70975706771241764\n0.61800591763406476\n0.70822381021002700\n0.61992853458485597\n0.70685143977698706\n0.62163744558656253\n0.70561299549352807\n",
+    "static_before": 14,
+    "static_after": 14,
+    "dyn_before": 1110,
+    "dyn_after": 1110
+  },
+  {
+    "file": "tests/float/mandelbrot.bril",
+    "verdict": "Good!",
+    "output_before": "111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111811111111\n111811111111\n111811111111\n111811111111\n111811111111\n111811111111\n111811111111\n111811111111\n111811111111\n111811111111\n111111111111\n118111111111\n111811111111\n118811111111\n118811111111\n118811111111\n118881111111\n188881111111\n188881111111\n188881111111\n188881111111\n188881111111\n188881111111\n188881111111\n188881111111\n188888111111\n188881",
+    "output_after": "111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111111111111\n111811111111\n111811111111\n111811111111\n111811111111\n111811111111\n111811111111\n111811111111\n111811111111\n111811111111\n111811111111\n111111111111\n118111111111\n111811111111\n118811111111\n118811111111\n118811111111\n118881111111\n188881111111\n188881111111\n188881111111\n188881111111\n188881111111\n188881111111\n188881111111\n188881111111\n188888111111\n188881",
+    "static_before": 159,
+    "static_after": 85,
+    "dyn_before": 2720947,
+    "dyn_after": 1186548
+  },
+  {
+    "file": "tests/float/n_root.bril",
+    "verdict": "Good!",
+    "output_before": "1.51571786995120950\n",
+    "output_after": "1.51571786995120950\n",
+    "static_before": 36,
+    "static_after": 36,
+    "dyn_before": 733,
+    "dyn_after": 733
+  },
+  {
+    "file": "tests/float/newton.bril",
+    "verdict": "Good!",
+    "output_before": "316.22618487405497945\n",
+    "output_after": "316.22618487405497945\n",
+    "static_before": 30,
+    "static_after": 31,
+    "dyn_before": 217,
+    "dyn_after": 229
+  },
+  {
+    "file": "tests/float/norm.bril",
+    "verdict": "Good!",
+    "output_before": "110.55285076250027032\n",
+    "output_after": "110.55285076250027032\n",
+    "static_before": 92,
+    "static_after": 92,
+    "dyn_before": 505,
+    "dyn_after": 505
+  },
+  {
+    "file": "tests/float/pow.bril",
+    "verdict": "Good!",
+    "output_before": "10.24000000000000199\n",
+    "output_after": "10.24000000000000199\n",
+    "static_before": 33,
+    "static_after": 16,
+    "dyn_before": 36,
+    "dyn_after": 17
+  },
+  {
+    "file": "tests/float/ray-bbox-intersection.bril",
+    "verdict": "Good!",
+    "output_before": "true\n",
+    "output_after": "true\n",
+    "static_before": 89,
+    "static_after": 94,
+    "dyn_before": 33,
+    "dyn_after": 34
+  },
+  {
+    "file": "tests/float/ray-sphere-intersection.bril",
+    "verdict": "Good!",
+    "output_before": "true\n",
+    "output_after": "true\n",
+    "static_before": 106,
+    "static_after": 30,
+    "dyn_before": 142,
+    "dyn_after": 42
+  },
+  {
+    "file": "tests/float/rgb2gray.bril",
+    "verdict": "Good!",
+    "output_before": "170.37999999999996703\n",
+    "output_after": "170.37999999999996703\n",
+    "static_before": 14,
+    "static_after": 14,
+    "dyn_before": 14,
+    "dyn_after": 14
+  },
+  {
+    "file": "tests/float/riemann.bril",
+    "verdict": "Good!",
+    "output_before": "284.00000000000000000\n330.00000000000000000\n380.00000000000000000\n",
+    "output_after": "284.00000000000000000\n330.00000000000000000\n380.00000000000000000\n",
+    "static_before": 73,
+    "static_after": 71,
+    "dyn_before": 298,
+    "dyn_after": 296
+  },
+  {
+    "file": "tests/float/sqrt.bril",
+    "verdict": "Good!",
+    "output_before": "18.08314132002512409\n",
+    "output_after": "18.08314132002512409\n",
+    "static_before": 57,
+    "static_after": 31,
+    "dyn_before": 322,
+    "dyn_after": 143
+  },
+  {
+    "file": "tests/long/dead-branch.bril",
+    "verdict": "Good!",
+    "output_before": "50\n",
+    "output_after": "50\n",
+    "static_before": 23,
+    "static_after": 20,
+    "dyn_before": 1196,
+    "dyn_after": 800
+  },
+  {
+    "file": "tests/long/function_call.bril",
+    "verdict": "Good!",
+    "output_before": "0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n5\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n6\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n5\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n7\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n5\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n6\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n5\n8\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n5\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n6\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n",
+    "output_after": "0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n5\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n6\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n5\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n7\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n5\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n6\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n5\n8\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n5\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n0\n3\n6\n0\n1\n0\n2\n0\n1\n0\n3\n0\n1\n0\n2\n0\n1\n4\n0\n1\n0\n2\n0\n1\n",
+    "static_before": 21,
+    "static_after": 19,
+    "dyn_before": 59809726,
+    "dyn_after": 48607906
+  },
+  {
+    "file": "tests/mem/1dconv.bril",
+    "verdict": "Good!",
+    "output_before": "54.00000000000000000\n54.00000000000000000\n54.00000000000000000\n54.00000000000000000\n54.00000000000000000\n",
+    "output_after": "54.00000000000000000\n54.00000000000000000\n54.00000000000000000\n54.00000000000000000\n54.00000000000000000\n",
+    "static_before": 88,
+    "static_after": 88,
+    "dyn_before": 391,
+    "dyn_after": 391
+  },
+  {
+    "file": "tests/mem/2dconvol.bril",
+    "verdict": "Good!",
+    "output_before": "8\n3\n0\n1\n-8\n1\n0\n1\n-4\n-3\n6\n-3\n-6\n-9\n0\n7\n-6\n5\n-2\n-9\n-4\n-7\n2\n5\n4\n-7\n6\n9\n8\n7\n6\n9\n0\n-1\n-8\n-9\n8\n-1\n0\n1\n0\n9\n8\n-5\n-4\n-3\n-4\n1\n6\n-1\n-6\n-1\n0\n-1\n0\n-7\n0\n1\n0\n-3\n-2\n5\n4\n9\n6\n5\n-6\n9\n-4\n3\n0\n9\n8\n-7\n-2\n5\n0\n5\n-4\n7\n-8\n1\n8\n1\n8\n1\n0\n-7\n-8\n-5\n4\n3\n-4\n5\n-6\n7\n8\n-3\n0\n1\n-6\n-3\n8\n-1\n-2\n3\n0\n-1\n2\n-9\n-4\n7\n0\n-5\n-2\n3\n-4\n3\n2\n-3\n8\n-1\n-8\n1\n-2\n-168\n110\n76\n-104\n-14\n36\n-104\n12\n56\n-4\n-164\n16\n160\n200\n-144\n-106\n102\n-50\n-96\n164\n132\n-200\n28\n96\n-148\n-126\n22\n26\n32\n58\n148\n-40\n22\n-120\n32\n64\n",
+    "output_after": "8\n3\n0\n1\n-8\n1\n0\n1\n-4\n-3\n6\n-3\n-6\n-9\n0\n7\n-6\n5\n-2\n-9\n-4\n-7\n2\n5\n4\n-7\n6\n9\n8\n7\n6\n9\n0\n-1\n-8\n-9\n8\n-1\n0\n1\n0\n9\n8\n-5\n-4\n-3\n-4\n1\n6\n-1\n-6\n-1\n0\n-1\n0\n-7\n0\n1\n0\n-3\n-2\n5\n4\n9\n6\n5\n-6\n9\n-4\n3\n0\n9\n8\n-7\n-2\n5\n0\n5\n-4\n7\n-8\n1\n8\n1\n8\n1\n0\n-7\n-8\n-5\n4\n3\n-4\n5\n-6\n7\n8\n-3\n0\n1\n-6\n-3\n8\n-1\n-2\n3\n0\n-1\n2\n-9\n-4\n7\n0\n-5\n-2\n3\n-4\n3\n2\n-3\n8\n-1\n-8\n1\n-2\n-168\n110\n76\n-104\n-14\n36\n-104\n12\n56\n-4\n-164\n16\n160\n200\n-144\n-106\n102\n-50\n-96\n164\n132\n-200\n28\n96\n-148\n-126\n22\n26\n32\n58\n148\n-40\n22\n-120\n32\n64\n",
+    "static_before": 121,
+    "static_after": 122,
+    "dyn_before": 21709,
+    "dyn_after": 21745
+  },
+  {
+    "file": "tests/mem/adj2csr.bril",
+    "verdict": "Good!",
+    "output_before": "32\n255\n1\n0\n1\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n1\n0\n0\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n1\n0\n1\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n1\n0\n0\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n1\n0\n1\n0\n0\n0\n1\n0\n1\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n0\n0\n1\n0\n0\n0\n0\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n1\n0\n0\n0\n0\n0\n0\n0\n1\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n1\n0\n0\n0\n0\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n0\n0\n0\n0\n1\n0\n1\n0\n0\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n1\n0\n0\n0\n0\n0\n0\n0\n0\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n1\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n1\n0\n1\n0\n0",
+    "output_after": "32\n255\n1\n0\n1\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n0\n1\n0\n0\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n1\n0\n1\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n1\n0\n0\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n1\n0\n1\n0\n0\n0\n1\n0\n1\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n0\n0\n1\n0\n0\n0\n0\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n1\n0\n0\n0\n0\n0\n0\n0\n1\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n1\n0\n0\n0\n0\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n0\n0\n0\n0\n0\n1\n0\n1\n0\n0\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n1\n0\n0\n0\n0\n0\n0\n0\n0\n0\n1\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n1\n0\n1\n0\n1\n0\n0\n0\n0\n0\n0\n0\n1\n0\n1\n0\n0",
+    "static_before": 115,
+    "static_after": 120,
+    "dyn_before": 56629,
+    "dyn_after": 58743
+  },
+  {
+    "file": "tests/mem/adler32.bril",
+    "verdict": "Good!",
+    "output_before": "1794899728\n",
+    "output_after": "1794899728\n",
+    "static_before": 66,
+    "static_after": 68,
+    "dyn_before": 6851,
+    "dyn_after": 7935
+  },
+  {
+    "file": "tests/mem/binary-search.bril",
+    "verdict": "Good!",
+    "output_before": "3\n",
+    "output_after": "3\n",
+    "static_before": 76,
+    "static_after": 73,
+    "dyn_before": 78,
+    "dyn_after": 74
+  },
+  {
+    "file": "tests/mem/bubblesort.bril",
+    "verdict": "Good!",
+    "output_before": "1\n3\n7\n9\n10\n",
+    "output_after": "1\n3\n7\n9\n10\n",
+    "static_before": 72,
+    "static_after": 72,
+    "dyn_before": 253,
+    "dyn_after": 253
+  },
+  {
+    "file": "tests/mem/char-poly.bril",
+    "verdict": "Good!",
+    "output_before": "-1\n8\n-11\n-156\n",
+    "output_after": "-1\n8\n-11\n-156\n",
+    "static_before": 144,
+    "static_after": 144,
+    "dyn_before": 383,
+    "dyn_after": 383
+  },
+  {
+    "file": "tests/mem/connected-components.bril",
+    "verdict": "Good!",
+    "output_before": "5\n0\n\n3\n4\n2\n1\n\n7\n6\n\n3\n",
+    "output_after": "5\n0\n\n3\n4\n2\n1\n\n7\n6\n\n3\n",
+    "static_before": 196,
+    "static_after": 206,
+    "dyn_before": 1978,
+    "dyn_after": 2618
+  },
+  {
+    "file": "tests/mem/cordic.bril",
+    "verdict": "Good!",
+    "output_before": "0.76616737005754065\n",
+    "output_after": "0.76616737005754065\n",
+    "static_before": 149,
+    "static_after": 109,
+    "dyn_before": 1062,
+    "dyn_after": 558
+  },
+  {
+    "file": "tests/mem/csrmv.bril",
+    "verdict": "Good!",
+    "output_before": "0\n5\n10\n15\n20\n25\n30\n35\n40\n45\n50\n55\n60\n65\n70\n75\n80\n85\n90\n95\n100\n105\n110\n115\n120\n125\n130\n135\n140\n145\n150\n155\n160\n165\n170\n175\n180\n185\n190\n195\n200\n205\n210\n215\n220\n225\n230\n235\n240\n245\n250\n0\n10\n20\n30\n40\n1\n11\n21\n31\n41\n2\n12\n22\n32\n42\n3\n13\n23\n33\n43\n4\n14\n24\n34\n44\n5\n15\n25\n35\n45\n6\n16\n26\n36\n46\n7\n17\n27\n37\n47\n8\n18\n28\n38\n48\n9\n19\n29\n39\n49\n10\n20\n30\n40\n0\n11\n21\n31\n41\n1\n12\n22\n32\n42\n2\n13\n23\n33\n43\n3\n14\n24\n34\n44\n4\n15\n25\n35\n45\n5\n16\n26\n36\n46\n6\n17\n27\n37\n47\n7\n18\n28\n38\n48\n8\n19\n29\n39\n49\n9\n20\n30\n40\n0\n10\n21\n31\n41\n1\n11\n22\n32\n42\n2",
+    "output_after": "0\n5\n10\n15\n20\n25\n30\n35\n40\n45\n50\n55\n60\n65\n70\n75\n80\n85\n90\n95\n100\n105\n110\n115\n120\n125\n130\n135\n140\n145\n150\n155\n160\n165\n170\n175\n180\n185\n190\n195\n200\n205\n210\n215\n220\n225\n230\n235\n240\n245\n250\n0\n10\n20\n30\n40\n1\n11\n21\n31\n41\n2\n12\n22\n32\n42\n3\n13\n23\n33\n43\n4\n14\n24\n34\n44\n5\n15\n25\n35\n45\n6\n16\n26\n36\n46\n7\n17\n27\n37\n47\n8\n18\n28\n38\n48\n9\n19\n29\n39\n49\n10\n20\n30\n40\n0\n11\n21\n31\n41\n1\n12\n22\n32\n42\n2\n13\n23\n33\n43\n3\n14\n24\n34\n44\n4\n15\n25\n35\n45\n5\n16\n26\n36\n46\n6\n17\n27\n37\n47\n7\n18\n28\n38\n48\n8\n19\n29\n39\n49\n9\n20\n30\n40\n0\n10\n21\n31\n41\n1\n11\n22\n32\n42\n2",
+    "static_before": 194,
+    "static_after": 194,
+    "dyn_before": 121202,
+    "dyn_after": 120952
+  },
+  {
+    "file": "tests/mem/dot-product.bril",
+    "verdict": "Good!",
+    "output_before": "17050\n",
+    "output_after": "17050\n",
+    "static_before": 54,
+    "static_after": 55,
+    "dyn_before": 88,
+    "dyn_after": 93
+  },
+  {
+    "file": "tests/mem/eight-queens.bril",
+    "verdict": "Good!",
+    "output_before": "92\n",
+    "output_after": "92\n",
+    "static_before": 63,
+    "static_after": 62,
+    "dyn_before": 1006454,
+    "dyn_after": 977477
+  },
+  {
+    "file": "tests/mem/fib.bril",
+    "verdict": "Good!",
+    "output_before": "34\n",
+    "output_after": "34\n",
+    "static_before": 31,
+    "static_after": 31,
+    "dyn_before": 121,
+    "dyn_after": 121
+  },
+  {
+    "file": "tests/mem/filter.bril",
+    "verdict": "Good!",
+    "output_before": "102\n103\n105\n",
+    "output_after": "102\n103\n105\n",
+    "static_before": 57,
+    "static_after": 55,
+    "dyn_before": 94,
+    "dyn_after": 92
+  },
+  {
+    "file": "tests/mem/fnv1-hash.bril",
+    "verdict": "Good!",
+    "output_before": "8573363309\n",
+    "output_after": "8573363309\n",
+    "static_before": 80,
+    "static_after": 81,
+    "dyn_before": 1768440,
+    "dyn_after": 1900022
+  },
+  {
+    "file": "tests/mem/insertion-sort.bril",
+    "verdict": "Good!",
+    "output_before": "7\n22\n35\n60\n81\n",
+    "output_after": "7\n22\n35\n60\n81\n",
+    "static_before": 67,
+    "static_after": 67,
+    "dyn_before": 170,
+    "dyn_after": 170
+  },
+  {
+    "file": "tests/mem/kadane.bril",
+    "verdict": "Good!",
+    "output_before": "6\n",
+    "output_after": "6\n",
+    "static_before": 75,
+    "static_after": 71,
+    "dyn_before": 157,
+    "dyn_after": 153
+  },
+  {
+    "file": "tests/mem/lis.bril",
+    "verdict": "Good!",
+    "output_before": "3\n",
+    "output_after": "3\n",
+    "static_before": 88,
+    "static_after": 88,
+    "dyn_before": 583,
+    "dyn_after": 583
+  },
+  {
+    "file": "tests/mem/major-elm.bril",
+    "verdict": "Good!",
+    "output_before": "3\n",
+    "output_after": "3\n",
+    "static_before": 51,
+    "static_after": 49,
+    "dyn_before": 47,
+    "dyn_after": 45
+  },
+  {
+    "file": "tests/mem/mat-mul.bril",
+    "verdict": "Good!",
+    "output_before": "493\n-964\n599\n-666\n-375\n-280\n-413\n866\n941\n44\n415\n862\n449\n632\n395\n266\n277\n-92\n967\n406\n-183\n-216\n339\n818\n845\n908\n-329\n-866\n-663\n520\n-605\n722\n-987\n-516\n127\n-602\n-303\n-408\n-685\n778\n149\n-188\n111\n526\n505\n-464\n299\n-6\n-499\n-68\n447\n150\n-343\n-288\n-701\n-894\n709\n-612\n-49\n238\n-111\n-472\n-277\n610\n-931\n740\n-833\n-970\n209\n-464\n739\n10\n141\n700\n-121\n-154\n-631\n-24\n499\n410\n757\n-268\n-569\n-90\n-903\n712\n-813\n690\n-195\n-428\n231\n-914\n561\n-416\n939\n346\n965\n-348\n983\n-186\n-815\n48\n995\n-622\n725\n380\n783\n998\n865\n-304\n291\n778\n877\n820\n",
+    "output_after": "493\n-964\n599\n-666\n-375\n-280\n-413\n866\n941\n44\n415\n862\n449\n632\n395\n266\n277\n-92\n967\n406\n-183\n-216\n339\n818\n845\n908\n-329\n-866\n-663\n520\n-605\n722\n-987\n-516\n127\n-602\n-303\n-408\n-685\n778\n149\n-188\n111\n526\n505\n-464\n299\n-6\n-499\n-68\n447\n150\n-343\n-288\n-701\n-894\n709\n-612\n-49\n238\n-111\n-472\n-277\n610\n-931\n740\n-833\n-970\n209\n-464\n739\n10\n141\n700\n-121\n-154\n-631\n-24\n499\n410\n757\n-268\n-569\n-90\n-903\n712\n-813\n690\n-195\n-428\n231\n-914\n561\n-416\n939\n346\n965\n-348\n983\n-186\n-815\n48\n995\n-622\n725\n380\n783\n998\n865\n-304\n291\n778\n877\n820\n",
+    "static_before": 104,
+    "static_after": 105,
+    "dyn_before": 1990407,
+    "dyn_after": 1990408
+  },
+  {
+    "file": "tests/mem/max-subarray.bril",
+    "verdict": "Good!",
+    "output_before": "100\n",
+    "output_after": "100\n",
+    "static_before": 59,
+    "static_after": 59,
+    "dyn_before": 193,
+    "dyn_after": 193
+  },
+  {
+    "file": "tests/mem/primitive-root.bril",
+    "verdict": "Good!",
+    "output_before": "17\n",
+    "output_after": "17\n",
+    "static_before": 145,
+    "static_after": 141,
+    "dyn_before": 11029,
+    "dyn_after": 11311
+  },
+  {
+    "file": "tests/mem/quickselect.bril",
+    "verdict": "Good!",
+    "output_before": "108\n",
+    "output_after": "108\n",
+    "static_before": 101,
+    "static_after": 103,
+    "dyn_before": 279,
+    "dyn_after": 303
+  },
+  {
+    "file": "tests/mem/quicksort-hoare.bril",
+    "verdict": "Good!",
+    "output_before": "true\ntrue\ntrue\ntrue\ntrue\n",
+    "output_after": "true\ntrue\ntrue\ntrue\ntrue\n",
+    "static_before": 135,
+    "static_after": 134,
+    "dyn_before": 27333,
+    "dyn_after": 27328
+  },
+  {
+    "file": "tests/mem/quicksort.bril",
+    "verdict": "Good!",
+    "output_before": "5\n6\n21\n46\n82\n94\n",
+    "output_after": "5\n6\n21\n46\n82\n94\n",
+    "static_before": 85,
+    "static_after": 87,
+    "dyn_before": 264,
+    "dyn_after": 277
+  },
+  {
+    "file": "tests/mem/shufflesort.bril",
+    "verdict": "Good!",
+    "output_before": "12\n123\n234\n525\n873\n",
+    "output_after": "12\n123\n234\n525\n873\n",
+    "static_before": 153,
+    "static_after": 156,
+    "dyn_before": 36564,
+    "dyn_after": 36780
+  },
+  {
+    "file": "tests/mem/sieve.bril",
+    "verdict": "Good!",
+    "output_before": "2\n3\n5\n7\n11\n13\n17\n19\n23\n29\n31\n37\n41\n43\n47\n53\n59\n61\n67\n71\n73\n79\n83\n89\n97\n",
+    "output_after": "2\n3\n5\n7\n11\n13\n17\n19\n23\n29\n31\n37\n41\n43\n47\n53\n59\n61\n67\n71\n73\n79\n83\n89\n97\n",
+    "static_before": 81,
+    "static_after": 75,
+    "dyn_before": 3482,
+    "dyn_after": 3524
+  },
+  {
+    "file": "tests/mem/sorting-network-five.bril",
+    "verdict": "Good!",
+    "output_before": "1\n3\n7\n9\n10\n",
+    "output_after": "1\n3\n7\n9\n10\n",
+    "static_before": 123,
+    "static_after": 66,
+    "dyn_before": 284,
+    "dyn_after": 147
+  },
+  {
+    "file": "tests/mem/systolic.bril",
+    "verdict": "Good!",
+    "output_before": "0\n-1\n-8\n-5\n4\n-5\n6\n3\n-6\n-3\n-62\n25\n",
+    "output_after": "0\n-1\n-8\n-5\n4\n-5\n6\n3\n-6\n-3\n-62\n25\n",
+    "static_before": 198,
+    "static_after": 187,
+    "dyn_before": 527,
+    "dyn_after": 524
+  },
+  {
+    "file": "tests/mem/two-sum.bril",
+    "verdict": "Good!",
+    "output_before": "0\n1\n",
+    "output_after": "0\n1\n",
+    "static_before": 120,
+    "static_after": 72,
+    "dyn_before": 98,
+    "dyn_after": 55
+  },
+  {
+    "file": "tests/mem/vsmul.bril",
+    "verdict": "Good!",
+    "output_before": "",
+    "output_after": "",
+    "static_before": 46,
+    "static_after": 46,
+    "dyn_before": 86036,
+    "dyn_after": 86036
+  },
+  {
+    "file": "tests/mixed/cholesky.bril",
+    "verdict": "Good!",
+    "output_before": "65.00000000000000000\n0.00000000000000000\n0.00000000000000000\n0.00000000000000000\n137.43076923076924345\n55.16143280081702471\n0.00000000000000000\n0.00000000000000000\n148.46153846153845279\n22.60304899166557746\n44.73559850849774477\n0.00000000000000000\n432.26153846153846416\n250.01098702698598686\n374.19363889460623795\n548.34440759751453243\n",
+    "output_after": "65.00000000000000000\n0.00000000000000000\n0.00000000000000000\n0.00000000000000000\n137.43076923076924345\n55.16143280081702471\n0.00000000000000000\n0.00000000000000000\n148.46153846153845279\n22.60304899166557746\n44.73559850849774477\n0.00000000000000000\n432.26153846153846416\n250.01098702698598686\n374.19363889460623795\n548.34440759751453243\n",
+    "static_before": 286,
+    "static_after": 258,
+    "dyn_before": 3761,
+    "dyn_after": 2852
+  },
+  {
+    "file": "tests/mixed/gol.bril",
+    "verdict": "Good!",
+    "output_before": "13 0 1\n13 1 1\n13 2 1\n13 3 1\n13 4 0\n13 5 1\n13 6 1\n13 7 0\n13 8 0\n3\n13 0 1\n13 1 0\n13 2 1\n13 3 1\n13 4 0\n13 5 1\n13 6 0\n13 7 1\n13 8 0\n",
+    "output_after": "13 0 1\n13 1 1\n13 2 1\n13 3 1\n13 4 0\n13 5 1\n13 6 1\n13 7 0\n13 8 0\n3\n13 0 1\n13 1 0\n13 2 1\n13 3 1\n13 4 0\n13 5 1\n13 6 0\n13 7 1\n13 8 0\n",
+    "static_before": 212,
+    "static_after": 206,
+    "dyn_before": 1425,
+    "dyn_after": 1477
+  },
+  {
+    "file": "tests/mixed/mat-inv.bril",
+    "verdict": "Good!",
+    "output_before": "-20.00000000000000000\n0.25000000000000000\n-1.14999999999999991\n0.80000000000000004\n-0.75000000000000000\n2.45000000000000018\n-1.39999999999999991\n0.25000000000000000\n-0.34999999999999998\n0.20000000000000001\n",
+    "output_after": "-20.00000000000000000\n0.25000000000000000\n-1.14999999999999991\n0.80000000000000004\n-0.75000000000000000\n2.45000000000000018\n-1.39999999999999991\n0.25000000000000000\n-0.34999999999999998\n0.20000000000000001\n",
+    "static_before": 124,
+    "static_after": 124,
+    "dyn_before": 1044,
+    "dyn_after": 1044
+  },
+  {
+    "file": "tests/mixed/random_walk.bril",
+    "verdict": "Good!",
+    "output_before": "0\n0\n-\n-1\n0\n-\n-1\n1\n-\n-1\n2\n-\n-1\n1\n-\n-2\n1\n-\n-1\n1\n-\n-2\n1\n-\n-2\n0\n-\n-2\n-1\n-\n-3\n-1\n-\n-4\n-1\n-\n-4\n0\n-\n-3\n0\n-\n-2\n0\n-\n-1\n0\n-\n-2\n0\n-\n-3\n0\n-\n-2\n0\n-\n-2\n-1\n-\n-1\n-1\n-\n-1\n-2\n-\n-2\n-2\n-\n-1\n-2\n-\n0\n-2\n-\n0\n-3\n-\n0\n-4\n-\n0\n-5\n-\n0\n-4\n-\n0\n-3\n-\n-1\n-3\n-\n-2\n-3\n-\n-2\n-4\n-\n-2\n-5\n-\n-2\n-6\n-\n-1\n-6\n-\n0\n-6\n-\n0\n-7\n-\n-1\n-7\n-\n-1\n-8\n-\n-2\n-8\n-\n-2\n-9\n-\n-2\n-8\n-\n-1\n-8\n-\n-1\n-7\n-\n-1\n-6\n-\n0\n-6\n-\n-1\n-6\n-\n-1\n-7\n-\n-2\n-7\n-\n-2\n-8\n-\n-2\n-7\n-\n-2\n-8\n-\n-2\n-9\n-\n-1\n-9\n-\n-2\n-9\n-\n-3\n-9\n-\n-4\n-9\n-\n-3\n-9\n-\n-2\n-9\n-\n-1\n-9\n-\n-2\n-9\n-\n-2\n-10\n-\n-3\n-10\n-\n-2\n-10\n-\n-2\n",
+    "output_after": "0\n0\n-\n-1\n0\n-\n-1\n1\n-\n-1\n2\n-\n-1\n1\n-\n-2\n1\n-\n-1\n1\n-\n-2\n1\n-\n-2\n0\n-\n-2\n-1\n-\n-3\n-1\n-\n-4\n-1\n-\n-4\n0\n-\n-3\n0\n-\n-2\n0\n-\n-1\n0\n-\n-2\n0\n-\n-3\n0\n-\n-2\n0\n-\n-2\n-1\n-\n-1\n-1\n-\n-1\n-2\n-\n-2\n-2\n-\n-1\n-2\n-\n0\n-2\n-\n0\n-3\n-\n0\n-4\n-\n0\n-5\n-\n0\n-4\n-\n0\n-3\n-\n-1\n-3\n-\n-2\n-3\n-\n-2\n-4\n-\n-2\n-5\n-\n-2\n-6\n-\n-1\n-6\n-\n0\n-6\n-\n0\n-7\n-\n-1\n-7\n-\n-1\n-8\n-\n-2\n-8\n-\n-2\n-9\n-\n-2\n-8\n-\n-1\n-8\n-\n-1\n-7\n-\n-1\n-6\n-\n0\n-6\n-\n-1\n-6\n-\n-1\n-7\n-\n-2\n-7\n-\n-2\n-8\n-\n-2\n-7\n-\n-2\n-8\n-\n-2\n-9\n-\n-1\n-9\n-\n-2\n-9\n-\n-3\n-9\n-\n-4\n-9\n-\n-3\n-9\n-\n-2\n-9\n-\n-1\n-9\n-\n-2\n-9\n-\n-2\n-10\n-\n-3\n-10\n-\n-2\n-10\n-\n-2\n",
+    "static_before": 92,
+    "static_after": 94,
+    "dyn_before": 516754,
+    "dyn_after": 541570
+  }
+]

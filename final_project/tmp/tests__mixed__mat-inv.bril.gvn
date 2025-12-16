@@ -1,0 +1,136 @@
+@matget(matrix: ptr<float>, r: int, c: int): float {
+  three.1: int = const 3;
+  trip_r.1: int = mul three.1 r;
+  index.1: int = add c trip_r.1;
+  ptr.1: ptr<float> = ptradd matrix index.1;
+  res.1: float = load ptr.1;
+  ret res.1;
+}
+@mod(a: int, b: int): int {
+  acc.1: int = div a b;
+  acc.2: int = mul b acc.1;
+  acc.3: int = sub a acc.2;
+  ret acc.3;
+}
+@determinant(matrix: ptr<float>): float {
+  two.1: int = const 2;
+  one.1: int = const 1;
+  zero.1: int = const 0;
+  det.1: float = const 0;
+  three.1: int = const 3;
+  i.3: int = id zero.1;
+.loop:
+  to_add.1: float = call @matget matrix zero.1 i.3;
+  col.1: int = add i.3 one.1;
+  col.2: int = call @mod col.1 three.1;
+  tmp.1: float = call @matget matrix one.1 col.2;
+  to_add.2: float = fmul to_add.1 tmp.1;
+  tmp.2: float = call @matget matrix two.1 col.2;
+  to_sub.2: float = fmul to_add.1 tmp.2;
+  col.3: int = add i.3 two.1;
+  col.4: int = call @mod col.3 three.1;
+  tmp.3: float = call @matget matrix two.1 col.4;
+  to_add.3: float = fmul to_add.2 tmp.3;
+  tmp.4: float = call @matget matrix one.1 col.4;
+  to_sub.3: float = fmul to_sub.2 tmp.4;
+  det.3: float = fadd det.1 to_add.3;
+  det.4: float = fsub det.3 to_sub.3;
+  i.3: int = add i.3 one.1;
+  i_lt_three.1: bool = lt i.3 three.1;
+  det.1: float = id det.4;
+  br i_lt_three.1 .loop .done;
+.done:
+  ret det.4;
+}
+@inverse(matrix: ptr<float>): ptr<float> {
+  det.1: float = call @determinant matrix;
+  nine.1: int = const 9;
+  result.1: ptr<float> = alloc nine.1;
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  two.1: int = const 2;
+  three.1: int = const 3;
+  i.3: int = id zero.1;
+.outer:
+  j.3: int = id zero.1;
+.inner:
+  jp1.1: int = add j.3 one.1;
+  jp1.2: int = call @mod jp1.1 three.1;
+  jp2.1: int = add j.3 two.1;
+  jp2.2: int = call @mod jp2.1 three.1;
+  ip1.1: int = add i.3 one.1;
+  ip1.2: int = call @mod ip1.1 three.1;
+  ip2.1: int = add i.3 two.1;
+  ip2.2: int = call @mod ip2.1 three.1;
+  val.1: float = call @matget matrix jp1.2 ip1.2;
+  tmp.1: float = call @matget matrix jp2.2 ip2.2;
+  val.2: float = fmul val.1 tmp.1;
+  tmp.2: float = call @matget matrix jp1.2 ip2.2;
+  temp.1: float = call @matget matrix jp2.2 ip1.2;
+  tmp.3: float = fmul tmp.2 temp.1;
+  val.3: float = fsub val.2 tmp.3;
+  val.4: float = fdiv val.3 det.1;
+  index.1: int = mul three.1 i.3;
+  index.2: int = add index.1 j.3;
+  ptr.1: ptr<float> = ptradd result.1 index.2;
+  store ptr.1 val.4;
+  j.3: int = add j.3 one.1;
+  j_lt_three.1: bool = lt j.3 three.1;
+  br j_lt_three.1 .inner .continue;
+.continue:
+  i.3: int = add i.3 one.1;
+  i_lt_three.1: bool = lt i.3 three.1;
+  br i_lt_three.1 .outer .finished;
+.finished:
+  ret result.1;
+}
+@main {
+  nine.1: int = const 9;
+  one.1: int = const 1;
+  matrix.1: ptr<float> = alloc nine.1;
+  zero.1: float = const 0;
+  onef.1: float = const 1;
+  three.1: float = const 3;
+  four.1: float = const 4;
+  five.1: float = const 5;
+  seven.1: float = const 7;
+  store matrix.1 zero.1;
+  ptr.1: ptr<float> = ptradd matrix.1 one.1;
+  store ptr.1 onef.1;
+  ptr.2: ptr<float> = ptradd ptr.1 one.1;
+  store ptr.2 seven.1;
+  ptr.3: ptr<float> = ptradd ptr.2 one.1;
+  store ptr.3 four.1;
+  ptr.4: ptr<float> = ptradd ptr.3 one.1;
+  store ptr.4 three.1;
+  ptr.5: ptr<float> = ptradd ptr.4 one.1;
+  store ptr.5 five.1;
+  ptr.6: ptr<float> = ptradd ptr.5 one.1;
+  store ptr.6 seven.1;
+  ptr.7: ptr<float> = ptradd ptr.6 one.1;
+  store ptr.7 four.1;
+  ptr.8: ptr<float> = ptradd ptr.7 one.1;
+  store ptr.8 five.1;
+  det.1: float = call @determinant matrix.1;
+  print det.1;
+  inv.1: ptr<float> = call @inverse matrix.1;
+  call @printarray nine.1 inv.1;
+  free inv.1;
+  free matrix.1;
+}
+@printarray(size: int, arr: ptr<float>) {
+  i.1: int = const 0;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .done;
+.body:
+  loc.1: ptr<float> = ptradd arr i.1;
+  val.1: float = load loc.1;
+  print val.1;
+.loop_end:
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret;
+}

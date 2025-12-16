@@ -1,0 +1,36 @@
+@RaySphereIntersection(rayOriginX: float, rayOriginY: float, rayOriginZ: float, rayDirectionX: float, rayDirectionY: float, rayDirectionZ: float, circleCenterX: float, circleCenterY: float, circleCenterZ: float, radius: float): bool {
+  v2.1: float = fsub rayOriginX circleCenterX;
+  v5.1: float = fsub rayOriginY circleCenterY;
+  v8.1: float = fsub rayOriginZ circleCenterZ;
+  a.1: float = call @DotProduct rayDirectionX rayDirectionY rayDirectionZ rayDirectionX rayDirectionY rayDirectionZ;
+  bInitial.1: float = call @DotProduct v2.1 v5.1 v8.1 rayDirectionX rayDirectionY rayDirectionZ;
+  v21.1: float = const 2;
+  v23.1: float = fmul v21.1 bInitial.1;
+  cInitial.1: float = call @DotProduct v2.1 v5.1 v8.1 v2.1 v5.1 v8.1;
+  v32.1: float = fmul radius radius;
+  v35.1: float = fsub cInitial.1 v32.1;
+  v38.1: float = fmul v23.1 v23.1;
+  v39.1: float = const 4;
+  v41.1: float = fmul v39.1 a.1;
+  v43.1: float = fmul v41.1 v35.1;
+  v46.1: float = fsub v38.1 v43.1;
+  v48.1: float = const 0;
+  v49.1: bool = fgt v46.1 v48.1;
+  ret v49.1;
+}
+@DotProduct(a: float, b: float, c: float, x: float, y: float, z: float): float {
+  v2.1: float = fmul a x;
+  v5.1: float = fmul b y;
+  v8.1: float = fmul c z;
+  v11.1: float = fadd v2.1 v5.1;
+  v13.1: float = fadd v11.1 v8.1;
+  ret v13.1;
+}
+@main {
+  rayOriginX.1: float = const 0.0;
+  rayDirectionX.1: float = const 0.33;
+  circleCenterX.1: float = const 5.0;
+  radius.1: float = const 1.0;
+  intersected.1: bool = call @RaySphereIntersection rayOriginX.1 rayOriginX.1 rayOriginX.1 rayDirectionX.1 rayDirectionX.1 rayDirectionX.1 circleCenterX.1 circleCenterX.1 circleCenterX.1 radius.1;
+  print intersected.1;
+}

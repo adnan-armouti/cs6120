@@ -1,0 +1,18 @@
+@logistic_map(r: float, x: float, n: float) {
+  zero.1: float = const 0;
+  one.1: float = const 1;
+  tmp.1: float = fsub one.1 x;
+  tmp.2: float = fmul tmp.1 x;
+  x.1: float = fmul r tmp.2;
+  print x.1;
+  b.1: bool = feq n zero.1;
+  br b.1 .return .cont;
+.cont:
+  n1.1: float = fsub n one.1;
+  call @logistic_map r x.1 n1.1;
+.return:
+  ret;
+}
+@main(r: float, x: float, n: float) {
+  call @logistic_map r x n;
+}

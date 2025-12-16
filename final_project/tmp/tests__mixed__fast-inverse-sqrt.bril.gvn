@@ -1,0 +1,51 @@
+@main(y: float) {
+  one_half.1: float = const 0.5;
+  one.1: int = const 1;
+  one_and_half.1: float = const 1.5;
+  magic.1: int = const 6910469410427058089;
+  x2.1: float = fmul y one_half.1;
+  i.1: int = float2bits y;
+  i2.1: int = call @RIGHTSHIFT i.1 one.1;
+  i3.1: int = sub magic.1 i2.1;
+  y2.1: float = bits2float i3.1;
+  y3.1: float = fmul y2.1 y2.1;
+  y4.1: float = fmul x2.1 y3.1;
+  y5.1: float = fsub one_and_half.1 y4.1;
+  y6.1: float = fmul y2.1 y5.1;
+  print y6.1;
+}
+@pow(x: int, n: int): int {
+  v2.1: int = const 1;
+  v3.1: bool = eq n v2.1;
+  br v3.1 .then.0 .else.0;
+.then.0:
+  ret x;
+.else.0:
+  v7.1: int = const 2;
+  v8.1: int = div n v7.1;
+  half.1: int = call @pow x v8.1;
+  v11.1: int = mul half.1 half.1;
+  v14.1: int = const 2;
+  v15.1: int = call @mod n v14.1;
+  v16.1: int = const 1;
+  v17.1: bool = eq v15.1 v16.1;
+  br v17.1 .then.12 .else.12;
+.then.12:
+  v11.1: int = mul v11.1 x;
+  jmp .endif.12;
+.else.12:
+.endif.12:
+  ret v11.1;
+}
+@mod(a: int, b: int): int {
+  v3.1: int = div a b;
+  v5.1: int = mul v3.1 b;
+  v6.1: int = sub a v5.1;
+  ret v6.1;
+}
+@RIGHTSHIFT(x: int, step: int): int {
+  v0.1: int = const 2;
+  p.1: int = call @pow v0.1 step;
+  v4.1: int = div x p.1;
+  ret v4.1;
+}

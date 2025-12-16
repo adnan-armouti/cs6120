@@ -1,0 +1,31 @@
+@main {
+  pi.3: float = const 0;
+  denom.1: float = const 1;
+  is_even.3: bool = const false;
+  i.1: int = const 1;
+  end.1: int = const 1000000;
+  i.2: int = id i.1;
+  denom.3: float = id denom.1;
+.for.start:
+  b.1: bool = lt i.2 end.1;
+  br b.1 .for.body .for.end;
+.for.body:
+  br is_even.3 .if.true .if.false;
+.if.true:
+  f1.1: float = fdiv denom.1 denom.3;
+  pi.3: float = fsub pi.3 f1.1;
+  jmp .if.end;
+.if.false:
+  f2.1: float = fdiv denom.1 denom.3;
+  pi.3: float = fadd pi.3 f2.1;
+.if.end:
+  two.1: float = const 2;
+  denom.3: float = fadd denom.3 two.1;
+  is_even.3: bool = not is_even.3;
+  i.2: int = add i.2 i.1;
+  jmp .for.start;
+.for.end:
+  four.1: float = const 4;
+  pi.6: float = fmul pi.3 four.1;
+  print pi.6;
+}

@@ -1,0 +1,27 @@
+@main(n: int) {
+  result.1: int = call @fib n;
+  print result.1;
+}
+@fib(x: int): int {
+  v2.1: int = const 0;
+  v3.1: bool = eq x v2.1;
+  br v3.1 .then.0 .else.0;
+.then.0:
+  v4.1: int = const 0;
+  ret v4.1;
+.else.0:
+  v7.1: int = const 1;
+  v8.1: bool = eq x v7.1;
+  br v8.1 .then.5 .else.5;
+.then.5:
+  v9.1: int = const 1;
+  ret v9.1;
+.else.5:
+  v12.1: int = sub x v7.1;
+  f1.1: int = call @fib v12.1;
+  v14.1: int = const 2;
+  v15.1: int = sub x v14.1;
+  f2.1: int = call @fib v15.1;
+  v18.1: int = add f1.1 f2.1;
+  ret v18.1;
+}

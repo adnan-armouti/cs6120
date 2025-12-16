@@ -1,0 +1,20 @@
+@main {
+  v0.1: float = const 3.2;
+  v1.1: int = const 2;
+  call @pow v0.1 v1.1;
+}
+@pow(x: float, n: int) {
+  _i.2: int = const 0;
+  v10.1: float = id x;
+.for.cond.1:
+  v5.1: int = const 1;
+  v6.1: int = sub n v5.1;
+  v7.1: bool = lt _i.2 v6.1;
+  br v7.1 .for.body.1 .for.end.1;
+.for.body.1:
+  v10.1: float = fmul v10.1 x;
+  _i.2: int = add _i.2 v5.1;
+  jmp .for.cond.1;
+.for.end.1:
+  print v10.1;
+}

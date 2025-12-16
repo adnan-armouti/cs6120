@@ -1,0 +1,19 @@
+@main(input: int) {
+  f.1: int = call @fac input;
+  print f.1;
+}
+@fac(x: int): int {
+  v2.1: int = const 1;
+  v3.1: bool = le x v2.1;
+  br v3.1 .then.0 .else.0;
+.then.0:
+  v4.1: int = const 1;
+  ret v4.1;
+  jmp .endif.0;
+.else.0:
+.endif.0:
+  v8.1: int = sub x v2.1;
+  v9.1: int = call @fac v8.1;
+  v10.1: int = mul x v9.1;
+  ret v10.1;
+}

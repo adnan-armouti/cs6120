@@ -1,0 +1,33 @@
+@main(input: int) {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  neg_one.1: int = const -1;
+  vals.1: ptr<int> = alloc input;
+  store vals.1 zero.1;
+  vals_i.1: ptr<int> = ptradd vals.1 one.1;
+  store vals_i.1 one.1;
+  i.3: int = const 2;
+  i_minus_one.3: int = add i.3 neg_one.1;
+  i_minus_two.2: int = add i_minus_one.3 neg_one.1;
+.loop:
+  cond.1: bool = lt i.3 input;
+  br cond.1 .body .done;
+.body:
+  vals_i.2: ptr<int> = ptradd vals.1 i.3;
+  vals_i_minus_one.1: ptr<int> = ptradd vals.1 i_minus_one.3;
+  vals_i_minus_two.1: ptr<int> = ptradd vals.1 i_minus_two.2;
+  tmp.1: int = load vals_i_minus_one.1;
+  tmp2.1: int = load vals_i_minus_two.1;
+  tmp.2: int = add tmp.1 tmp2.1;
+  store vals_i.2 tmp.2;
+  i.3: int = add i.3 one.1;
+  i_minus_one.3: int = add i_minus_one.3 one.1;
+  i_minus_two.2: int = add i_minus_two.2 one.1;
+  jmp .loop;
+.done:
+  last.1: ptr<int> = ptradd vals.1 i_minus_one.3;
+  tmp.3: int = load last.1;
+  print tmp.3;
+  free vals.1;
+  ret;
+}

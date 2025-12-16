@@ -1,0 +1,39 @@
+@lsb(val: int): int {
+  two.1: int = const 2;
+  div.1: int = div val two.1;
+  mul.1: int = mul div.1 two.1;
+  lsb.1: int = sub val mul.1;
+  ret lsb.1;
+}
+@hamm_lsb(a: int, b: int): int {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  a_lsb.1: int = call @lsb a;
+  b_lsb.1: int = call @lsb b;
+  xor.1: int = add a_lsb.1 b_lsb.1;
+  guard.1: bool = eq xor.1 one.1;
+  br guard.1 .if .else;
+.if:
+  ret one.1;
+.else:
+  ret zero.1;
+}
+@main(a.2: int, b.1: int) {
+  zero.1: int = const 0;
+  two.1: int = const 2;
+  dist.3: int = id zero.1;
+.while:
+  a_done.1: bool = eq a.2 zero.1;
+  b_done.1: bool = eq b.1 zero.1;
+  done.1: bool = and a_done.1 b_done.1;
+  br done.1 .end .body;
+.body:
+  hamm.1: int = call @hamm_lsb a.2 b.1;
+  dist.3: int = add dist.3 hamm.1;
+  a.2: int = div a.2 two.1;
+  b.1: int = div b.1 two.1;
+  jmp .while;
+.end:
+  print dist.3;
+  ret;
+}

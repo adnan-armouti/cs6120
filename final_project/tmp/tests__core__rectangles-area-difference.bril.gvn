@@ -1,0 +1,18 @@
+@main(x1: int, y1: int, x2: int, y2: int) {
+  a1.1: int = call @area x1 y1;
+  a2.1: int = call @area x2 y2;
+  res.1: int = sub a1.1 a2.1;
+  a1_bigger.1: bool = gt a1.1 a2.1;
+  res.2: int = id res.1;
+  br a1_bigger.1 .end .flip;
+.flip:
+  neg1.1: int = const -1;
+  res.2: int = mul res.1 neg1.1;
+.end:
+  print res.2;
+}
+@area(x: int, y: int): int {
+  area.1: int = mul x y;
+  print area.1;
+  ret area.1;
+}

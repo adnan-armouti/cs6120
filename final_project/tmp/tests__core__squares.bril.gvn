@@ -1,0 +1,11 @@
+@main(input: int) {
+  one.1: int = const 1;
+  cur.2: int = id one.1;
+.print:
+  square.1: int = mul cur.2 cur.2;
+  print square.1;
+  isdone.1: bool = eq cur.2 input;
+  cur.2: int = add cur.2 one.1;
+  br isdone.1 .done .print;
+.done:
+}

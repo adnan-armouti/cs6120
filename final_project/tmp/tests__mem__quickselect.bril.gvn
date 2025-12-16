@@ -1,0 +1,113 @@
+@pack(size: int, n1: int, n2: int, n3: int, n4: int, n5: int, n6: int): ptr<int> {
+  one.1: int = const 1;
+  i.1: int = const 0;
+  array.1: ptr<int> = alloc size;
+  loc.1: ptr<int> = ptradd array.1 i.1;
+  store loc.1 n1;
+  i.2: int = add i.1 one.1;
+  loc.2: ptr<int> = ptradd array.1 i.2;
+  store loc.2 n2;
+  i.3: int = add i.2 one.1;
+  loc.3: ptr<int> = ptradd array.1 i.3;
+  store loc.3 n3;
+  i.4: int = add i.3 one.1;
+  loc.4: ptr<int> = ptradd array.1 i.4;
+  store loc.4 n4;
+  i.5: int = add i.4 one.1;
+  loc.5: ptr<int> = ptradd array.1 i.5;
+  store loc.5 n5;
+  i.6: int = add i.5 one.1;
+  loc.6: ptr<int> = ptradd array.1 i.6;
+  store loc.6 n6;
+  ret array.1;
+}
+@print_array(array: ptr<int>, size: int) {
+  i.1: int = const 0;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .done;
+.body:
+  loc.1: ptr<int> = ptradd array i.1;
+  val.1: int = load loc.1;
+  print val.1;
+.loop_end:
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret;
+}
+@partition(array: ptr<int>, l: int, r: int): int {
+  one.1: int = const 1;
+  pivotloc.1: ptr<int> = ptradd array r;
+  pivot.1: int = load pivotloc.1;
+  j.2: int = id l;
+  i.2: int = id l;
+.loop:
+  cond.1: bool = lt j.2 r;
+  br cond.1 .body .done;
+.body:
+  curloc.1: ptr<int> = ptradd array j.2;
+  cur.1: int = load curloc.1;
+  swap.1: bool = le cur.1 pivot.1;
+  i.3: int = id i.2;
+  br swap.1 .swap_j .loop_end;
+.swap_j:
+  iloc.1: ptr<int> = ptradd array i.2;
+  ival.1: int = load iloc.1;
+  store curloc.1 ival.1;
+  store iloc.1 cur.1;
+  i.3: int = add i.2 one.1;
+.loop_end:
+  j.2: int = add j.2 one.1;
+  i.2: int = id i.3;
+  jmp .loop;
+.done:
+  iloc.2: ptr<int> = ptradd array i.2;
+  ival.2: int = load iloc.2;
+  store iloc.2 pivot.1;
+  store pivotloc.1 ival.2;
+  ret i.2;
+}
+@quickselect(array: ptr<int>, l: int, r: int, k: int): int {
+  one.1: int = const 1;
+  index.1: int = call @partition array l r;
+  ipos.1: int = sub index.1 l;
+  kpos.1: int = sub k one.1;
+  ieqk.1: bool = eq ipos.1 kpos.1;
+  br ieqk.1 .found .not_found;
+.found:
+  iloc.1: ptr<int> = ptradd array index.1;
+  i.1: int = load iloc.1;
+  ret i.1;
+.not_found:
+  igtk.1: bool = gt ipos.1 kpos.1;
+  br igtk.1 .greater .less;
+.greater:
+  newr.1: int = sub index.1 one.1;
+  i.2: int = call @quickselect array l newr.1 k;
+  ret i.2;
+.less:
+  newl.1: int = add index.1 one.1;
+  newk.1: int = sub k index.1;
+  newk.2: int = add newk.1 l;
+  newk.3: int = sub newk.2 one.1;
+  i.3: int = call @quickselect array newl.1 r newk.3;
+  ret i.3;
+}
+@main {
+  k.1: int = const 4;
+  n1.1: int = const 97;
+  n2.1: int = const 108;
+  n3.1: int = const 98;
+  n4.1: int = const 101;
+  n5.1: int = const 114;
+  n6.1: int = const 116;
+  zero.1: int = const 0;
+  five.1: int = const 5;
+  size.1: int = const 6;
+  array.1: ptr<int> = call @pack size.1 n1.1 n2.1 n3.1 n4.1 n5.1 n6.1;
+  output.1: int = call @quickselect array.1 zero.1 five.1 k.1;
+  print output.1;
+  free array.1;
+}

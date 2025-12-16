@@ -1,0 +1,31 @@
+@mod(n: int, modulus: int): int {
+  result.1: int = div n modulus;
+  multiple.1: int = mul result.1 modulus;
+  remainder.1: int = sub n multiple.1;
+  ret remainder.1;
+}
+@lsb(n: int): int {
+  two.1: int = const 2;
+  bit.1: int = call @mod n two.1;
+  ret bit.1;
+}
+@square(n: int): int {
+  result.1: int = mul n n;
+  ret result.1;
+}
+@main(p: int, q: int, seed.2: int, sequence_length: int) {
+  modulus.1: int = mul p q;
+  start.1: int = const 0;
+.loop.branch:
+  cond.1: bool = lt start.1 sequence_length;
+  br cond.1 .loop.body .loop.end;
+.loop.body:
+  squared.1: int = call @square seed.2;
+  seed.2: int = call @mod squared.1 modulus.1;
+  least_significant_bit.1: int = call @lsb seed.2;
+  print least_significant_bit.1;
+  one.1: int = const 1;
+  start.1: int = add start.1 one.1;
+  jmp .loop.branch;
+.loop.end:
+}

@@ -1,0 +1,54 @@
+@main(n: int) {
+  print n;
+  tot.1: int = call @totient n;
+  print tot.1;
+}
+@totient(n: int): int {
+  p.3: int = const 2;
+  one.1: int = const 1;
+  zero.1: int = const 0;
+  n.1: int = id n;
+  result.2: int = id n;
+.for.set.cond:
+  pp.1: int = mul p.3 p.3;
+  cond.1: bool = le pp.1 n.1;
+  br cond.1 .for.set.body .for.set.end;
+.for.set.body:
+  npmod.1: int = call @mod n.1 p.3;
+  if_cond.1: bool = eq npmod.1 zero.1;
+  n.2: int = id n.1;
+  result.4: int = id result.2;
+  br if_cond.1 .if_lbl .else_lbl;
+.if_lbl:
+.while.set.cond:
+  npmod.2: int = call @mod n.1 p.3;
+  while_cond.1: bool = eq npmod.2 zero.1;
+  br while_cond.1 .while.body .while.end;
+.while.body:
+  n.1: int = div n.1 p.3;
+  jmp .while.set.cond;
+.while.end:
+  resdiv.1: int = div result.2 p.3;
+  result.4: int = sub result.2 resdiv.1;
+  n.2: int = id n.1;
+.else_lbl:
+  p.3: int = add p.3 one.1;
+  n.1: int = id n.2;
+  result.2: int = id result.4;
+  jmp .for.set.cond;
+.for.set.end:
+  final_if_cond.1: bool = gt n.1 one.1;
+  result.5: int = id result.2;
+  br final_if_cond.1 .final_if_label .final_else_label;
+.final_if_label:
+  resdiv.2: int = div result.2 n.1;
+  result.5: int = sub result.2 resdiv.2;
+.final_else_label:
+  ret result.5;
+}
+@mod(a: int, b: int): int {
+  ad.1: int = div a b;
+  mad.1: int = mul b ad.1;
+  ans.1: int = sub a mad.1;
+  ret ans.1;
+}

@@ -1,0 +1,81 @@
+@pack(size: int, n1: int, n2: int, n3: int, n4: int, n5: int): ptr<int> {
+  one.1: int = const 1;
+  i.1: int = const 0;
+  array.1: ptr<int> = alloc size;
+  loc.1: ptr<int> = ptradd array.1 i.1;
+  store loc.1 n1;
+  i.2: int = add i.1 one.1;
+  loc.2: ptr<int> = ptradd array.1 i.2;
+  store loc.2 n2;
+  i.3: int = add i.2 one.1;
+  loc.3: ptr<int> = ptradd array.1 i.3;
+  store loc.3 n3;
+  i.4: int = add i.3 one.1;
+  loc.4: ptr<int> = ptradd array.1 i.4;
+  store loc.4 n4;
+  i.5: int = add i.4 one.1;
+  loc.5: ptr<int> = ptradd array.1 i.5;
+  store loc.5 n5;
+  ret array.1;
+}
+@print_array(array: ptr<int>, size: int) {
+  i.1: int = const 0;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .done;
+.body:
+  loc.1: ptr<int> = ptradd array i.1;
+  val.1: int = load loc.1;
+  print val.1;
+.loop_end:
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret;
+}
+@binary_search(array: ptr<int>, target: int, left: int, right: int): int {
+  negone.1: int = const -1;
+  one.1: int = const 1;
+  two.1: int = const 2;
+.check_valid:
+  end_cond.1: bool = gt left right;
+  br end_cond.1 .end .body;
+.body:
+  mid.1: int = add left right;
+  mid.2: int = div mid.1 two.1;
+.check_equal:
+  midloc.1: ptr<int> = ptradd array mid.2;
+  midval.1: int = load midloc.1;
+  equal_cond.1: bool = eq target midval.1;
+  br equal_cond.1 .found .check_gt;
+.found:
+  ret mid.2;
+.check_gt:
+  gt_cond.1: bool = gt target midval.1;
+  br gt_cond.1 .call_gt .call_lt;
+.call_gt:
+  newleft.1: int = add left one.1;
+  output.1: int = call @binary_search array target newleft.1 right;
+  ret output.1;
+.call_lt:
+  newright.1: int = sub right one.1;
+  output.2: int = call @binary_search array target left newright.1;
+  ret output.2;
+.end:
+  ret negone.1;
+}
+@main {
+  target.1: int = const 7;
+  size.1: int = const 5;
+  e1.1: int = const 1;
+  e2.1: int = const 2;
+  e3.1: int = const 6;
+  e5.1: int = const 11;
+  zero.1: int = const 0;
+  four.1: int = const 4;
+  array.1: ptr<int> = call @pack size.1 e1.1 e2.1 e3.1 target.1 e5.1;
+  output.1: int = call @binary_search array.1 target.1 zero.1 four.1;
+  print output.1;
+  free array.1;
+}

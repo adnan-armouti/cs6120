@@ -1,0 +1,220 @@
+@print_through(arr: ptr<int>, size: int) {
+  one.1: int = const 1;
+  i.2: int = const 0;
+.loop:
+  cond.1: bool = lt i.2 size;
+  br cond.1 .printmore .done;
+.printmore:
+  idx.1: ptr<int> = ptradd arr i.2;
+  elem.1: int = load idx.1;
+  print elem.1;
+.loopcheck:
+  i.2: int = add i.2 one.1;
+  jmp .loop;
+.done:
+  print;
+  ret;
+}
+@push(stack: ptr<int>, newnode: int, size: int): ptr<int> {
+  zero.1: int = const 0;
+  empty.1: bool = eq size zero.1;
+  br empty.1 .push_empty .push_nonempty;
+.push_empty:
+  store stack newnode;
+  ret stack;
+.push_nonempty:
+  one.1: int = const 1;
+  newsize.1: int = add size one.1;
+  result.1: ptr<int> = alloc newsize.1;
+  i.1: int = const 0;
+  write_idx.1: ptr<int> = ptradd result.1 i.1;
+  store write_idx.1 newnode;
+  read_idx.3: ptr<int> = ptradd stack i.1;
+  i.4: int = add i.1 one.1;
+.copyloop:
+  cond.1: bool = lt i.4 newsize.1;
+  br cond.1 .copy .done;
+.copy:
+  top.1: int = load read_idx.3;
+  write_idx.2: ptr<int> = ptradd result.1 i.4;
+  store write_idx.2 top.1;
+  read_idx.3: ptr<int> = ptradd stack i.4;
+.loop_end:
+  i.4: int = add i.4 one.1;
+  jmp .copyloop;
+.done:
+  free stack;
+  ret result.1;
+}
+@pop(stack: ptr<int>, size: int): ptr<int> {
+  one.1: int = const 1;
+  has_one.1: bool = eq size one.1;
+  br has_one.1 .pop_one .pop_multiple;
+.pop_one:
+  negone.1: int = const -1;
+  store stack negone.1;
+  ret stack;
+.pop_multiple:
+  newsize.1: int = sub size one.1;
+  result.1: ptr<int> = alloc newsize.1;
+  i.2: int = const 1;
+.copyloop:
+  cond.1: bool = lt i.2 size;
+  br cond.1 .copy .done;
+.copy:
+  read_idx.1: ptr<int> = ptradd stack i.2;
+  top.1: int = load read_idx.1;
+  write_pos.1: int = sub i.2 one.1;
+  write_idx.1: ptr<int> = ptradd result.1 write_pos.1;
+  store write_idx.1 top.1;
+.loop_end:
+  i.2: int = add i.2 one.1;
+  jmp .copyloop;
+.done:
+  free stack;
+  ret result.1;
+}
+@first_unvisited(visited: ptr<int>, n: int): int {
+  i.1: int = const 0;
+  one.1: int = const 1;
+  i.2: int = id i.1;
+.loop:
+  offset.1: ptr<int> = ptradd visited i.2;
+  loaded.1: int = load offset.1;
+  bounds.1: bool = eq i.2 n;
+  found.1: bool = eq loaded.1 i.1;
+  cond.1: bool = or bounds.1 found.1;
+  br cond.1 .terminate .continue;
+.continue:
+  i.2: int = add i.2 one.1;
+  jmp .loop;
+.terminate:
+  ret i.2;
+}
+@dfs(graph: ptr<int>, n: int): int {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  visited.1: ptr<int> = alloc n;
+  i.2: int = const 0;
+.populate_visited:
+  cond.1: bool = lt i.2 n;
+  br cond.1 .keep_looping .rest;
+.keep_looping:
+  offset.1: ptr<int> = ptradd visited.1 i.2;
+  store offset.1 zero.1;
+  i.2: int = add i.2 one.1;
+  jmp .populate_visited;
+.rest:
+  visited_count.3: int = const 0;
+  components.3: int = id visited_count.3;
+.component_loop:
+  cond.2: bool = lt visited_count.3 n;
+  br cond.2 .dfs_init .end;
+.dfs_init:
+  next_node.1: int = call @first_unvisited visited.1 n;
+  component_cluster.1: ptr<int> = alloc one.1;
+  store component_cluster.1 next_node.1;
+  cluster_size.1: int = const 1;
+  visited_offset.1: ptr<int> = ptradd visited.1 next_node.1;
+  store visited_offset.1 one.1;
+  stack.3: ptr<int> = alloc one.1;
+  stack_size.3: int = const 1;
+  store stack.3 next_node.1;
+  visited_count.3: int = add visited_count.3 one.1;
+.dfs_loop:
+  cond.3: bool = gt stack_size.3 zero.1;
+  br cond.3 .trav_loop .terminate;
+.trav_loop:
+  top.1: int = load stack.3;
+  stack.3: ptr<int> = call @pop stack.3 stack_size.3;
+  stack_size.3: int = sub stack_size.3 one.1;
+  i.6: int = const 0;
+.neighbor_loop:
+  iter_cond.1: bool = lt i.6 n;
+  br iter_cond.1 .iter .break;
+.iter:
+  row_idx.1: int = mul top.1 n;
+  cell_idx.1: int = add row_idx.1 i.6;
+  cell.1: ptr<int> = ptradd graph cell_idx.1;
+  cell_data.1: int = load cell.1;
+  visited_cell.1: ptr<int> = ptradd visited.1 i.6;
+  visited_data.1: int = load visited_cell.1;
+  is_neighbor.1: bool = eq cell_data.1 one.1;
+  not_visited.1: bool = eq visited_data.1 zero.1;
+  push_cond.1: bool = and is_neighbor.1 not_visited.1;
+  stack_size.6: int = id stack_size.3;
+  stack.6: ptr<int> = id stack.3;
+  cluster_size.5: int = id cluster_size.1;
+  component_cluster.5: ptr<int> = id component_cluster.1;
+  visited_count.7: int = id visited_count.3;
+  br push_cond.1 .push_stack .no_push;
+.push_stack:
+  stack.6: ptr<int> = call @push stack.3 i.6 stack_size.3;
+  stack_size.6: int = add stack_size.3 one.1;
+  component_cluster.5: ptr<int> = call @push component_cluster.1 i.6 cluster_size.1;
+  cluster_size.5: int = add cluster_size.1 one.1;
+  store visited_cell.1 one.1;
+  visited_count.7: int = add visited_count.3 one.1;
+.no_push:
+  i.6: int = add i.6 one.1;
+  stack_size.3: int = id stack_size.6;
+  stack.3: ptr<int> = id stack.6;
+  cluster_size.1: int = id cluster_size.5;
+  component_cluster.1: ptr<int> = id component_cluster.5;
+  visited_count.3: int = id visited_count.7;
+  jmp .neighbor_loop;
+.break:
+  jmp .dfs_loop;
+.terminate:
+  components.3: int = add components.3 one.1;
+  free stack.3;
+  call @print_through component_cluster.1 cluster_size.1;
+  free component_cluster.1;
+  jmp .component_loop;
+.end:
+  free visited.1;
+  ret components.3;
+}
+@insert_edge(graph: ptr<int>, from: int, to: int, size: int) {
+  one.1: int = const 1;
+  offset_count.1: int = mul from size;
+  offset_count.2: int = add offset_count.1 to;
+  offset.1: ptr<int> = ptradd graph offset_count.2;
+  store offset.1 one.1;
+  offset_count.3: int = mul to size;
+  offset_count.4: int = add offset_count.3 from;
+  offset.2: ptr<int> = ptradd graph offset_count.4;
+  store offset.2 one.1;
+}
+@main(nodes: int) {
+  dim.1: int = mul nodes nodes;
+  adj.1: ptr<int> = alloc dim.1;
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  two.1: int = const 2;
+  three.1: int = const 3;
+  four.1: int = const 4;
+  five.1: int = const 5;
+  six.1: int = const 6;
+  seven.1: int = const 7;
+  i.2: int = id zero.1;
+.init_loop:
+  cond.1: bool = lt i.2 dim.1;
+  br cond.1 .continue .fill_edges;
+.continue:
+  offset.1: ptr<int> = ptradd adj.1 i.2;
+  store offset.1 zero.1;
+  i.2: int = add i.2 one.1;
+  jmp .init_loop;
+.fill_edges:
+  call @insert_edge adj.1 zero.1 five.1 nodes;
+  call @insert_edge adj.1 one.1 two.1 nodes;
+  call @insert_edge adj.1 two.1 three.1 nodes;
+  call @insert_edge adj.1 one.1 four.1 nodes;
+  call @insert_edge adj.1 two.1 four.1 nodes;
+  call @insert_edge adj.1 six.1 seven.1 nodes;
+.compute_components:
+  components.1: int = call @dfs adj.1 nodes;
+  free adj.1;
+  print components.1;
+}

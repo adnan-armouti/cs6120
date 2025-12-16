@@ -1,0 +1,31 @@
+@main(n: int, p: int) {
+  v18.1: int = const 0;
+  i.2: int = const 1;
+.loop:
+  p_to_exp.1: int = call @naivePower p i.2;
+  v12.1: int = div n p_to_exp.1;
+  v14.1: int = const 0;
+  v15.1: bool = eq v12.1 v14.1;
+  br v15.1 .end .body;
+.body:
+  v18.1: int = add v18.1 v12.1;
+  v20.1: int = const 1;
+  i.2: int = add i.2 v20.1;
+  jmp .loop;
+.end:
+  print v18.1;
+}
+@naivePower(base: int, exponent: int): int {
+  v2.1: int = const 0;
+  v3.1: bool = eq exponent v2.1;
+  br v3.1 .then.0 .else.0;
+.then.0:
+  v4.1: int = const 1;
+  ret v4.1;
+.else.0:
+  v8.1: int = const 1;
+  v9.1: int = sub exponent v8.1;
+  v10.1: int = call @naivePower base v9.1;
+  v11.1: int = mul base v10.1;
+  ret v11.1;
+}

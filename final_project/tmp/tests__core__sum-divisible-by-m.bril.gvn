@@ -1,0 +1,10 @@
+@main(m: int, n: int) {
+  v2.1: int = div n m;
+  v5.1: int = mul m v2.1;
+  v7.1: int = const 1;
+  v8.1: int = add v2.1 v7.1;
+  v9.1: int = mul v5.1 v8.1;
+  v10.1: int = const 2;
+  v11.1: int = div v9.1 v10.1;
+  print v11.1;
+}

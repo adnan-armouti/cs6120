@@ -1,0 +1,16 @@
+@main(input: int) {
+  aed.1: int = call @rot input;
+  print aed.1;
+}
+@rot(n: int): int {
+  thirteen.1: int = const 13;
+  twenty_six.1: int = const 26;
+  shifted.1: int = add n thirteen.1;
+  over.1: bool = ge shifted.1 twenty_six.1;
+  shifted.2: int = id shifted.1;
+  br over.1 .if .else;
+.if:
+  shifted.2: int = sub shifted.1 twenty_six.1;
+.else:
+  ret shifted.2;
+}

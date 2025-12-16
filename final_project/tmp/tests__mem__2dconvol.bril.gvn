@@ -1,0 +1,132 @@
+@main(img_size: int, kernel_size: int, seed: int) {
+  img_size_sq.1: int = mul img_size img_size;
+  kernel_size_sq.1: int = mul kernel_size kernel_size;
+  one.1: int = const 1;
+  output_rows.1: int = sub img_size kernel_size;
+  output_size.1: int = add output_rows.1 one.1;
+  output_size_sq.1: int = mul output_size.1 output_size.1;
+  rng.1: ptr<int> = alloc one.1;
+  store rng.1 seed;
+  img.1: ptr<int> = call @randarray img_size_sq.1 rng.1;
+  kernel.1: ptr<int> = call @randarray kernel_size_sq.1 rng.1;
+  output.1: ptr<int> = call @convolve img.1 img_size kernel.1 kernel_size output_size_sq.1;
+  call @printarray img_size_sq.1 img.1;
+  call @printarray kernel_size_sq.1 kernel.1;
+  call @printarray output_size_sq.1 output.1;
+  free img.1;
+  free kernel.1;
+  free output.1;
+  free rng.1;
+  ret;
+}
+@convolve(img: ptr<int>, img_size: int, kernel: ptr<int>, kernel_size: int, output_size_sq: int): ptr<int> {
+  cur_out_idx.1: int = const 0;
+  int1.1: int = const 1;
+  int2.1: int = const 2;
+  output.1: ptr<int> = alloc output_size_sq;
+  strides.1: int = sub img_size kernel_size;
+  start_row.1: int = div kernel_size int2.1;
+  img_end_row.1: int = add start_row.1 strides.1;
+  img_row.2: int = id start_row.1;
+.loop1:
+  b1.1: bool = le img_row.2 img_end_row.1;
+  br b1.1 .body1 .done1;
+.body1:
+  img_col.2: int = id start_row.1;
+.loop2:
+  b2.1: bool = le img_col.2 img_end_row.1;
+  br b2.1 .body2 .done2;
+.body2:
+  sum.1: int = const 0;
+  cur_ker_row.2: int = id sum.1;
+  sum.4: int = id sum.1;
+.loop3:
+  b3.1: bool = lt cur_ker_row.2 kernel_size;
+  br b3.1 .body3 .done3;
+.body3:
+  cur_ker_col.2: int = id sum.1;
+.loop4:
+  b4.1: bool = lt cur_ker_col.2 kernel_size;
+  br b4.1 .body4 .done4;
+.body4:
+  cur_img_r.1: int = add img_row.2 cur_ker_row.2;
+  cur_img_r.2: int = sub cur_img_r.1 start_row.1;
+  cur_img_c.1: int = add img_col.2 cur_ker_col.2;
+  cur_img_c.2: int = sub cur_img_c.1 start_row.1;
+  past_rows.1: int = mul cur_img_r.2 img_size;
+  cur_img_idx.1: int = add past_rows.1 cur_img_c.2;
+  loc.1: ptr<int> = ptradd img cur_img_idx.1;
+  pixel.1: int = load loc.1;
+  past_rows.2: int = mul cur_ker_row.2 kernel_size;
+  cur_ker_idx.1: int = add past_rows.2 cur_ker_col.2;
+  loc.2: ptr<int> = ptradd kernel cur_ker_idx.1;
+  cur_ker_val.1: int = load loc.2;
+  prod.1: int = mul pixel.1 cur_ker_val.1;
+  sum.4: int = add sum.4 prod.1;
+  cur_ker_col.2: int = add cur_ker_col.2 int1.1;
+  jmp .loop4;
+.done4:
+  cur_ker_row.2: int = add cur_ker_row.2 int1.1;
+  jmp .loop3;
+.done3:
+  loc.3: ptr<int> = ptradd output.1 cur_out_idx.1;
+  store loc.3 sum.4;
+  cur_out_idx.1: int = add cur_out_idx.1 int1.1;
+  img_col.2: int = add img_col.2 int1.1;
+  jmp .loop2;
+.done2:
+  img_row.2: int = add img_row.2 int1.1;
+  jmp .loop1;
+.done1:
+  ret output.1;
+}
+@rand(seq: ptr<int>, max: int): int {
+  a.1: int = const 25214903917;
+  c.1: int = const 11;
+  m.1: int = const 281474976710656;
+  x.1: int = load seq;
+  ax.1: int = mul a.1 x.1;
+  axpc.1: int = add ax.1 c.1;
+  next.1: int = div axpc.1 m.1;
+  next.2: int = mul next.1 m.1;
+  next.3: int = sub axpc.1 next.2;
+  store seq next.3;
+  val.1: int = div next.3 max;
+  val.2: int = mul val.1 max;
+  val.3: int = sub next.3 val.2;
+  ret val.3;
+}
+@randarray(size: int, rng: ptr<int>): ptr<int> {
+  arr.1: ptr<int> = alloc size;
+  i.1: int = const 0;
+  max.1: int = const 10;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .done;
+.body:
+  val.1: int = call @rand rng max.1;
+  loc.1: ptr<int> = ptradd arr.1 i.1;
+  store loc.1 val.1;
+.loop_end:
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret arr.1;
+}
+@printarray(size: int, arr: ptr<int>) {
+  i.1: int = const 0;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .done;
+.body:
+  loc.1: ptr<int> = ptradd arr i.1;
+  val.1: int = load loc.1;
+  print val.1;
+.loop_end:
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret;
+}

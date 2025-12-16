@@ -1,0 +1,132 @@
+@rand(seq: ptr<int>, max: int): int {
+  a.1: int = const 25214903917;
+  c.1: int = const 11;
+  m.1: int = const 281474976710656;
+  x.1: int = load seq;
+  ax.1: int = mul a.1 x.1;
+  axpc.1: int = add ax.1 c.1;
+  next.1: int = div axpc.1 m.1;
+  next.2: int = mul next.1 m.1;
+  next.3: int = sub axpc.1 next.2;
+  store seq next.3;
+  val.1: int = div next.3 max;
+  val.2: int = mul val.1 max;
+  val.3: int = sub next.3 val.2;
+  ret val.3;
+}
+@randarray(size: int, rng: ptr<int>): ptr<int> {
+  arr.1: ptr<int> = alloc size;
+  i.1: int = const 0;
+  max.1: int = const 2;
+  one.1: int = const 1;
+  i.2: int = id i.1;
+.loop:
+  cond.1: bool = lt i.2 size;
+  br cond.1 .body .done;
+.body:
+  val.1: int = call @rand rng max.1;
+  if_cond.1: bool = lt val.1 i.1;
+  br if_cond.1 .if_body .if_done;
+.if_body:
+  val.1: int = const 0;
+.if_done:
+  loc.1: ptr<int> = ptradd arr.1 i.2;
+  store loc.1 val.1;
+.loop_end:
+  i.2: int = add i.2 one.1;
+  jmp .loop;
+.done:
+  ret arr.1;
+}
+@printarray(size: int, arr: ptr<int>) {
+  i.1: int = const 0;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .done;
+.body:
+  loc.1: ptr<int> = ptradd arr i.1;
+  val.1: int = load loc.1;
+  print val.1;
+.loop_end:
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret;
+}
+@zeroarray(size: int): ptr<int> {
+  arr.1: ptr<int> = alloc size;
+  i.1: int = const 0;
+  one.1: int = const 1;
+  i.2: int = id i.1;
+.loop:
+  cond.1: bool = lt i.2 size;
+  br cond.1 .body .done;
+.body:
+  loc.1: ptr<int> = ptradd arr.1 i.2;
+  store loc.1 i.1;
+.loop_end:
+  i.2: int = add i.2 one.1;
+  jmp .loop;
+.done:
+  ret arr.1;
+}
+@adj2csr(num_nodes: int, adjmat: ptr<int>, csr_offset: ptr<int>, csr_edges: ptr<int>): int {
+  num_edges.1: int = const 0;
+  one.1: int = const 1;
+  row.2: int = id num_edges.1;
+  num_edges.2: int = id num_edges.1;
+.iter_row:
+  row_cond.1: bool = lt row.2 num_nodes;
+  col.2: int = id num_edges.1;
+  num_edges.3: int = id num_edges.2;
+  br row_cond.1 .iter_col .row_done;
+.iter_col:
+  col_cond.1: bool = lt col.2 num_nodes;
+  br col_cond.1 .col_body .col_done;
+.col_body:
+  row_tmp.1: int = mul row.2 num_nodes;
+  node_idx.1: int = add row_tmp.1 col.2;
+  node_loc.1: ptr<int> = ptradd adjmat node_idx.1;
+  node_val.1: int = load node_loc.1;
+  cond.1: bool = eq node_val.1 one.1;
+  num_edges.4: int = id num_edges.3;
+  br cond.1 .if_body .col_end;
+.if_body:
+  edge_loc.1: ptr<int> = ptradd csr_edges num_edges.3;
+  store edge_loc.1 col.2;
+  num_edges.4: int = add num_edges.3 one.1;
+.col_end:
+  col.2: int = add col.2 one.1;
+  num_edges.3: int = id num_edges.4;
+  jmp .iter_col;
+.col_done:
+  offset_loc.1: ptr<int> = ptradd csr_offset row.2;
+  store offset_loc.1 num_edges.3;
+.row_end:
+  row.2: int = add row.2 one.1;
+  num_edges.2: int = id num_edges.3;
+  jmp .iter_row;
+.row_done:
+  ret num_edges.2;
+}
+@main(num_nodes: int, seed: int) {
+  one.1: int = const 1;
+  rng.1: ptr<int> = alloc one.1;
+  store rng.1 seed;
+  sqsize.1: int = mul num_nodes num_nodes;
+  adjmat.1: ptr<int> = call @randarray sqsize.1 rng.1;
+  csr_offset.1: ptr<int> = call @zeroarray sqsize.1;
+  csr_edges.1: ptr<int> = call @zeroarray sqsize.1;
+  num_edges.1: int = call @adj2csr num_nodes adjmat.1 csr_offset.1 csr_edges.1;
+  print num_nodes;
+  print num_edges.1;
+  call @printarray sqsize.1 adjmat.1;
+  call @printarray num_nodes csr_offset.1;
+  call @printarray num_edges.1 csr_edges.1;
+  free adjmat.1;
+  free csr_offset.1;
+  free csr_edges.1;
+  free rng.1;
+  ret;
+}

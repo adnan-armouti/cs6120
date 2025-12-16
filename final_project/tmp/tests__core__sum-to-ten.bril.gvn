@@ -1,0 +1,15 @@
+@main {
+  v0.1: float = const 10;
+  v9.1: float = const 0;
+  v3.1: float = const 1;
+  i.2: float = id v3.1;
+.for.cond.2:
+  v6.1: bool = fle i.2 v0.1;
+  br v6.1 .for.body.2 .for.end.2;
+.for.body.2:
+  v9.1: float = fadd v9.1 i.2;
+  i.2: float = fadd i.2 v3.1;
+  jmp .for.cond.2;
+.for.end.2:
+  print v9.1;
+}

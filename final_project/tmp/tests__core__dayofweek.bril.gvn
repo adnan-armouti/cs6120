@@ -1,0 +1,197 @@
+@main(year: int, month: int, day: int) {
+  v13.1: int = const 400;
+  m400.1: int = call @modulo year v13.1;
+  v15.1: int = const 100;
+  m100.1: int = call @modulo year v15.1;
+  v17.1: int = const 4;
+  m4.1: int = call @modulo year v17.1;
+  v20.1: int = const 0;
+  v21.1: bool = eq m400.1 v20.1;
+  br v21.1 .then.18 .else.18;
+.then.18:
+  v20.1: int = const 1;
+  jmp .endif.18;
+.else.18:
+  v26.1: bool = eq m100.1 v20.1;
+  br v26.1 .then.23 .else.23;
+.then.23:
+  jmp .endif.23;
+.else.23:
+  v31.1: bool = eq m4.1 v20.1;
+  br v31.1 .then.28 .else.28;
+.then.28:
+  v20.1: int = const 1;
+  jmp .endif.28;
+.else.28:
+.endif.28:
+.endif.23:
+.endif.18:
+  v34.1: int = const 100;
+  v35.1: int = div year v34.1;
+  v36.1: int = const 0;
+  v38.1: int = const 4;
+  c.2: int = id v38.1;
+  centuryCode.2: int = id v36.1;
+.for.cond.37:
+  v41.1: bool = gt c.2 v36.1;
+  br v41.1 .for.body.37 .for.end.37;
+.for.body.37:
+  v44.1: int = add v35.1 c.2;
+  mcc.1: int = call @modulo v44.1 v38.1;
+  v48.1: int = const 0;
+  v49.1: bool = eq mcc.1 v48.1;
+  br v49.1 .then.46 .else.46;
+.then.46:
+  v51.1: int = const 2;
+  v52.1: int = mul c.2 v51.1;
+  centuryCode.2: int = sub v52.1 v51.1;
+  jmp .endif.46;
+.else.46:
+.endif.46:
+  v56.1: int = const 1;
+  c.2: int = sub c.2 v56.1;
+  jmp .for.cond.37;
+.for.end.37:
+  v59.1: int = const 100;
+  rYear.1: int = call @modulo year v59.1;
+  v62.1: int = add centuryCode.2 rYear.1;
+  v64.1: int = const 4;
+  v65.1: int = div rYear.1 v64.1;
+  v66.1: int = add v62.1 v65.1;
+  v67.1: int = const 0;
+  v70.1: int = const 1;
+  v71.1: bool = eq month v70.1;
+  br v71.1 .then.68 .else.68;
+.then.68:
+  v67.1: int = const 1;
+  jmp .endif.68;
+.else.68:
+  v75.1: int = const 2;
+  v76.1: bool = eq month v75.1;
+  br v76.1 .then.73 .else.73;
+.then.73:
+  v67.1: int = const 4;
+  jmp .endif.73;
+.else.73:
+  v80.1: int = const 3;
+  v81.1: bool = eq month v80.1;
+  br v81.1 .then.78 .else.78;
+.then.78:
+  v67.1: int = const 4;
+  jmp .endif.78;
+.else.78:
+  v85.1: int = const 4;
+  v86.1: bool = eq month v85.1;
+  br v86.1 .then.83 .else.83;
+.then.83:
+  jmp .endif.83;
+.else.83:
+  v90.1: int = const 5;
+  v91.1: bool = eq month v90.1;
+  br v91.1 .then.88 .else.88;
+.then.88:
+  jmp .endif.88;
+.else.88:
+  v95.1: int = const 6;
+  v96.1: bool = eq month v95.1;
+  br v96.1 .then.93 .else.93;
+.then.93:
+  jmp .endif.93;
+.else.93:
+  v100.1: int = const 7;
+  v101.1: bool = eq month v100.1;
+  br v101.1 .then.98 .else.98;
+.then.98:
+  jmp .endif.98;
+.else.98:
+  v105.1: int = const 8;
+  v106.1: bool = eq month v105.1;
+  br v106.1 .then.103 .else.103;
+.then.103:
+  jmp .endif.103;
+.else.103:
+  v110.1: int = const 9;
+  v111.1: bool = eq month v110.1;
+  br v111.1 .then.108 .else.108;
+.then.108:
+  jmp .endif.108;
+.else.108:
+  v115.1: int = const 10;
+  v116.1: bool = eq month v115.1;
+  br v116.1 .then.113 .else.113;
+.then.113:
+  v85.1: int = id v70.1;
+  jmp .endif.113;
+.else.113:
+  v120.1: int = const 11;
+  v121.1: bool = eq month v120.1;
+  br v121.1 .then.118 .else.118;
+.then.118:
+  jmp .endif.118;
+.else.118:
+  v85.1: int = id v95.1;
+.endif.118:
+.endif.113:
+  v95.1: int = id v85.1;
+.endif.108:
+  v80.1: int = id v95.1;
+.endif.103:
+  v67.1: int = id v80.1;
+.endif.98:
+  v90.1: int = id v67.1;
+.endif.93:
+  v75.1: int = id v90.1;
+.endif.88:
+  v67.1: int = id v75.1;
+.endif.83:
+.endif.78:
+.endif.73:
+.endif.68:
+  v126.1: int = add v66.1 v67.1;
+  v128.1: int = add v126.1 day;
+  v133.1: bool = eq v20.1 v70.1;
+  br v133.1 .then.130 .else.130;
+.then.130:
+  v136.1: int = const 1;
+  v137.1: bool = eq month v136.1;
+  br v137.1 .then.134 .else.134;
+.then.134:
+  v139.1: int = const 1;
+  v140.1: int = sub v128.1 v139.1;
+  v141.1: int = const 7;
+  dayCode.5: int = call @modulo v140.1 v141.1;
+  jmp .endif.134;
+.else.134:
+  v145.1: int = const 2;
+  v146.1: bool = eq month v145.1;
+  br v146.1 .then.143 .else.143;
+.then.143:
+  v148.1: int = const 1;
+  v149.1: int = sub v128.1 v148.1;
+  v150.1: int = const 7;
+  dayCode.5: int = call @modulo v149.1 v150.1;
+  jmp .endif.143;
+.else.143:
+  v153.1: int = const 7;
+  dayCode.5: int = call @modulo v128.1 v153.1;
+.endif.143:
+.endif.134:
+  jmp .endif.130;
+.else.130:
+  v156.1: int = const 7;
+  dayCode.5: int = call @modulo v128.1 v156.1;
+.endif.130:
+  v159.1: int = const 5;
+  v160.1: int = add dayCode.5 v159.1;
+  v161.1: int = const 7;
+  v162.1: int = call @modulo v160.1 v161.1;
+  v163.1: int = const 1;
+  v164.1: int = add v162.1 v163.1;
+  print v164.1;
+}
+@modulo(a: int, b: int): int {
+  v2.1: int = div a b;
+  v6.1: int = mul b v2.1;
+  v7.1: int = sub a v6.1;
+  ret v7.1;
+}

@@ -1,0 +1,18 @@
+@main(n.1: int) {
+  v0.1: int = const 0;
+  v15.1: int = id v0.1;
+.for.cond.1:
+  v4.1: bool = gt n.1 v0.1;
+  br v4.1 .for.body.1 .for.end.1;
+.for.body.1:
+  v6.1: int = const 10;
+  v7.1: int = div n.1 v6.1;
+  v9.1: int = const 10;
+  v11.1: int = mul v9.1 v7.1;
+  v12.1: int = sub n.1 v11.1;
+  v15.1: int = add v15.1 v12.1;
+  n.1: int = id v7.1;
+  jmp .for.cond.1;
+.for.end.1:
+  print v15.1;
+}

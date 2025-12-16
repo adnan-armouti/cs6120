@@ -1,0 +1,22 @@
+@main {
+  v1.1: int = const 1;
+  v2.1: int = const 0;
+  v4.2: int = undef;
+  v12.1: int = id v2.1;
+.loop_start:
+  v8.1: int = const 99;
+  v9.1: bool = lt v12.1 v8.1;
+  br v9.1 .loop_body .loop_end;
+.loop_body:
+  v3.1: bool = eq v1.1 v2.1;
+  br v3.1 .then .else;
+.then:
+  v4.3: int = const 100;
+  print v4.3;
+.else:
+  v4.2: int = const 50;
+  v12.1: int = add v12.1 v1.1;
+  jmp .loop_start;
+.loop_end:
+  print v4.2;
+}

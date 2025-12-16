@@ -1,0 +1,161 @@
+@rem(a: int, b: int): int {
+  quotient.1: int = div a b;
+  guess.1: int = mul b quotient.1;
+  rem.1: int = sub a guess.1;
+  ret rem.1;
+}
+@divides(m: int, n: int): bool {
+  zero.1: int = const 0;
+  quotient.1: int = div n m;
+  guess.1: int = mul m quotient.1;
+  rem.1: int = sub n guess.1;
+  res.1: bool = eq rem.1 zero.1;
+  ret res.1;
+}
+@prepend(n: int, ns: ptr<int>, l: int): ptr<int> {
+  one.1: int = const 1;
+  new.1: int = add l one.1;
+  out.1: ptr<int> = alloc new.1;
+  i.3: int = const 0;
+  store out.1 n;
+  curr2.2: ptr<int> = ptradd out.1 one.1;
+  curr.3: ptr<int> = id ns;
+.repeat:
+  stop.1: bool = lt i.3 l;
+  br stop.1 .next .exit;
+.next:
+  tmp.1: int = load curr.3;
+  store curr2.2 tmp.1;
+  i.3: int = add i.3 one.1;
+  curr.3: ptr<int> = ptradd curr.3 one.1;
+  curr2.2: ptr<int> = ptradd curr2.2 one.1;
+  jmp .repeat;
+.exit:
+  free ns;
+  ret out.1;
+}
+@prime_factor(n: int): int {
+  guess.1: int = const 2;
+  inc.1: int = const 1;
+.continue:
+  square.1: int = mul guess.1 guess.1;
+  continue.1: bool = lt square.1 n;
+  works.1: bool = call @divides guess.1 n;
+  br works.1 .yay .inc;
+.yay:
+  ret guess.1;
+.inc:
+  guess.1: int = add guess.1 inc.1;
+  br continue.1 .continue .giveup;
+.giveup:
+  ret n;
+}
+@prime_factors(n.3: int, num_factors: ptr<int>): ptr<int> {
+  count.1: int = const 1;
+  zero.1: int = const 0;
+  ans.3: ptr<int> = alloc count.1;
+  store ans.3 zero.1;
+  count.3: int = id count.1;
+.continue:
+  exit.1: bool = eq n.3 count.1;
+  br exit.1 .exit .next;
+.next:
+  prime.1: int = call @prime_factor n.3;
+.repeat:
+  n.3: int = div n.3 prime.1;
+  divides.1: bool = call @divides prime.1 n.3;
+  br divides.1 .repeat .divided;
+.divided:
+  ans.3: ptr<int> = call @prepend prime.1 ans.3 count.3;
+  count.3: int = add count.3 count.1;
+  jmp .continue;
+.exit:
+  store num_factors count.3;
+  ret ans.3;
+}
+@modexp(a: int, k: int, m: int): int {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  two.1: int = const 2;
+  a.1: int = call @rem a m;
+  eq_zero.1: bool = eq zero.1 k;
+  br eq_zero.1 .exp_zero .not_zero;
+.exp_zero:
+  ret one.1;
+.not_zero:
+  eq_one.1: bool = eq one.1 k;
+  br eq_one.1 .exp_one .not_one;
+.exp_one:
+  ret a.1;
+.not_one:
+  rem_two.1: int = call @rem k two.1;
+  post_mul.1: bool = eq rem_two.1 one.1;
+  half_exp.1: int = div k two.1;
+  sqrt.1: int = call @modexp a.1 half_exp.1 m;
+  res.1: int = mul sqrt.1 sqrt.1;
+  res.2: int = call @rem res.1 m;
+  res.3: int = id res.2;
+  br post_mul.1 .post_multiply .no_post;
+.post_multiply:
+  res.4: int = mul res.2 a.1;
+  res.3: int = call @rem res.4 m;
+.no_post:
+.exit:
+  ret res.3;
+}
+@check_ord(p: int, phi_p: int, ptr.3: ptr<int>, guess: int): bool {
+  count.1: int = const 0;
+  one.1: int = const 1;
+  count.3: int = id count.1;
+.check_power:
+  factor.1: int = load ptr.3;
+  stop.1: bool = eq factor.1 count.1;
+  br stop.1 .ret_true .next1;
+.next1:
+  power.1: int = div phi_p factor.1;
+  exp.1: int = call @modexp guess power.1 p;
+  is_one.1: bool = eq exp.1 one.1;
+  br is_one.1 .ret_false .next2;
+.next2:
+  ptr.3: ptr<int> = ptradd ptr.3 one.1;
+  count.3: int = add count.3 one.1;
+  jmp .check_power;
+.ret_true:
+  t.2: bool = const true;
+  ret t.2;
+.ret_false:
+  t.1: bool = const false;
+  ret t.1;
+}
+@search_primitive(p: int, phi_p: int, factors: ptr<int>, guess.2: int): int {
+  fallback.1: int = const -999;
+  one.1: int = const 1;
+.eval:
+  too_big.1: bool = ge guess.2 p;
+  br too_big.1 .done_guess .keep_trying;
+.keep_trying:
+  works.1: bool = call @check_ord p phi_p factors guess.2;
+  br works.1 .ret .inc;
+.ret:
+  ret guess.2;
+.inc:
+  guess.2: int = add guess.2 one.1;
+  jmp .eval;
+.done_guess:
+  ret fallback.1;
+}
+@phi(p: int): int {
+  one.1: int = const 1;
+  q.1: int = sub p one.1;
+  ret q.1;
+}
+@main(p: int) {
+  one.1: int = const 1;
+  phi_p.1: int = call @phi p;
+  count_result.1: ptr<int> = alloc one.1;
+  prime_factors.1: ptr<int> = call @prime_factors phi_p.1 count_result.1;
+  res.1: int = call @search_primitive p phi_p.1 prime_factors.1 one.1;
+  print res.1;
+  free count_result.1;
+  free prime_factors.1;
+}

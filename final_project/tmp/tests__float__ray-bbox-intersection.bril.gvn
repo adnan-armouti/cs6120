@@ -1,0 +1,98 @@
+@main(x_min: float, y_min: float, x_max: float, y_max: float, x_ray_origin: float, y_ray_origin: float, x_ray_direction: float, y_ray_direction: float, t: float) {
+  call @ray_bbox_inter x_min y_min x_max y_max x_ray_origin y_ray_origin x_ray_direction y_ray_direction t;
+}
+@ray_bbox_inter(x_min: float, y_min: float, x_max: float, y_max: float, x_ray_origin: float, y_ray_origin: float, x_ray_direction: float, y_ray_direction: float, t: float) {
+  t_min.1: float = const 0;
+  t_x_min_num.1: float = fsub x_min x_ray_origin;
+  t_x_max_num.1: float = fsub x_max x_ray_origin;
+  t_x_min.1: float = fdiv t_x_min_num.1 x_ray_direction;
+  t_x_max.1: float = fdiv t_x_max_num.1 x_ray_direction;
+  cond1.1: bool = fgt t_x_min.1 t_x_max.1;
+  br cond1.1 .case1 .case2;
+.case1:
+  cond11.1: bool = fgt t_x_max.1 t_min.1;
+  br cond11.1 .case11 .donothing11;
+.case11:
+  jmp .endcase11;
+.donothing11:
+  t_x_max.1: float = id t_min.1;
+.endcase11:
+  cond12.1: bool = flt t_x_min.1 t;
+  br cond12.1 .case12 .donothing12;
+.case12:
+  jmp .endcase12;
+.donothing12:
+  t_x_min.1: float = id t;
+.endcase12:
+  t_max.6: float = id t_x_min.1;
+  jmp .endpart1;
+.case2:
+  cond21.1: bool = fgt t_x_min.1 t_min.1;
+  br cond21.1 .case21 .donothing21;
+.case21:
+  jmp .endcase21;
+.donothing21:
+  t_x_min.1: float = id t_min.1;
+.endcase21:
+  cond22.1: bool = flt t_x_max.1 t;
+  br cond22.1 .case22 .donothing22;
+.case22:
+  jmp .endcase22;
+.donothing22:
+  t_x_max.1: float = id t;
+.endcase22:
+  t_max.6: float = id t_x_max.1;
+  t_x_max.1: float = id t_x_min.1;
+.endpart1:
+  t_y_min_num.1: float = fsub y_min y_ray_origin;
+  t_y_max_num.1: float = fsub y_max y_ray_origin;
+  t_y_min.1: float = fdiv t_y_min_num.1 y_ray_direction;
+  t_y_max.1: float = fdiv t_y_max_num.1 y_ray_direction;
+  cond3.1: bool = fgt t_y_min.1 t_y_max.1;
+  br cond3.1 .case3 .case4;
+.case3:
+  cond31.1: bool = fgt t_y_max.1 t_x_max.1;
+  br cond31.1 .case31 .donothing31;
+.case31:
+  jmp .endcase31;
+.donothing31:
+  t_y_max.1: float = id t_x_max.1;
+.endcase31:
+  cond32.1: bool = flt t_y_min.1 t_max.6;
+  br cond32.1 .case32 .donothing32;
+.case32:
+  jmp .endcase32;
+.donothing32:
+  t_y_min.1: float = id t_max.6;
+.endcase32:
+  t_max.11: float = id t_y_min.1;
+  jmp .endpart2;
+.case4:
+  cond41.1: bool = fgt t_y_min.1 t_x_max.1;
+  br cond41.1 .case41 .donothing41;
+.case41:
+  jmp .endcase41;
+.donothing41:
+  t_y_min.1: float = id t_x_max.1;
+.endcase41:
+  cond42.1: bool = flt t_y_max.1 t_max.6;
+  br cond42.1 .case42 .donothing42;
+.case42:
+  jmp .endcase42;
+.donothing42:
+  t_y_max.1: float = id t_max.6;
+.endcase42:
+  t_max.11: float = id t_y_max.1;
+  t_y_max.1: float = id t_y_min.1;
+.endpart2:
+  finalcheck.1: bool = fgt t_y_max.1 t_max.11;
+  br finalcheck.1 .printfalse .printtrue;
+.printfalse:
+  falsebool.1: bool = const false;
+  print falsebool.1;
+  jmp .exit;
+.printtrue:
+  truebool.1: bool = const true;
+  print truebool.1;
+.exit:
+}

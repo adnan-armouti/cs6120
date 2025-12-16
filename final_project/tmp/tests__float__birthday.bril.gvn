@@ -1,0 +1,25 @@
+@main(n: float) {
+  c.1: float = call @probability n;
+  print c.1;
+}
+@probability(n: float): float {
+  v0.1: float = const 1;
+  i.2: float = id v0.1;
+  v14.1: float = id v0.1;
+.for.cond.1:
+  v5.1: bool = flt i.2 n;
+  br v5.1 .for.body.1 .for.end.1;
+.for.body.1:
+  v6.1: float = const 365;
+  v8.1: float = fsub v6.1 i.2;
+  v11.1: float = fdiv v8.1 v6.1;
+  v14.1: float = fmul v14.1 v11.1;
+  i.2: float = fadd i.2 v0.1;
+  jmp .for.cond.1;
+.for.end.1:
+  v20.1: float = const 100;
+  v21.1: float = fmul v14.1 v20.1;
+  v23.1: float = fdiv v21.1 v20.1;
+  v24.1: float = fsub v0.1 v23.1;
+  ret v24.1;
+}

@@ -1,0 +1,36 @@
+@main(n: float) {
+  e.1: float = call @taylor_series_euler n;
+  print e.1;
+}
+@factorial(n: float): float {
+  v2.1: float = const 1;
+  v3.1: bool = fle n v2.1;
+  br v3.1 .then.0 .else.0;
+.then.0:
+  v4.1: float = const 1;
+  ret v4.1;
+  jmp .endif.0;
+.else.0:
+.endif.0:
+  v7.1: float = fsub n v2.1;
+  v8.1: float = call @factorial v7.1;
+  v10.1: float = fmul v8.1 n;
+  ret v10.1;
+}
+@taylor_series_euler(n: float): float {
+  v11.1: float = const 0;
+  i.2: float = id v11.1;
+.for.cond.1:
+  v5.1: bool = flt i.2 n;
+  br v5.1 .for.body.1 .for.end.1;
+.for.body.1:
+  v6.1: float = const 1;
+  v8.1: float = call @factorial i.2;
+  v9.1: float = fdiv v6.1 v8.1;
+  v11.1: float = fadd v9.1 v11.1;
+  v13.1: float = const 1;
+  i.2: float = fadd i.2 v13.1;
+  jmp .for.cond.1;
+.for.end.1:
+  ret v11.1;
+}

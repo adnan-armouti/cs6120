@@ -1,0 +1,36 @@
+@sumOfSquares(n: int): int {
+  v11.1: int = const 0;
+  v2.1: int = const 1;
+  i.2: int = id v2.1;
+.for.cond.1:
+  v5.1: bool = le i.2 n;
+  br v5.1 .for.body.1 .for.end.1;
+.for.body.1:
+  v8.1: int = mul i.2 i.2;
+  v11.1: int = add v11.1 v8.1;
+  i.2: int = add i.2 v2.1;
+  jmp .for.cond.1;
+.for.end.1:
+  ret v11.1;
+}
+@squareOfSum(n: int): int {
+  v8.1: int = const 0;
+  v2.1: int = const 1;
+  i.2: int = id v2.1;
+.for.cond.1:
+  v5.1: bool = le i.2 n;
+  br v5.1 .for.body.1 .for.end.1;
+.for.body.1:
+  v8.1: int = add v8.1 i.2;
+  i.2: int = add i.2 v2.1;
+  jmp .for.cond.1;
+.for.end.1:
+  v14.1: int = mul v8.1 v8.1;
+  ret v14.1;
+}
+@main(n: int) {
+  sum.1: int = call @sumOfSquares n;
+  square.1: int = call @squareOfSum n;
+  v4.1: int = sub square.1 sum.1;
+  print v4.1;
+}

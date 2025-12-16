@@ -1,0 +1,78 @@
+@main {
+  size.1: int = const 512;
+  arr.1: ptr<int> = alloc size.1;
+  call @fill_array arr.1 size.1;
+  checksum.1: int = call @adler32 arr.1 size.1;
+  print checksum.1;
+  free arr.1;
+}
+@mod(r: int, s: int): int {
+  x.1: int = div r s;
+  y.1: int = mul x.1 s;
+  result.1: int = sub r y.1;
+  ret result.1;
+}
+@fill_array(loc.3: ptr<int>, size: int) {
+  one.1: int = const 1;
+  curr.3: int = const 0;
+.loop:
+  store loc.3 curr.3;
+  loc.3: ptr<int> = ptradd loc.3 one.1;
+  curr.3: int = add curr.3 one.1;
+  continue.1: bool = lt curr.3 size;
+  br continue.1 .loop .exit;
+.exit:
+  nop;
+}
+@bitwise_or(x.2: int, y.2: int): int {
+  one.1: int = const 1;
+  two.1: int = const 2;
+  zero.1: int = const 0;
+  result.2: int = id zero.1;
+  val.3: int = id one.1;
+.loop:
+  xmod2.1: int = call @mod x.2 two.1;
+  ymod2.1: int = call @mod y.2 two.1;
+  xodd.1: bool = eq xmod2.1 one.1;
+  yodd.1: bool = eq ymod2.1 one.1;
+  cond.1: bool = or xodd.1 yodd.1;
+  result.3: int = id result.2;
+  br cond.1 .true .false;
+.true:
+  result.3: int = add result.2 val.3;
+.false:
+  x.2: int = div x.2 two.1;
+  y.2: int = div y.2 two.1;
+  xpos.1: bool = gt x.2 zero.1;
+  ypos.1: bool = gt y.2 zero.1;
+  val.3: int = mul val.3 two.1;
+  continue.1: bool = or xpos.1 ypos.1;
+  result.2: int = id result.3;
+  br continue.1 .loop .exit;
+.exit:
+  ret result.3;
+}
+@adler32(loc.3: ptr<int>, size: int): int {
+  a.1: int = const 1;
+  b.1: int = const 0;
+  adler.1: int = const 65521;
+  two_raised_to_16.1: int = const 65536;
+  curr.3: int = id b.1;
+  a.2: int = id a.1;
+.loop:
+  val.1: int = load loc.3;
+  a.3: int = add a.2 val.1;
+  b.3: int = add b.1 a.3;
+  loc.3: ptr<int> = ptradd loc.3 a.1;
+  curr.3: int = add curr.3 a.1;
+  continue.1: bool = lt curr.3 size;
+  b.1: int = id b.3;
+  a.2: int = id a.3;
+  br continue.1 .loop .exit;
+.exit:
+  a.4: int = call @mod a.3 adler.1;
+  b.4: int = call @mod b.3 adler.1;
+  b.5: int = mul b.4 two_raised_to_16.1;
+  result.1: int = call @bitwise_or b.5 a.4;
+  ret result.1;
+}

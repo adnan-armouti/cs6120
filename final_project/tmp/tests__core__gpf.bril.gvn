@@ -1,0 +1,77 @@
+@isprime(x: int): int {
+  one.1: int = const 1;
+  two.1: int = const 2;
+  cmp1.1: bool = le x one.1;
+  br cmp1.1 .ret_false .cont1;
+.cont1:
+  cmp2.1: bool = eq x two.1;
+  br cmp2.1 .ret_true .cont2;
+.cont2:
+.loop:
+  cmp3.1: bool = lt two.1 x;
+  br cmp3.1 .check_prime .done;
+.check_prime:
+  q.1: int = div x two.1;
+  prod.1: int = mul q.1 two.1;
+  cmp4.1: bool = eq prod.1 x;
+  br cmp4.1 .ret_false .inc;
+.inc:
+  two.1: int = add two.1 one.1;
+  jmp .loop;
+.done:
+  one_ret.1: int = const 1;
+  ret one_ret.1;
+.ret_false:
+  zero_ret.1: int = const 0;
+  ret zero_ret.1;
+.ret_true:
+  one_ret2.1: int = const 1;
+  ret one_ret2.1;
+}
+@greatest_prime_factor(n.1: int): int {
+  one.1: int = const 1;
+  d.3: int = const 2;
+  max_factor.4: int = id one.1;
+.outer_loop:
+  cmp1.1: bool = le d.3 n.1;
+  br cmp1.1 .check_div .ret_max;
+.check_div:
+  q.1: int = div n.1 d.3;
+  prod.1: int = mul q.1 d.3;
+  cmp2.1: bool = eq prod.1 n.1;
+  n.2: int = id n.1;
+  max_factor.5: int = id max_factor.4;
+  br cmp2.1 .handle_div .inc_d;
+.handle_div:
+  p.1: int = call @isprime d.3;
+  cmp_prime.1: bool = eq p.1 one.1;
+  n.2: int = id n.1;
+  br cmp_prime.1 .update_max .div_done;
+.update_max:
+  zero.1: int = const 0;
+  max_factor.4: int = add d.3 zero.1;
+  n.2: int = id n.1;
+  jmp .div_done;
+.div_done:
+  q2.1: int = div n.2 d.3;
+  prod2.1: int = mul q2.1 d.3;
+  cmp3.1: bool = eq prod2.1 n.2;
+  br cmp3.1 .divide_out .after_div;
+.divide_out:
+  n.2: int = div n.2 d.3;
+  jmp .div_done;
+.after_div:
+  max_factor.5: int = id max_factor.4;
+  jmp .inc_d;
+.inc_d:
+  d.3: int = add d.3 one.1;
+  n.1: int = id n.2;
+  max_factor.4: int = id max_factor.5;
+  jmp .outer_loop;
+.ret_max:
+  ret max_factor.4;
+}
+@main(input: int) {
+  res.1: int = call @greatest_prime_factor input;
+  print res.1;
+}

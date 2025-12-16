@@ -1,0 +1,104 @@
+@pow(x: float, k: int): float {
+  xx.3: float = const 1.0;
+  one.1: int = const 1;
+  i.2: int = const 0;
+.while:
+  b.1: bool = lt i.2 k;
+  br b.1 .continue .endwhile;
+.continue:
+  xx.3: float = fmul xx.3 x;
+  i.2: int = add i.2 one.1;
+  jmp .while;
+.endwhile:
+  ret xx.3;
+}
+@n_root(x: float, n: int): float {
+  one.1: int = const 1;
+  two_f.1: float = const 2.0;
+  xxx.3: float = fdiv x two_f.1;
+  n_minus_one.1: int = sub n one.1;
+  i.1: int = const 0;
+  num_iter.1: int = const 20;
+.while:
+  b.1: bool = lt i.1 num_iter.1;
+  br b.1 .continue .endwhile;
+.continue:
+  pow_n_minus_one.1: float = call @pow xxx.3 n_minus_one.1;
+  pow_n.1: float = fmul pow_n_minus_one.1 xxx.3;
+  numerator.1: float = fsub pow_n.1 x;
+  denominator.1: float = fmul x pow_n_minus_one.1;
+  frac.1: float = fdiv numerator.1 denominator.1;
+  xxx.3: float = fsub xxx.3 frac.1;
+  i.1: int = add i.1 one.1;
+  jmp .while;
+.endwhile:
+  ret xxx.3;
+}
+@pack(size: int, n1: float, n2: float, n3: float, n4: float, n5: float): ptr<float> {
+  one.1: int = const 1;
+  i.1: int = const 0;
+  array.1: ptr<float> = alloc size;
+  loc.1: ptr<float> = ptradd array.1 i.1;
+  store loc.1 n1;
+  i.2: int = add i.1 one.1;
+  loc.2: ptr<float> = ptradd array.1 i.2;
+  store loc.2 n2;
+  i.3: int = add i.2 one.1;
+  loc.3: ptr<float> = ptradd array.1 i.3;
+  store loc.3 n3;
+  i.4: int = add i.3 one.1;
+  loc.4: ptr<float> = ptradd array.1 i.4;
+  store loc.4 n4;
+  i.5: int = add i.4 one.1;
+  loc.5: ptr<float> = ptradd array.1 i.5;
+  store loc.5 n5;
+  ret array.1;
+}
+@print_array(array: ptr<float>, size: int) {
+  i.1: int = const 0;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .done;
+.body:
+  loc.1: ptr<float> = ptradd array i.1;
+  val.1: float = load loc.1;
+  print val.1;
+.loop_end:
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret;
+}
+@euclidean_norm(array: ptr<float>, size: int): float {
+  i.3: int = const 0;
+  sum.3: float = const 0.0;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.3 size;
+  br cond.1 .body .done;
+.body:
+  loc.1: ptr<float> = ptradd array i.3;
+  val.1: float = load loc.1;
+  square.1: float = fmul val.1 val.1;
+  sum.3: float = fadd sum.3 square.1;
+.loop_end:
+  i.3: int = add i.3 one.1;
+  jmp .loop;
+.done:
+  two.1: int = const 2;
+  norm.1: float = call @n_root sum.3 two.1;
+  ret norm.1;
+}
+@main {
+  size.1: int = const 5;
+  n1.1: float = const 3;
+  n2.1: float = const 10;
+  n3.1: float = const 1;
+  n4.1: float = const 9;
+  n5.1: float = const 7;
+  array.1: ptr<float> = call @pack size.1 n1.1 n2.1 n3.1 n4.1 n5.1;
+  norm.1: float = call @euclidean_norm array.1 size.1;
+  print norm.1;
+  free array.1;
+}

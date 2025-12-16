@@ -1,0 +1,53 @@
+@main {
+  arr_size.1: int = const 3;
+  e2.1: int = const 2;
+  nums.1: ptr<int> = call @create_arr arr_size.1 arr_size.1 e2.1 arr_size.1;
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  first_elm_ptr.1: ptr<int> = ptradd nums.1 zero.1;
+  major_elm.3: int = load first_elm_ptr.1;
+  count.3: int = const 1;
+  i.2: int = id count.3;
+.check_bound:
+  end_cond.1: bool = ge i.2 arr_size.1;
+  br end_cond.1 .end .body;
+.body:
+  cur_ptr.1: ptr<int> = ptradd nums.1 i.2;
+  cur_val.1: int = load cur_ptr.1;
+  cur_major_cond.1: bool = eq cur_val.1 major_elm.3;
+  br cur_major_cond.1 .incr_count .body.else;
+.incr_count:
+  count.3: int = add count.3 one.1;
+  i.2: int = add i.2 one.1;
+  jmp .check_bound;
+.body.else:
+  cnt_eq_0.1: bool = eq count.3 zero.1;
+  br cnt_eq_0.1 .eq_zero_if .eq_zero_else;
+.eq_zero_if:
+  cur_ptr.2: ptr<int> = ptradd nums.1 i.2;
+  major_elm.3: int = load cur_ptr.2;
+  count.3: int = add count.3 one.1;
+  i.2: int = add i.2 one.1;
+  jmp .check_bound;
+.eq_zero_else:
+  count.3: int = sub count.3 one.1;
+  i.2: int = add i.2 one.1;
+  jmp .check_bound;
+.end:
+  free nums.1;
+  print major_elm.3;
+}
+@create_arr(size: int, e1: int, e2: int, e3: int): ptr<int> {
+  one.1: int = const 1;
+  i.1: int = const 0;
+  array.1: ptr<int> = alloc size;
+  loc.1: ptr<int> = ptradd array.1 i.1;
+  store loc.1 e1;
+  i.2: int = add i.1 one.1;
+  loc.2: ptr<int> = ptradd array.1 i.2;
+  store loc.2 e2;
+  i.3: int = add i.2 one.1;
+  loc.3: ptr<int> = ptradd array.1 i.3;
+  store loc.3 e3;
+  ret array.1;
+}

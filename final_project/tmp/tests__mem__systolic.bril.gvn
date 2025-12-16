@@ -1,0 +1,203 @@
+@rand(seq: ptr<int>, max: int): int {
+  a.1: int = const 25214903917;
+  c.1: int = const 11;
+  m.1: int = const 281474976710656;
+  x.1: int = load seq;
+  ax.1: int = mul a.1 x.1;
+  axpc.1: int = add ax.1 c.1;
+  next.1: int = div axpc.1 m.1;
+  next.2: int = mul next.1 m.1;
+  next.3: int = sub axpc.1 next.2;
+  store seq next.3;
+  val.1: int = div next.3 max;
+  val.2: int = mul val.1 max;
+  val.3: int = sub next.3 val.2;
+  ret val.3;
+}
+@init_matrix(rows: int, cols: int, rng: ptr<int>): ptr<int> {
+  size.1: int = mul rows cols;
+  arr.1: ptr<int> = alloc size.1;
+  i.1: int = const 0;
+  max.1: int = const 10;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size.1;
+  br cond.1 .body .done;
+.body:
+  val.1: int = call @rand rng max.1;
+  loc.1: ptr<int> = ptradd arr.1 i.1;
+  store loc.1 val.1;
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret arr.1;
+}
+@print_matrix(rows: int, cols: int, arr: ptr<int>) {
+  i.1: int = const 0;
+  one.1: int = const 1;
+  i.2: int = id i.1;
+.row_loop:
+  cond.1: bool = lt i.2 rows;
+  br cond.1 .row_body .done;
+.row_body:
+  j.2: int = id i.1;
+.col_loop:
+  cond.2: bool = lt j.2 cols;
+  br cond.2 .col_body .row_end;
+.col_body:
+  idx.1: int = mul i.2 cols;
+  idx.2: int = add idx.1 j.2;
+  loc.1: ptr<int> = ptradd arr idx.2;
+  val.1: int = load loc.1;
+  print val.1;
+  j.2: int = add j.2 one.1;
+  jmp .col_loop;
+.row_end:
+  i.2: int = add i.2 one.1;
+  jmp .row_loop;
+.done:
+  ret;
+}
+@get_element(matrix: ptr<int>, rows: int, cols: int, row: int, col: int): int {
+  idx.1: int = mul row cols;
+  idx.2: int = add idx.1 col;
+  loc.1: ptr<int> = ptradd matrix idx.2;
+  val.1: int = load loc.1;
+  ret val.1;
+}
+@set_element(matrix: ptr<int>, rows: int, cols: int, row: int, col: int, val: int) {
+  idx.1: int = mul row cols;
+  idx.2: int = add idx.1 col;
+  loc.1: ptr<int> = ptradd matrix idx.2;
+  store loc.1 val;
+  ret;
+}
+@systolic_gemm(A: ptr<int>, B: ptr<int>, C: ptr<int>) {
+  M.1: int = const 2;
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  call @set_element C M.1 M.1 zero.1 zero.1 zero.1;
+  call @set_element C M.1 M.1 zero.1 one.1 zero.1;
+  call @set_element C M.1 M.1 one.1 zero.1 zero.1;
+  call @set_element C M.1 M.1 one.1 one.1 zero.1;
+  i.1: int = const 0;
+  k.2: int = id i.1;
+  result.3: int = id i.1;
+.compute_00:
+  cond.1: bool = lt k.2 M.1;
+  br cond.1 .body_00 .done_00;
+.body_00:
+  a_val.1: int = call @get_element A M.1 M.1 i.1 k.2;
+  b_val.1: int = call @get_element B M.1 M.1 k.2 i.1;
+  prod.1: int = mul a_val.1 b_val.1;
+  result.3: int = add result.3 prod.1;
+  k.2: int = add k.2 one.1;
+  jmp .compute_00;
+.done_00:
+  call @set_element C M.1 M.1 i.1 i.1 result.3;
+  i.2: int = const 0;
+  j.2: int = const 1;
+  k.5: int = id i.2;
+  result.6: int = id i.2;
+.compute_01:
+  cond.2: bool = lt k.5 M.1;
+  br cond.2 .body_01 .done_01;
+.body_01:
+  a_val.2: int = call @get_element A M.1 M.1 i.2 k.5;
+  b_val.2: int = call @get_element B M.1 M.1 k.5 j.2;
+  prod.2: int = mul a_val.2 b_val.2;
+  result.6: int = add result.6 prod.2;
+  k.5: int = add k.5 one.1;
+  jmp .compute_01;
+.done_01:
+  call @set_element C M.1 M.1 i.2 j.2 result.6;
+  i.3: int = const 1;
+  j.3: int = const 0;
+  k.8: int = id j.3;
+  result.9: int = id j.3;
+.compute_10:
+  cond.3: bool = lt k.8 M.1;
+  br cond.3 .body_10 .done_10;
+.body_10:
+  a_val.3: int = call @get_element A M.1 M.1 i.3 k.8;
+  b_val.3: int = call @get_element B M.1 M.1 k.8 j.3;
+  prod.3: int = mul a_val.3 b_val.3;
+  result.9: int = add result.9 prod.3;
+  k.8: int = add k.8 one.1;
+  jmp .compute_10;
+.done_10:
+  call @set_element C M.1 M.1 i.3 j.3 result.9;
+  i.4: int = const 1;
+  result.12: int = const 0;
+  k.11: int = id result.12;
+.compute_11:
+  cond.4: bool = lt k.11 M.1;
+  br cond.4 .body_11 .done_11;
+.body_11:
+  a_val.4: int = call @get_element A M.1 M.1 i.4 k.11;
+  b_val.4: int = call @get_element B M.1 M.1 k.11 i.4;
+  prod.4: int = mul a_val.4 b_val.4;
+  result.12: int = add result.12 prod.4;
+  k.11: int = add k.11 one.1;
+  jmp .compute_11;
+.done_11:
+  call @set_element C M.1 M.1 i.4 i.4 result.12;
+  ret;
+}
+@systolic_timed_gemm(A: ptr<int>, B: ptr<int>, C: ptr<int>) {
+  M.1: int = const 2;
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  cycle.2: int = id zero.1;
+  pe_11.3: int = id zero.1;
+  pe_10.3: int = id zero.1;
+  pe_01.3: int = id zero.1;
+  pe_00.3: int = id zero.1;
+.cycle_loop:
+  cond.1: bool = lt cycle.2 M.1;
+  br cond.1 .cycle_body .cycles_done;
+.cycle_body:
+  a_val.1: int = call @get_element A M.1 M.1 zero.1 cycle.2;
+  b_val.1: int = call @get_element B M.1 M.1 cycle.2 zero.1;
+  prod.1: int = mul a_val.1 b_val.1;
+  pe_00.3: int = add pe_00.3 prod.1;
+  a_val.2: int = call @get_element A M.1 M.1 zero.1 cycle.2;
+  b_val.2: int = call @get_element B M.1 M.1 cycle.2 one.1;
+  prod.2: int = mul a_val.2 b_val.2;
+  pe_01.3: int = add pe_01.3 prod.2;
+  a_val.3: int = call @get_element A M.1 M.1 one.1 cycle.2;
+  b_val.3: int = call @get_element B M.1 M.1 cycle.2 zero.1;
+  prod.3: int = mul a_val.3 b_val.3;
+  pe_10.3: int = add pe_10.3 prod.3;
+  a_val.4: int = call @get_element A M.1 M.1 one.1 cycle.2;
+  b_val.4: int = call @get_element B M.1 M.1 cycle.2 one.1;
+  prod.4: int = mul a_val.4 b_val.4;
+  pe_11.3: int = add pe_11.3 prod.4;
+  cycle.2: int = add cycle.2 one.1;
+  jmp .cycle_loop;
+.cycles_done:
+  call @set_element C M.1 M.1 zero.1 zero.1 pe_00.3;
+  call @set_element C M.1 M.1 zero.1 one.1 pe_01.3;
+  call @set_element C M.1 M.1 one.1 zero.1 pe_10.3;
+  call @set_element C M.1 M.1 one.1 one.1 pe_11.3;
+  ret;
+}
+@main(seed: int) {
+  one.1: int = const 1;
+  two.1: int = const 2;
+  four.1: int = const 4;
+  rng.1: ptr<int> = alloc one.1;
+  store rng.1 seed;
+  A.1: ptr<int> = call @init_matrix two.1 two.1 rng.1;
+  B.1: ptr<int> = call @init_matrix two.1 two.1 rng.1;
+  C.1: ptr<int> = alloc four.1;
+  call @print_matrix two.1 two.1 A.1;
+  call @print_matrix two.1 two.1 B.1;
+  call @systolic_timed_gemm A.1 B.1 C.1;
+  call @print_matrix two.1 two.1 C.1;
+  free A.1;
+  free B.1;
+  free C.1;
+  free rng.1;
+  ret;
+}

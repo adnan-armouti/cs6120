@@ -1,0 +1,11 @@
+@main(depth: int) {
+  zero.1: int = const 0;
+  cond.1: bool = eq depth zero.1;
+  br cond.1 .end .inc_depth;
+.inc_depth:
+  one.1: int = const 1;
+  new_depth.1: int = sub depth one.1;
+  call @main new_depth.1;
+.end:
+  ret;
+}

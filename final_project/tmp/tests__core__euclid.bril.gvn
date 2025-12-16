@@ -1,0 +1,29 @@
+@main {
+  v0.1: int = const 23789216;
+  v1.1: int = const 1748698766;
+  f.1: int = call @gcd v0.1 v1.1;
+  print f.1;
+}
+@mod(r: int, s: int): int {
+  v3.1: int = div r s;
+  v5.1: int = mul v3.1 s;
+  v6.1: int = sub r v5.1;
+  ret v6.1;
+}
+@gcd(a.1: int, b: int): int {
+  v0.1: int = const 0;
+  v3.1: bool = eq b v0.1;
+  v4.1: bool = not v3.1;
+  b.1: int = id b;
+.for.cond.5:
+  br v4.1 .for.body.5 .for.end.5;
+.for.body.5:
+  v10.1: int = call @mod a.1 b.1;
+  v14.1: bool = eq v10.1 v0.1;
+  v4.1: bool = not v14.1;
+  a.1: int = id b.1;
+  b.1: int = id v10.1;
+  jmp .for.cond.5;
+.for.end.5:
+  ret a.1;
+}

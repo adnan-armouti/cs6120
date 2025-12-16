@@ -1,0 +1,44 @@
+@main(base: int, exp: int, mod: int) {
+  out.1: int = call @mod_pow base exp mod;
+  print out.1;
+}
+@mod_pow(b: int, e: int, m: int): int {
+  v2.1: int = const 1;
+  v3.1: bool = eq m v2.1;
+  br v3.1 .then.0 .else.0;
+.then.0:
+  v4.1: int = const 0;
+  ret v4.1;
+.else.0:
+  v30.1: int = call @mod b m;
+  exp.2: int = id e;
+.for.cond.8:
+  v11.1: int = const 0;
+  v12.1: bool = gt exp.2 v11.1;
+  br v12.1 .for.body.8 .for.end.8;
+.for.body.8:
+  v14.1: int = const 2;
+  bit.1: int = call @mod exp.2 v14.1;
+  v17.1: int = const 1;
+  v18.1: bool = eq bit.1 v17.1;
+  br v18.1 .then.15 .else.15;
+.then.15:
+  v21.1: int = mul v2.1 v30.1;
+  v2.1: int = call @mod v21.1 m;
+  jmp .endif.15;
+.else.15:
+.endif.15:
+  v27.1: int = mul v30.1 v30.1;
+  v30.1: int = call @mod v27.1 m;
+  v32.1: int = const 2;
+  exp.2: int = div exp.2 v32.1;
+  jmp .for.cond.8;
+.for.end.8:
+  ret v2.1;
+}
+@mod(n: int, m: int): int {
+  v3.1: int = div n m;
+  v5.1: int = mul v3.1 m;
+  v6.1: int = sub n v5.1;
+  ret v6.1;
+}

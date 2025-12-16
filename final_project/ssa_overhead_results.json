@@ -1,0 +1,1212 @@
+[
+  {
+    "file": "tests/core/ackermann.bril",
+    "original": 22,
+    "after_ssa": 22,
+    "after_gvn": 22,
+    "ssa_overhead": 0,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/arithmetic-series.bril",
+    "original": 7,
+    "after_ssa": 7,
+    "after_gvn": 7,
+    "ssa_overhead": 0,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/armstrong.bril",
+    "original": 46,
+    "after_ssa": 53,
+    "after_gvn": 45,
+    "ssa_overhead": 7,
+    "gvn_savings": 1,
+    "ssa_ratio": 1.1521739130434783,
+    "gvn_ratio": 0.9782608695652174
+  },
+  {
+    "file": "tests/core/bbs.bril",
+    "original": 24,
+    "after_ssa": 28,
+    "after_gvn": 23,
+    "ssa_overhead": 4,
+    "gvn_savings": 1,
+    "ssa_ratio": 1.1666666666666667,
+    "gvn_ratio": 0.9583333333333334
+  },
+  {
+    "file": "tests/core/bin-search.bril",
+    "original": 58,
+    "after_ssa": 68,
+    "after_gvn": 32,
+    "ssa_overhead": 10,
+    "gvn_savings": 26,
+    "ssa_ratio": 1.1724137931034482,
+    "gvn_ratio": 0.5517241379310345
+  },
+  {
+    "file": "tests/core/binary-fmt.bril",
+    "original": 15,
+    "after_ssa": 15,
+    "after_gvn": 15,
+    "ssa_overhead": 0,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/binpow.bril",
+    "original": 28,
+    "after_ssa": 28,
+    "after_gvn": 28,
+    "ssa_overhead": 0,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/bitshift.bril",
+    "original": 68,
+    "after_ssa": 70,
+    "after_gvn": 37,
+    "ssa_overhead": 2,
+    "gvn_savings": 31,
+    "ssa_ratio": 1.0294117647058822,
+    "gvn_ratio": 0.5441176470588235
+  },
+  {
+    "file": "tests/core/bitwise-ops.bril",
+    "original": 65,
+    "after_ssa": 80,
+    "after_gvn": 65,
+    "ssa_overhead": 15,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.2307692307692308,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/braille.bril",
+    "original": 187,
+    "after_ssa": 136,
+    "after_gvn": 136,
+    "ssa_overhead": -51,
+    "gvn_savings": 51,
+    "ssa_ratio": 0.7272727272727273,
+    "gvn_ratio": 0.7272727272727273
+  },
+  {
+    "file": "tests/core/catalan.bril",
+    "original": 25,
+    "after_ssa": 29,
+    "after_gvn": 24,
+    "ssa_overhead": 4,
+    "gvn_savings": 1,
+    "ssa_ratio": 1.16,
+    "gvn_ratio": 0.96
+  },
+  {
+    "file": "tests/core/check-primes.bril",
+    "original": 71,
+    "after_ssa": 73,
+    "after_gvn": 47,
+    "ssa_overhead": 2,
+    "gvn_savings": 24,
+    "ssa_ratio": 1.028169014084507,
+    "gvn_ratio": 0.6619718309859155
+  },
+  {
+    "file": "tests/core/collatz.bril",
+    "original": 23,
+    "after_ssa": 26,
+    "after_gvn": 23,
+    "ssa_overhead": 3,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.1304347826086956,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/combination.bril",
+    "original": 36,
+    "after_ssa": 36,
+    "after_gvn": 36,
+    "ssa_overhead": 0,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/dayofweek.bril",
+    "original": 283,
+    "after_ssa": 318,
+    "after_gvn": 193,
+    "ssa_overhead": 35,
+    "gvn_savings": 90,
+    "ssa_ratio": 1.1236749116607774,
+    "gvn_ratio": 0.6819787985865724
+  },
+  {
+    "file": "tests/core/delannoy.bril",
+    "original": 42,
+    "after_ssa": 41,
+    "after_gvn": 28,
+    "ssa_overhead": -1,
+    "gvn_savings": 14,
+    "ssa_ratio": 0.9761904761904762,
+    "gvn_ratio": 0.6666666666666666
+  },
+  {
+    "file": "tests/core/digital-root.bril",
+    "original": 32,
+    "after_ssa": 38,
+    "after_gvn": 33,
+    "ssa_overhead": 6,
+    "gvn_savings": -1,
+    "ssa_ratio": 1.1875,
+    "gvn_ratio": 1.03125
+  },
+  {
+    "file": "tests/core/euclid.bril",
+    "original": 51,
+    "after_ssa": 56,
+    "after_gvn": 23,
+    "ssa_overhead": 5,
+    "gvn_savings": 28,
+    "ssa_ratio": 1.0980392156862746,
+    "gvn_ratio": 0.45098039215686275
+  },
+  {
+    "file": "tests/core/fact.bril",
+    "original": 18,
+    "after_ssa": 17,
+    "after_gvn": 14,
+    "ssa_overhead": -1,
+    "gvn_savings": 4,
+    "ssa_ratio": 0.9444444444444444,
+    "gvn_ratio": 0.7777777777777778
+  },
+  {
+    "file": "tests/core/factors.bril",
+    "original": 20,
+    "after_ssa": 24,
+    "after_gvn": 20,
+    "ssa_overhead": 4,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.2,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/fib_recursive.bril",
+    "original": 33,
+    "after_ssa": 33,
+    "after_gvn": 23,
+    "ssa_overhead": 0,
+    "gvn_savings": 10,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 0.696969696969697
+  },
+  {
+    "file": "tests/core/fitsinside.bril",
+    "original": 10,
+    "after_ssa": 10,
+    "after_gvn": 10,
+    "ssa_overhead": 0,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/fizz-buzz.bril",
+    "original": 69,
+    "after_ssa": 67,
+    "after_gvn": 47,
+    "ssa_overhead": -2,
+    "gvn_savings": 22,
+    "ssa_ratio": 0.9710144927536232,
+    "gvn_ratio": 0.6811594202898551
+  },
+  {
+    "file": "tests/core/gcd.bril",
+    "original": 25,
+    "after_ssa": 31,
+    "after_gvn": 23,
+    "ssa_overhead": 6,
+    "gvn_savings": 2,
+    "ssa_ratio": 1.24,
+    "gvn_ratio": 0.92
+  },
+  {
+    "file": "tests/core/gebmm.bril",
+    "original": 90,
+    "after_ssa": 113,
+    "after_gvn": 98,
+    "ssa_overhead": 23,
+    "gvn_savings": -8,
+    "ssa_ratio": 1.2555555555555555,
+    "gvn_ratio": 1.0888888888888888
+  },
+  {
+    "file": "tests/core/geometric-sum.bril",
+    "original": 16,
+    "after_ssa": 20,
+    "after_gvn": 16,
+    "ssa_overhead": 4,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.25,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/gpf.bril",
+    "original": 67,
+    "after_ssa": 82,
+    "after_gvn": 71,
+    "ssa_overhead": 15,
+    "gvn_savings": -4,
+    "ssa_ratio": 1.2238805970149254,
+    "gvn_ratio": 1.0597014925373134
+  },
+  {
+    "file": "tests/core/grad_desc.bril",
+    "original": 21,
+    "after_ssa": 25,
+    "after_gvn": 21,
+    "ssa_overhead": 4,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.1904761904761905,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/graycode.bril",
+    "original": 44,
+    "after_ssa": 53,
+    "after_gvn": 41,
+    "ssa_overhead": 9,
+    "gvn_savings": 3,
+    "ssa_ratio": 1.2045454545454546,
+    "gvn_ratio": 0.9318181818181818
+  },
+  {
+    "file": "tests/core/hamming.bril",
+    "original": 33,
+    "after_ssa": 39,
+    "after_gvn": 33,
+    "ssa_overhead": 6,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.1818181818181819,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/hanoi.bril",
+    "original": 15,
+    "after_ssa": 15,
+    "after_gvn": 15,
+    "ssa_overhead": 0,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/is-decreasing.bril",
+    "original": 38,
+    "after_ssa": 42,
+    "after_gvn": 33,
+    "ssa_overhead": 4,
+    "gvn_savings": 5,
+    "ssa_ratio": 1.105263157894737,
+    "gvn_ratio": 0.868421052631579
+  },
+  {
+    "file": "tests/core/karatsuba.bril",
+    "original": 86,
+    "after_ssa": 96,
+    "after_gvn": 75,
+    "ssa_overhead": 10,
+    "gvn_savings": 11,
+    "ssa_ratio": 1.1162790697674418,
+    "gvn_ratio": 0.872093023255814
+  },
+  {
+    "file": "tests/core/lcm.bril",
+    "original": 28,
+    "after_ssa": 32,
+    "after_gvn": 28,
+    "ssa_overhead": 4,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.1428571428571428,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/legendre.bril",
+    "original": 47,
+    "after_ssa": 51,
+    "after_gvn": 27,
+    "ssa_overhead": 4,
+    "gvn_savings": 20,
+    "ssa_ratio": 1.0851063829787233,
+    "gvn_ratio": 0.574468085106383
+  },
+  {
+    "file": "tests/core/loopfact.bril",
+    "original": 24,
+    "after_ssa": 27,
+    "after_gvn": 12,
+    "ssa_overhead": 3,
+    "gvn_savings": 12,
+    "ssa_ratio": 1.125,
+    "gvn_ratio": 0.5
+  },
+  {
+    "file": "tests/core/mccarthy91.bril",
+    "original": 15,
+    "after_ssa": 15,
+    "after_gvn": 15,
+    "ssa_overhead": 0,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/mod_inv.bril",
+    "original": 59,
+    "after_ssa": 64,
+    "after_gvn": 28,
+    "ssa_overhead": 5,
+    "gvn_savings": 31,
+    "ssa_ratio": 1.0847457627118644,
+    "gvn_ratio": 0.4745762711864407
+  },
+  {
+    "file": "tests/core/mod_pow.bril",
+    "original": 68,
+    "after_ssa": 76,
+    "after_gvn": 38,
+    "ssa_overhead": 8,
+    "gvn_savings": 30,
+    "ssa_ratio": 1.1176470588235294,
+    "gvn_ratio": 0.5588235294117647
+  },
+  {
+    "file": "tests/core/montgomery.bril",
+    "original": 17,
+    "after_ssa": 17,
+    "after_gvn": 17,
+    "ssa_overhead": 0,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/mountain.bril",
+    "original": 38,
+    "after_ssa": 48,
+    "after_gvn": 38,
+    "ssa_overhead": 10,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.263157894736842,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/orders.bril",
+    "original": 61,
+    "after_ssa": 71,
+    "after_gvn": 62,
+    "ssa_overhead": 10,
+    "gvn_savings": -1,
+    "ssa_ratio": 1.1639344262295082,
+    "gvn_ratio": 1.0163934426229508
+  },
+  {
+    "file": "tests/core/palindrome.bril",
+    "original": 70,
+    "after_ssa": 82,
+    "after_gvn": 69,
+    "ssa_overhead": 12,
+    "gvn_savings": 1,
+    "ssa_ratio": 1.1714285714285715,
+    "gvn_ratio": 0.9857142857142858
+  },
+  {
+    "file": "tests/core/pascals-row.bril",
+    "original": 41,
+    "after_ssa": 42,
+    "after_gvn": 18,
+    "ssa_overhead": 1,
+    "gvn_savings": 23,
+    "ssa_ratio": 1.024390243902439,
+    "gvn_ratio": 0.43902439024390244
+  },
+  {
+    "file": "tests/core/perfect.bril",
+    "original": 30,
+    "after_ssa": 38,
+    "after_gvn": 29,
+    "ssa_overhead": 8,
+    "gvn_savings": 1,
+    "ssa_ratio": 1.2666666666666666,
+    "gvn_ratio": 0.9666666666666667
+  },
+  {
+    "file": "tests/core/permutation.bril",
+    "original": 45,
+    "after_ssa": 48,
+    "after_gvn": 26,
+    "ssa_overhead": 3,
+    "gvn_savings": 19,
+    "ssa_ratio": 1.0666666666666667,
+    "gvn_ratio": 0.5777777777777777
+  },
+  {
+    "file": "tests/core/primes-between.bril",
+    "original": 51,
+    "after_ssa": 56,
+    "after_gvn": 49,
+    "ssa_overhead": 5,
+    "gvn_savings": 2,
+    "ssa_ratio": 1.0980392156862746,
+    "gvn_ratio": 0.9607843137254902
+  },
+  {
+    "file": "tests/core/pythagorean_triple.bril",
+    "original": 22,
+    "after_ssa": 26,
+    "after_gvn": 22,
+    "ssa_overhead": 4,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.1818181818181819,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/quadratic.bril",
+    "original": 68,
+    "after_ssa": 68,
+    "after_gvn": 39,
+    "ssa_overhead": 0,
+    "gvn_savings": 29,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 0.5735294117647058
+  },
+  {
+    "file": "tests/core/recfact.bril",
+    "original": 26,
+    "after_ssa": 25,
+    "after_gvn": 15,
+    "ssa_overhead": -1,
+    "gvn_savings": 11,
+    "ssa_ratio": 0.9615384615384616,
+    "gvn_ratio": 0.5769230769230769
+  },
+  {
+    "file": "tests/core/rectangles-area-difference.bril",
+    "original": 13,
+    "after_ssa": 15,
+    "after_gvn": 14,
+    "ssa_overhead": 2,
+    "gvn_savings": -1,
+    "ssa_ratio": 1.1538461538461537,
+    "gvn_ratio": 1.0769230769230769
+  },
+  {
+    "file": "tests/core/relative-primes.bril",
+    "original": 84,
+    "after_ssa": 88,
+    "after_gvn": 52,
+    "ssa_overhead": 4,
+    "gvn_savings": 32,
+    "ssa_ratio": 1.0476190476190477,
+    "gvn_ratio": 0.6190476190476191
+  },
+  {
+    "file": "tests/core/reverse.bril",
+    "original": 26,
+    "after_ssa": 34,
+    "after_gvn": 23,
+    "ssa_overhead": 8,
+    "gvn_savings": 3,
+    "ssa_ratio": 1.3076923076923077,
+    "gvn_ratio": 0.8846153846153846
+  },
+  {
+    "file": "tests/core/rot13.bril",
+    "original": 11,
+    "after_ssa": 13,
+    "after_gvn": 12,
+    "ssa_overhead": 2,
+    "gvn_savings": -1,
+    "ssa_ratio": 1.1818181818181819,
+    "gvn_ratio": 1.0909090909090908
+  },
+  {
+    "file": "tests/core/sqrt_bin_search.bril",
+    "original": 44,
+    "after_ssa": 41,
+    "after_gvn": 20,
+    "ssa_overhead": -3,
+    "gvn_savings": 24,
+    "ssa_ratio": 0.9318181818181818,
+    "gvn_ratio": 0.45454545454545453
+  },
+  {
+    "file": "tests/core/squares.bril",
+    "original": 10,
+    "after_ssa": 11,
+    "after_gvn": 9,
+    "ssa_overhead": 1,
+    "gvn_savings": 1,
+    "ssa_ratio": 1.1,
+    "gvn_ratio": 0.9
+  },
+  {
+    "file": "tests/core/sum-bits.bril",
+    "original": 19,
+    "after_ssa": 23,
+    "after_gvn": 19,
+    "ssa_overhead": 4,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.2105263157894737,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/sum-check.bril",
+    "original": 24,
+    "after_ssa": 28,
+    "after_gvn": 24,
+    "ssa_overhead": 4,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.1666666666666667,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/sum-digits.bril",
+    "original": 29,
+    "after_ssa": 32,
+    "after_gvn": 16,
+    "ssa_overhead": 3,
+    "gvn_savings": 13,
+    "ssa_ratio": 1.103448275862069,
+    "gvn_ratio": 0.5517241379310345
+  },
+  {
+    "file": "tests/core/sum-divisible-by-m.bril",
+    "original": 16,
+    "after_ssa": 16,
+    "after_gvn": 8,
+    "ssa_overhead": 0,
+    "gvn_savings": 8,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 0.5
+  },
+  {
+    "file": "tests/core/sum-divisors.bril",
+    "original": 34,
+    "after_ssa": 45,
+    "after_gvn": 41,
+    "ssa_overhead": 11,
+    "gvn_savings": -7,
+    "ssa_ratio": 1.3235294117647058,
+    "gvn_ratio": 1.2058823529411764
+  },
+  {
+    "file": "tests/core/sum-of-cubes.bril",
+    "original": 8,
+    "after_ssa": 8,
+    "after_gvn": 7,
+    "ssa_overhead": 0,
+    "gvn_savings": 1,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 0.875
+  },
+  {
+    "file": "tests/core/sum-sq-diff.bril",
+    "original": 66,
+    "after_ssa": 72,
+    "after_gvn": 30,
+    "ssa_overhead": 6,
+    "gvn_savings": 36,
+    "ssa_ratio": 1.0909090909090908,
+    "gvn_ratio": 0.45454545454545453
+  },
+  {
+    "file": "tests/core/sum-to-ten.bril",
+    "original": 25,
+    "after_ssa": 28,
+    "after_gvn": 13,
+    "ssa_overhead": 3,
+    "gvn_savings": 12,
+    "ssa_ratio": 1.12,
+    "gvn_ratio": 0.52
+  },
+  {
+    "file": "tests/core/tail-call.bril",
+    "original": 9,
+    "after_ssa": 9,
+    "after_gvn": 9,
+    "ssa_overhead": 0,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/totient.bril",
+    "original": 42,
+    "after_ssa": 56,
+    "after_gvn": 48,
+    "ssa_overhead": 14,
+    "gvn_savings": -6,
+    "ssa_ratio": 1.3333333333333333,
+    "gvn_ratio": 1.1428571428571428
+  },
+  {
+    "file": "tests/core/triangle.bril",
+    "original": 14,
+    "after_ssa": 18,
+    "after_gvn": 14,
+    "ssa_overhead": 4,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.2857142857142858,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/core/up-arrow.bril",
+    "original": 22,
+    "after_ssa": 28,
+    "after_gvn": 22,
+    "ssa_overhead": 6,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.2727272727272727,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/float/birthday.bril",
+    "original": 42,
+    "after_ssa": 45,
+    "after_gvn": 21,
+    "ssa_overhead": 3,
+    "gvn_savings": 21,
+    "ssa_ratio": 1.0714285714285714,
+    "gvn_ratio": 0.5
+  },
+  {
+    "file": "tests/float/conjugate-gradient.bril",
+    "original": 209,
+    "after_ssa": 249,
+    "after_gvn": 211,
+    "ssa_overhead": 40,
+    "gvn_savings": -2,
+    "ssa_ratio": 1.1913875598086126,
+    "gvn_ratio": 1.0095693779904307
+  },
+  {
+    "file": "tests/float/cordic.bril",
+    "original": 262,
+    "after_ssa": 305,
+    "after_gvn": 154,
+    "ssa_overhead": 43,
+    "gvn_savings": 108,
+    "ssa_ratio": 1.1641221374045803,
+    "gvn_ratio": 0.5877862595419847
+  },
+  {
+    "file": "tests/float/euler.bril",
+    "original": 48,
+    "after_ssa": 51,
+    "after_gvn": 30,
+    "ssa_overhead": 3,
+    "gvn_savings": 18,
+    "ssa_ratio": 1.0625,
+    "gvn_ratio": 0.625
+  },
+  {
+    "file": "tests/float/exponentiation-by-squaring.bril",
+    "original": 44,
+    "after_ssa": 58,
+    "after_gvn": 48,
+    "ssa_overhead": 14,
+    "gvn_savings": -4,
+    "ssa_ratio": 1.3181818181818181,
+    "gvn_ratio": 1.0909090909090908
+  },
+  {
+    "file": "tests/float/harmonic-sum.bril",
+    "original": 27,
+    "after_ssa": 30,
+    "after_gvn": 13,
+    "ssa_overhead": 3,
+    "gvn_savings": 14,
+    "ssa_ratio": 1.1111111111111112,
+    "gvn_ratio": 0.48148148148148145
+  },
+  {
+    "file": "tests/float/leibniz.bril",
+    "original": 29,
+    "after_ssa": 39,
+    "after_gvn": 29,
+    "ssa_overhead": 10,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.3448275862068966,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/float/logistic.bril",
+    "original": 14,
+    "after_ssa": 14,
+    "after_gvn": 14,
+    "ssa_overhead": 0,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/float/mandelbrot.bril",
+    "original": 159,
+    "after_ssa": 172,
+    "after_gvn": 85,
+    "ssa_overhead": 13,
+    "gvn_savings": 74,
+    "ssa_ratio": 1.0817610062893082,
+    "gvn_ratio": 0.5345911949685535
+  },
+  {
+    "file": "tests/float/n_root.bril",
+    "original": 36,
+    "after_ssa": 44,
+    "after_gvn": 36,
+    "ssa_overhead": 8,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.2222222222222223,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/float/newton.bril",
+    "original": 30,
+    "after_ssa": 34,
+    "after_gvn": 31,
+    "ssa_overhead": 4,
+    "gvn_savings": -1,
+    "ssa_ratio": 1.1333333333333333,
+    "gvn_ratio": 1.0333333333333334
+  },
+  {
+    "file": "tests/float/norm.bril",
+    "original": 92,
+    "after_ssa": 106,
+    "after_gvn": 92,
+    "ssa_overhead": 14,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.1521739130434783,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/float/pow.bril",
+    "original": 33,
+    "after_ssa": 35,
+    "after_gvn": 16,
+    "ssa_overhead": 2,
+    "gvn_savings": 17,
+    "ssa_ratio": 1.0606060606060606,
+    "gvn_ratio": 0.48484848484848486
+  },
+  {
+    "file": "tests/float/ray-bbox-intersection.bril",
+    "original": 89,
+    "after_ssa": 113,
+    "after_gvn": 94,
+    "ssa_overhead": 24,
+    "gvn_savings": -5,
+    "ssa_ratio": 1.2696629213483146,
+    "gvn_ratio": 1.0561797752808988
+  },
+  {
+    "file": "tests/float/ray-sphere-intersection.bril",
+    "original": 106,
+    "after_ssa": 106,
+    "after_gvn": 30,
+    "ssa_overhead": 0,
+    "gvn_savings": 76,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 0.2830188679245283
+  },
+  {
+    "file": "tests/float/rgb2gray.bril",
+    "original": 14,
+    "after_ssa": 14,
+    "after_gvn": 14,
+    "ssa_overhead": 0,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/float/riemann.bril",
+    "original": 73,
+    "after_ssa": 85,
+    "after_gvn": 71,
+    "ssa_overhead": 12,
+    "gvn_savings": 2,
+    "ssa_ratio": 1.1643835616438356,
+    "gvn_ratio": 0.9726027397260274
+  },
+  {
+    "file": "tests/float/sqrt.bril",
+    "original": 57,
+    "after_ssa": 64,
+    "after_gvn": 31,
+    "ssa_overhead": 7,
+    "gvn_savings": 26,
+    "ssa_ratio": 1.1228070175438596,
+    "gvn_ratio": 0.543859649122807
+  },
+  {
+    "file": "tests/mem/1dconv.bril",
+    "original": 88,
+    "after_ssa": 104,
+    "after_gvn": 88,
+    "ssa_overhead": 16,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.1818181818181819,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/mem/2dconvol.bril",
+    "original": 121,
+    "after_ssa": 141,
+    "after_gvn": 122,
+    "ssa_overhead": 20,
+    "gvn_savings": -1,
+    "ssa_ratio": 1.165289256198347,
+    "gvn_ratio": 1.0082644628099173
+  },
+  {
+    "file": "tests/mem/adj2csr.bril",
+    "original": 115,
+    "after_ssa": 133,
+    "after_gvn": 120,
+    "ssa_overhead": 18,
+    "gvn_savings": -5,
+    "ssa_ratio": 1.1565217391304348,
+    "gvn_ratio": 1.0434782608695652
+  },
+  {
+    "file": "tests/mem/adler32.bril",
+    "original": 66,
+    "after_ssa": 88,
+    "after_gvn": 68,
+    "ssa_overhead": 22,
+    "gvn_savings": -2,
+    "ssa_ratio": 1.3333333333333333,
+    "gvn_ratio": 1.0303030303030303
+  },
+  {
+    "file": "tests/mem/binary-search.bril",
+    "original": 76,
+    "after_ssa": 77,
+    "after_gvn": 73,
+    "ssa_overhead": 1,
+    "gvn_savings": 3,
+    "ssa_ratio": 1.013157894736842,
+    "gvn_ratio": 0.9605263157894737
+  },
+  {
+    "file": "tests/mem/bubblesort.bril",
+    "original": 72,
+    "after_ssa": 80,
+    "after_gvn": 72,
+    "ssa_overhead": 8,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.1111111111111112,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/mem/char-poly.bril",
+    "original": 144,
+    "after_ssa": 150,
+    "after_gvn": 144,
+    "ssa_overhead": 6,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0416666666666667,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/mem/connected-components.bril",
+    "original": 196,
+    "after_ssa": 246,
+    "after_gvn": 206,
+    "ssa_overhead": 50,
+    "gvn_savings": -10,
+    "ssa_ratio": 1.2551020408163265,
+    "gvn_ratio": 1.0510204081632653
+  },
+  {
+    "file": "tests/mem/cordic.bril",
+    "original": 149,
+    "after_ssa": 157,
+    "after_gvn": 109,
+    "ssa_overhead": 8,
+    "gvn_savings": 40,
+    "ssa_ratio": 1.0536912751677852,
+    "gvn_ratio": 0.7315436241610739
+  },
+  {
+    "file": "tests/mem/csrmv.bril",
+    "original": 194,
+    "after_ssa": 215,
+    "after_gvn": 194,
+    "ssa_overhead": 21,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.1082474226804124,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/mem/dot-product.bril",
+    "original": 54,
+    "after_ssa": 58,
+    "after_gvn": 55,
+    "ssa_overhead": 4,
+    "gvn_savings": -1,
+    "ssa_ratio": 1.0740740740740742,
+    "gvn_ratio": 1.0185185185185186
+  },
+  {
+    "file": "tests/mem/eight-queens.bril",
+    "original": 63,
+    "after_ssa": 70,
+    "after_gvn": 62,
+    "ssa_overhead": 7,
+    "gvn_savings": 1,
+    "ssa_ratio": 1.1111111111111112,
+    "gvn_ratio": 0.9841269841269841
+  },
+  {
+    "file": "tests/mem/fib.bril",
+    "original": 31,
+    "after_ssa": 37,
+    "after_gvn": 31,
+    "ssa_overhead": 6,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.1935483870967742,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/mem/filter.bril",
+    "original": 57,
+    "after_ssa": 58,
+    "after_gvn": 55,
+    "ssa_overhead": 1,
+    "gvn_savings": 2,
+    "ssa_ratio": 1.0175438596491229,
+    "gvn_ratio": 0.9649122807017544
+  },
+  {
+    "file": "tests/mem/fnv1-hash.bril",
+    "original": 80,
+    "after_ssa": 106,
+    "after_gvn": 81,
+    "ssa_overhead": 26,
+    "gvn_savings": -1,
+    "ssa_ratio": 1.325,
+    "gvn_ratio": 1.0125
+  },
+  {
+    "file": "tests/mem/insertion-sort.bril",
+    "original": 67,
+    "after_ssa": 73,
+    "after_gvn": 67,
+    "ssa_overhead": 6,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0895522388059702,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/mem/kadane.bril",
+    "original": 75,
+    "after_ssa": 86,
+    "after_gvn": 71,
+    "ssa_overhead": 11,
+    "gvn_savings": 4,
+    "ssa_ratio": 1.1466666666666667,
+    "gvn_ratio": 0.9466666666666667
+  },
+  {
+    "file": "tests/mem/lis.bril",
+    "original": 88,
+    "after_ssa": 97,
+    "after_gvn": 88,
+    "ssa_overhead": 9,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.1022727272727273,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/mem/major-elm.bril",
+    "original": 51,
+    "after_ssa": 61,
+    "after_gvn": 49,
+    "ssa_overhead": 10,
+    "gvn_savings": 2,
+    "ssa_ratio": 1.196078431372549,
+    "gvn_ratio": 0.9607843137254902
+  },
+  {
+    "file": "tests/mem/mat-mul.bril",
+    "original": 104,
+    "after_ssa": 116,
+    "after_gvn": 105,
+    "ssa_overhead": 12,
+    "gvn_savings": -1,
+    "ssa_ratio": 1.1153846153846154,
+    "gvn_ratio": 1.0096153846153846
+  },
+  {
+    "file": "tests/mem/max-subarray.bril",
+    "original": 59,
+    "after_ssa": 65,
+    "after_gvn": 59,
+    "ssa_overhead": 6,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.1016949152542372,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/mem/primitive-root.bril",
+    "original": 145,
+    "after_ssa": 166,
+    "after_gvn": 141,
+    "ssa_overhead": 21,
+    "gvn_savings": 4,
+    "ssa_ratio": 1.1448275862068966,
+    "gvn_ratio": 0.9724137931034482
+  },
+  {
+    "file": "tests/mem/quickselect.bril",
+    "original": 101,
+    "after_ssa": 109,
+    "after_gvn": 103,
+    "ssa_overhead": 8,
+    "gvn_savings": -2,
+    "ssa_ratio": 1.0792079207920793,
+    "gvn_ratio": 1.0198019801980198
+  },
+  {
+    "file": "tests/mem/quicksort-hoare.bril",
+    "original": 135,
+    "after_ssa": 149,
+    "after_gvn": 134,
+    "ssa_overhead": 14,
+    "gvn_savings": 1,
+    "ssa_ratio": 1.1037037037037036,
+    "gvn_ratio": 0.9925925925925926
+  },
+  {
+    "file": "tests/mem/quicksort.bril",
+    "original": 85,
+    "after_ssa": 92,
+    "after_gvn": 87,
+    "ssa_overhead": 7,
+    "gvn_savings": -2,
+    "ssa_ratio": 1.0823529411764705,
+    "gvn_ratio": 1.0235294117647058
+  },
+  {
+    "file": "tests/mem/shufflesort.bril",
+    "original": 153,
+    "after_ssa": 175,
+    "after_gvn": 156,
+    "ssa_overhead": 22,
+    "gvn_savings": -3,
+    "ssa_ratio": 1.1437908496732025,
+    "gvn_ratio": 1.0196078431372548
+  },
+  {
+    "file": "tests/mem/sieve.bril",
+    "original": 81,
+    "after_ssa": 87,
+    "after_gvn": 75,
+    "ssa_overhead": 6,
+    "gvn_savings": 6,
+    "ssa_ratio": 1.0740740740740742,
+    "gvn_ratio": 0.9259259259259259
+  },
+  {
+    "file": "tests/mem/sorting-network-five.bril",
+    "original": 123,
+    "after_ssa": 114,
+    "after_gvn": 66,
+    "ssa_overhead": -9,
+    "gvn_savings": 57,
+    "ssa_ratio": 0.926829268292683,
+    "gvn_ratio": 0.5365853658536586
+  },
+  {
+    "file": "tests/mem/systolic.bril",
+    "original": 198,
+    "after_ssa": 225,
+    "after_gvn": 187,
+    "ssa_overhead": 27,
+    "gvn_savings": 11,
+    "ssa_ratio": 1.1363636363636365,
+    "gvn_ratio": 0.9444444444444444
+  },
+  {
+    "file": "tests/mem/two-sum.bril",
+    "original": 120,
+    "after_ssa": 114,
+    "after_gvn": 72,
+    "ssa_overhead": -6,
+    "gvn_savings": 48,
+    "ssa_ratio": 0.95,
+    "gvn_ratio": 0.6
+  },
+  {
+    "file": "tests/mem/vsmul.bril",
+    "original": 46,
+    "after_ssa": 48,
+    "after_gvn": 46,
+    "ssa_overhead": 2,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0434782608695652,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/mixed/cholesky.bril",
+    "original": 286,
+    "after_ssa": 314,
+    "after_gvn": 258,
+    "ssa_overhead": 28,
+    "gvn_savings": 28,
+    "ssa_ratio": 1.097902097902098,
+    "gvn_ratio": 0.9020979020979021
+  },
+  {
+    "file": "tests/mixed/gol.bril",
+    "original": 212,
+    "after_ssa": 225,
+    "after_gvn": 206,
+    "ssa_overhead": 13,
+    "gvn_savings": 6,
+    "ssa_ratio": 1.0613207547169812,
+    "gvn_ratio": 0.9716981132075472
+  },
+  {
+    "file": "tests/mixed/mat-inv.bril",
+    "original": 124,
+    "after_ssa": 134,
+    "after_gvn": 124,
+    "ssa_overhead": 10,
+    "gvn_savings": 0,
+    "ssa_ratio": 1.0806451612903225,
+    "gvn_ratio": 1.0
+  },
+  {
+    "file": "tests/mixed/random_walk.bril",
+    "original": 92,
+    "after_ssa": 104,
+    "after_gvn": 94,
+    "ssa_overhead": 12,
+    "gvn_savings": -2,
+    "ssa_ratio": 1.1304347826086956,
+    "gvn_ratio": 1.0217391304347827
+  }
+]

@@ -1,0 +1,25 @@
+@main(n.2: int) {
+  v0.1: int = const 0;
+  v1.1: int = const 10;
+  notdone.2: bool = const true;
+  result.4: int = id v0.1;
+.for.cond.3:
+  br notdone.2 .for.body.3 .for.end.3;
+.for.body.3:
+  a.1: int = div n.2 v1.1;
+  floor.1: int = mul a.1 v1.1;
+  remainder.1: int = sub n.2 floor.1;
+  result.3: int = mul result.4 v1.1;
+  result.4: int = add result.3 remainder.1;
+  comp1.1: bool = eq a.1 v0.1;
+  br comp1.1 .if.body .for.incre;
+.if.body:
+  notdone.2: bool = const false;
+  n.2: int = id a.1;
+  jmp .for.cond.3;
+.for.incre:
+  n.2: int = id a.1;
+  jmp .for.cond.3;
+.for.end.3:
+  print result.4;
+}

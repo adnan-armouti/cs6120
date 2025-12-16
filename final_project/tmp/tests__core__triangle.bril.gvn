@@ -1,0 +1,18 @@
+@tri(n: int): int {
+  one.1: int = const 1;
+  t.3: int = const 0;
+  c.2: int = id one.1;
+.c:
+  cond_c.1: bool = le c.2 n;
+  br cond_c.1 .c_le .c_gt;
+.c_gt:
+  ret t.3;
+.c_le:
+  t.3: int = add t.3 c.2;
+  c.2: int = add c.2 one.1;
+  jmp .c;
+}
+@main(n: int) {
+  tmp.1: int = call @tri n;
+  print tmp.1;
+}

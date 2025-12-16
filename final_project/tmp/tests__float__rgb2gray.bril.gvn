@@ -1,0 +1,18 @@
+@rgb2gray(r: float, g: float, b: float): float {
+  vr.1: float = const 0.299;
+  vg.1: float = const 0.587;
+  vb.1: float = const 0.114;
+  cr.1: float = fmul vr.1 r;
+  cg.1: float = fmul vg.1 g;
+  cb.1: float = fmul vb.1 b;
+  res.1: float = fadd cr.1 cg.1;
+  res.2: float = fadd res.1 cb.1;
+  ret res.2;
+}
+@main {
+  r.1: float = const 120;
+  g.1: float = const 200;
+  b.1: float = const 150;
+  gray.1: float = call @rgb2gray r.1 g.1 b.1;
+  print gray.1;
+}

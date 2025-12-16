@@ -1,0 +1,42 @@
+@main(n.4: int) {
+  tmp0.1: int = const 0;
+  ten.1: int = const 10;
+  tmp0.2: int = id tmp0.1;
+.label1:
+  tmp1.1: int = call @mod_ten n.4;
+  n.4: int = div n.4 ten.1;
+.label5:
+  drop.1: bool = lt tmp1.1 tmp0.2;
+  br drop.1 .label2 .label5b;
+.label5b:
+  more.1: bool = gt n.4 tmp0.1;
+  tmp0.2: int = id tmp1.1;
+  br more.1 .label1 .label3;
+.label2:
+  out.4: bool = const true;
+.label7:
+  tmp1.2: int = call @mod_ten n.4;
+  n.4: int = div n.4 ten.1;
+.label6:
+  bad.1: bool = gt tmp1.2 tmp1.1;
+  br bad.1 .labelfail .label6b;
+.label6b:
+  more2.1: bool = gt n.4 tmp0.1;
+  tmp1.1: int = id tmp1.2;
+  br more2.1 .label7 .label4;
+.labelfail:
+  out.3: bool = const false;
+  out.4: bool = id out;
+  br out.3 .label4 .label4;
+.label3:
+  out.4: bool = const true;
+.label4:
+  print out.4;
+}
+@mod_ten(n: int): int {
+  ten.1: int = const 10;
+  v1.1: int = div n ten.1;
+  v2.1: int = mul v1.1 ten.1;
+  v3.1: int = sub n v2.1;
+  ret v3.1;
+}

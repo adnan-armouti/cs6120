@@ -1,0 +1,45 @@
+@main(a: int, b: int, c: int) {
+  call @quadratic a b c;
+}
+@sqrt(x: int): int {
+  v1.1: int = const 1;
+  i.2: int = id v1.1;
+.for.cond.0:
+  v5.1: int = sub x v1.1;
+  v6.1: bool = lt i.2 v5.1;
+  br v6.1 .for.body.0 .for.end.0;
+.for.body.0:
+  v10.1: int = mul i.2 i.2;
+  v12.1: bool = ge v10.1 x;
+  br v12.1 .then.7 .else.7;
+.then.7:
+  ret i.2;
+.else.7:
+.endif.7:
+  i.2: int = add i.2 v1.1;
+  jmp .for.cond.0;
+.for.end.0:
+  v17.1: int = const 0;
+  ret v17.1;
+}
+@quadratic(a: int, b: int, c: int) {
+  v2.1: int = mul b b;
+  v3.1: int = const 4;
+  v5.1: int = mul v3.1 a;
+  v7.1: int = mul v5.1 c;
+  v8.1: int = sub v2.1 v7.1;
+  v9.1: int = const 2;
+  v11.1: int = mul v9.1 a;
+  v12.1: int = const 0;
+  v14.1: int = sub v12.1 b;
+  v16.1: int = call @sqrt v8.1;
+  v17.1: int = add v14.1 v16.1;
+  v18.1: int = const 0;
+  v20.1: int = sub v18.1 b;
+  v22.1: int = call @sqrt v8.1;
+  v23.1: int = sub v20.1 v22.1;
+  v26.1: int = div v17.1 v11.1;
+  print v26.1;
+  v30.1: int = div v23.1 v11.1;
+  print v30.1;
+}

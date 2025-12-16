@@ -1,0 +1,26 @@
+@main(n: int, arrows: int, repeats: int) {
+  ans.1: int = call @up_arrow n arrows repeats;
+  print ans.1;
+}
+@up_arrow(num: int, arrows: int, repeats: int): int {
+  one.1: int = const 1;
+  i.2: int = id one.1;
+  ans.5: int = id num;
+.loopstart:
+  keepgoing.1: bool = lt i.2 repeats;
+  br keepgoing.1 .loopbody .endloop;
+.loopbody:
+  base_case.1: bool = le arrows one.1;
+  br base_case.1 .base .arrowsgreaterthan1;
+.base:
+  ans.5: int = mul ans.5 num;
+  jmp .finally;
+.arrowsgreaterthan1:
+  new_arrows.1: int = sub arrows one.1;
+  ans.5: int = call @up_arrow num new_arrows.1 ans.5;
+.finally:
+  i.2: int = add i.2 one.1;
+  jmp .loopstart;
+.endloop:
+  ret ans.5;
+}

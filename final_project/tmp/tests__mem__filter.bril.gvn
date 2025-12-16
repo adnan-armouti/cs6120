@@ -1,0 +1,57 @@
+@main {
+  table_size.1: int = const 5;
+  emp_ids.1: ptr<int> = alloc table_size.1;
+  dept_ids.1: ptr<int> = alloc table_size.1;
+  one.1: int = const 1;
+  two.1: int = const 2;
+  three.1: int = const 3;
+  four.1: int = const 4;
+  emp_id_1.1: int = const 101;
+  store emp_ids.1 emp_id_1.1;
+  store dept_ids.1 one.1;
+  emp_id_2.1: int = const 102;
+  dept_id_2.1: int = const 2;
+  emp_ids_ptr.1: ptr<int> = ptradd emp_ids.1 one.1;
+  dept_ids_ptr.1: ptr<int> = ptradd dept_ids.1 one.1;
+  store emp_ids_ptr.1 emp_id_2.1;
+  store dept_ids_ptr.1 dept_id_2.1;
+  emp_id_3.1: int = const 103;
+  dept_id_3.1: int = const 2;
+  emp_ids_ptr_2.1: ptr<int> = ptradd emp_ids.1 two.1;
+  dept_ids_ptr_2.1: ptr<int> = ptradd dept_ids.1 two.1;
+  store emp_ids_ptr_2.1 emp_id_3.1;
+  store dept_ids_ptr_2.1 dept_id_3.1;
+  emp_id_4.1: int = const 104;
+  dept_id_4.1: int = const 1;
+  emp_ids_ptr_3.1: ptr<int> = ptradd emp_ids.1 three.1;
+  dept_ids_ptr_3.1: ptr<int> = ptradd dept_ids.1 three.1;
+  store emp_ids_ptr_3.1 emp_id_4.1;
+  store dept_ids_ptr_3.1 dept_id_4.1;
+  emp_id_5.1: int = const 105;
+  dept_id_5.1: int = const 2;
+  emp_ids_ptr_4.1: ptr<int> = ptradd emp_ids.1 four.1;
+  dept_ids_ptr_4.1: ptr<int> = ptradd dept_ids.1 four.1;
+  store emp_ids_ptr_4.1 emp_id_5.1;
+  store dept_ids_ptr_4.1 dept_id_5.1;
+  target_dept.1: int = const 2;
+  i.2: int = const 0;
+.loop:
+  done.1: bool = ge i.2 table_size.1;
+  br done.1 .cleanup .body;
+.body:
+  curr_dept_ptr.1: ptr<int> = ptradd dept_ids.1 i.2;
+  curr_dept.1: int = load curr_dept_ptr.1;
+  matches.1: bool = eq curr_dept.1 target_dept.1;
+  br matches.1 .print_result .next;
+.print_result:
+  curr_emp_ptr.1: ptr<int> = ptradd emp_ids.1 i.2;
+  curr_emp.1: int = load curr_emp_ptr.1;
+  print curr_emp.1;
+  jmp .next;
+.next:
+  i.2: int = add i.2 one.1;
+  jmp .loop;
+.cleanup:
+  free emp_ids.1;
+  free dept_ids.1;
+}

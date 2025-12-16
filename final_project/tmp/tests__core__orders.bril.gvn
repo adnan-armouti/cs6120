@@ -1,0 +1,74 @@
+@abs(a: int): int {
+  zero.1: int = const 0;
+  is_neg.1: bool = lt a zero.1;
+  a.1: int = id a;
+  br is_neg.1 .mul_neg_one .abs_res;
+.mul_neg_one:
+  neg_one.1: int = const -1;
+  a.1: int = mul a neg_one.1;
+.abs_res:
+  ret a.1;
+}
+@mod(a: int, b: int): int {
+  q.1: int = div a b;
+  aq.1: int = mul b q.1;
+  mod.1: int = sub a aq.1;
+  ret mod.1;
+}
+@gcd(__phi_tmp0: int, b.1: int): int {
+.while.cond:
+  mod.1: int = call @mod __phi_tmp0 b.1;
+  zero.1: int = const 0;
+  is_term.1: bool = eq mod.1 zero.1;
+  br is_term.1 .while.finish .while.body;
+.while.body:
+  __phi_tmp0: int = id b.1;
+  b.1: int = id mod.1;
+  jmp .while.cond;
+.while.finish:
+  ret b.1;
+}
+@lcm(a: int, b: int): int {
+  zero.1: int = const 0;
+  a_is_zero.1: bool = eq a zero.1;
+  br a_is_zero.1 .check_b .is_good;
+.check_b:
+  b_is_zero.1: bool = eq b zero.1;
+  br b_is_zero.1 .special_case .is_good;
+.special_case:
+  ret zero.1;
+.is_good:
+  ab.1: int = mul a b;
+  ab.2: int = call @abs ab.1;
+  gcdab.1: int = call @gcd a b;
+  lcm.1: int = div ab.2 gcdab.1;
+  ret lcm.1;
+}
+@orders(u.1: int, n: int, use_lcm: bool) {
+.for.cond:
+  is_term.1: bool = eq u.1 n;
+  br is_term.1 .for.finish .for.body;
+.for.body:
+  br use_lcm .lcm .gcd;
+.lcm:
+  lcm.1: int = call @lcm u.1 n;
+  ordu.1: int = div lcm.1 u.1;
+  jmp .for.body.print;
+.gcd:
+  gcdun.1: int = call @gcd u.1 n;
+  ordu.1: int = div n gcdun.1;
+.for.body.print:
+  print u.1 ordu.1;
+  one.1: int = const 1;
+  u.1: int = add u.1 one.1;
+  jmp .for.cond;
+.for.finish:
+  ret;
+}
+@main(n: int, use_lcm: bool) {
+  zero.1: int = const 0;
+  u.1: int = const 1;
+  n.1: int = call @abs n;
+  print zero.1 u.1;
+  call @orders u.1 n.1 use_lcm;
+}

@@ -1,0 +1,51 @@
+@main(n: int) {
+  i.2: int = const 1;
+.for.cond.1:
+  v5.1: bool = lt i.2 n;
+  br v5.1 .for.body.1 .for.end.1;
+.for.body.1:
+  isPrime.1: bool = call @checkPrime i.2;
+  br isPrime.1 .then.7 .else.7;
+.then.7:
+  v9.1: int = const 1;
+  print v9.1;
+  jmp .endif.7;
+.else.7:
+  v11.1: int = const 0;
+  print v11.1;
+.endif.7:
+  v14.1: int = const 1;
+  i.2: int = add i.2 v14.1;
+  jmp .for.cond.1;
+.for.end.1:
+}
+@checkPrime(x: int): bool {
+  v2.1: int = const 1;
+  v3.1: bool = le x v2.1;
+  br v3.1 .then.0 .else.0;
+.then.0:
+  v4.1: bool = const false;
+  ret v4.1;
+.else.0:
+.endif.0:
+  i.2: int = const 2;
+.for.cond.5:
+  v9.1: bool = lt i.2 x;
+  br v9.1 .for.body.5 .for.end.5;
+.for.body.5:
+  v12.1: int = div x i.2;
+  v15.1: int = mul v12.1 i.2;
+  v17.1: bool = eq v15.1 x;
+  br v17.1 .then.18 .else.18;
+.then.18:
+  v20.1: bool = const false;
+  ret v20.1;
+.else.18:
+.endif.18:
+  v22.1: int = const 1;
+  i.2: int = add i.2 v22.1;
+  jmp .for.cond.5;
+.for.end.5:
+  v24.1: bool = const true;
+  ret v24.1;
+}

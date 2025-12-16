@@ -1,0 +1,158 @@
+@main(theta: float) {
+  x.1: float = call @cordic theta;
+  print x.1;
+}
+@cordic(theta: float): float {
+  v0.1: float = const 0.7853981633974483;
+  v1.1: float = const 0.4636476090008061;
+  v2.1: float = const 0.24497866312686414;
+  v3.1: float = const 0.12435499454676144;
+  v4.1: float = const 0.06241880999595735;
+  v5.1: float = const 0.031239833430268277;
+  v6.1: float = const 0.015623728620476831;
+  v7.1: float = const 0.007812341060101111;
+  v8.1: float = const 0;
+  v96.1: float = const 0.6072529350088812;
+  v30.1: float = const 1;
+  v13.1: int = const 0;
+  i.2: int = id v13.1;
+  v93.1: float = id v8.1;
+  gamma.4: float = id v8.1;
+.for.cond.12:
+  v15.1: int = const 8;
+  v16.1: bool = lt i.2 v15.1;
+  br v16.1 .for.body.12 .for.end.12;
+.for.body.12:
+  v19.1: float = fsub theta gamma.4;
+  v21.1: bool = fgt v19.1 v8.1;
+  v24.1: float = fdiv v93.1 v30.1;
+  v27.1: float = fdiv v96.1 v30.1;
+  v29.1: float = const 2;
+  v30.1: float = fmul v30.1 v29.1;
+  br v21.1 .then.31 .else.31;
+.then.31:
+  v93.1: float = fadd v93.1 v27.1;
+  v96.1: float = fsub v96.1 v24.1;
+  v42.1: bool = eq i.2 v13.1;
+  br v42.1 .then.39 .else.39;
+.then.39:
+  gamma.4: float = fadd gamma.4 v0.1;
+  jmp .endif.39;
+.else.39:
+  v48.1: int = const 1;
+  v49.1: bool = eq i.2 v48.1;
+  br v49.1 .then.46 .else.46;
+.then.46:
+  gamma.4: float = fadd gamma.4 v1.1;
+  jmp .endif.46;
+.else.46:
+  v55.1: int = const 2;
+  v56.1: bool = eq i.2 v55.1;
+  br v56.1 .then.53 .else.53;
+.then.53:
+  gamma.4: float = fadd gamma.4 v2.1;
+  jmp .endif.53;
+.else.53:
+  v62.1: int = const 3;
+  v63.1: bool = eq i.2 v62.1;
+  br v63.1 .then.60 .else.60;
+.then.60:
+  gamma.4: float = fadd gamma.4 v3.1;
+  jmp .endif.60;
+.else.60:
+  v69.1: int = const 4;
+  v70.1: bool = eq i.2 v69.1;
+  br v70.1 .then.67 .else.67;
+.then.67:
+  gamma.4: float = fadd gamma.4 v4.1;
+  jmp .endif.67;
+.else.67:
+  v76.1: int = const 5;
+  v77.1: bool = eq i.2 v76.1;
+  br v77.1 .then.74 .else.74;
+.then.74:
+  gamma.4: float = fadd gamma.4 v5.1;
+  jmp .endif.74;
+.else.74:
+  v83.1: int = const 6;
+  v84.1: bool = eq i.2 v83.1;
+  br v84.1 .then.81 .else.81;
+.then.81:
+  gamma.4: float = fadd gamma.4 v6.1;
+  jmp .endif.81;
+.else.81:
+  gamma.4: float = fadd gamma.4 v7.1;
+.endif.81:
+.endif.74:
+.endif.67:
+.endif.60:
+.endif.53:
+.endif.46:
+.endif.39:
+  jmp .endif.31;
+.else.31:
+  v93.1: float = fsub v93.1 v27.1;
+  v96.1: float = fadd v96.1 v24.1;
+  v100.1: bool = eq i.2 v13.1;
+  br v100.1 .then.97 .else.97;
+.then.97:
+  gamma.4: float = fsub gamma.4 v0.1;
+  jmp .endif.97;
+.else.97:
+  v106.1: int = const 1;
+  v107.1: bool = eq i.2 v106.1;
+  br v107.1 .then.104 .else.104;
+.then.104:
+  gamma.4: float = fsub gamma.4 v1.1;
+  jmp .endif.104;
+.else.104:
+  v113.1: int = const 2;
+  v114.1: bool = eq i.2 v113.1;
+  br v114.1 .then.111 .else.111;
+.then.111:
+  gamma.4: float = fsub gamma.4 v2.1;
+  jmp .endif.111;
+.else.111:
+  v120.1: int = const 3;
+  v121.1: bool = eq i.2 v120.1;
+  br v121.1 .then.118 .else.118;
+.then.118:
+  gamma.4: float = fsub gamma.4 v3.1;
+  jmp .endif.118;
+.else.118:
+  v127.1: int = const 4;
+  v128.1: bool = eq i.2 v127.1;
+  br v128.1 .then.125 .else.125;
+.then.125:
+  gamma.4: float = fsub gamma.4 v4.1;
+  jmp .endif.125;
+.else.125:
+  v134.1: int = const 5;
+  v135.1: bool = eq i.2 v134.1;
+  br v135.1 .then.132 .else.132;
+.then.132:
+  gamma.4: float = fsub gamma.4 v5.1;
+  jmp .endif.132;
+.else.132:
+  v141.1: int = const 6;
+  v142.1: bool = eq i.2 v141.1;
+  br v142.1 .then.139 .else.139;
+.then.139:
+  gamma.4: float = fsub gamma.4 v6.1;
+  jmp .endif.139;
+.else.139:
+  gamma.4: float = fsub gamma.4 v7.1;
+.endif.139:
+.endif.132:
+.endif.125:
+.endif.118:
+.endif.111:
+.endif.104:
+.endif.97:
+.endif.31:
+  v150.1: int = const 1;
+  i.2: int = add i.2 v150.1;
+  jmp .for.cond.12;
+.for.end.12:
+  ret v93.1;
+}

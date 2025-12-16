@@ -1,0 +1,28 @@
+@main(input: int) {
+  catn.1: int = call @catalan input;
+  print catn.1;
+}
+@catalan(n: int): int {
+  one.1: int = const 1;
+  sum.3: int = const 0;
+  guard0.1: bool = eq n sum.3;
+  br guard0.1 .if .else;
+.if:
+  ret one.1;
+.else:
+  n.1: int = sub n one.1;
+  idx.2: int = id sum.3;
+.while:
+  guard1.1: bool = le idx.2 n.1;
+  br guard1.1 .while.body .while.end;
+.while.body:
+  n2.1: int = sub n.1 idx.2;
+  v1.1: int = call @catalan idx.2;
+  v2.1: int = call @catalan n2.1;
+  elti.1: int = mul v1.1 v2.1;
+  sum.3: int = add sum.3 elti.1;
+  idx.2: int = add idx.2 one.1;
+  jmp .while;
+.while.end:
+  ret sum.3;
+}

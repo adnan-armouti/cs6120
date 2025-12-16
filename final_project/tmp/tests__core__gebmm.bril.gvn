@@ -1,0 +1,114 @@
+@main(a: int, b: int, dim1: int, dim2: int, dim3: int) {
+  one.1: int = const 1;
+  i.1: int = const -1;
+  output.1: int = const 0;
+  output.2: int = id output.1;
+  i.2: int = id i.1;
+.row_loop:
+  i.3: int = add i.2 one.1;
+  i_lt_dim1.1: bool = lt i.3 dim1;
+  j.2: int = id i.1;
+  output.4: int = id output.2;
+  br i_lt_dim1.1 .col_loop .return;
+.col_loop:
+  j.3: int = add j.2 one.1;
+  j_lt_dim3.1: bool = lt j.3 dim3;
+  output.2: int = id output.4;
+  i.2: int = id i.3;
+  dot_product.2: int = id output.1;
+  k.3: int = id i.1;
+  br j_lt_dim3.1 .inner_loop .row_loop;
+.inner_loop:
+  k.3: int = add k.3 one.1;
+  k_lt_dim2.1: bool = lt k.3 dim2;
+  br k_lt_dim2.1 .multiply .end_col;
+.multiply:
+  a_bit.1: int = call @mat_bitsel a dim2 i.3 k.3;
+  b_bit.1: int = call @mat_bitsel b dim3 k.3 j.3;
+  a_bit_b_bit.1: int = mul a_bit.1 b_bit.1;
+  dot_product.2: int = add dot_product.2 a_bit_b_bit.1;
+  jmp .inner_loop;
+.end_col:
+  dot_product_odd.1: bool = call @is_odd dot_product.2;
+  j.2: int = id j.3;
+  br dot_product_odd.1 .add_dp .col_loop;
+.add_dp:
+  index.1: int = call @mat_packed_index i.3 j.3 dim3;
+  dp_bit.1: int = call @pow2 index.1;
+  output.4: int = add output.4 dp_bit.1;
+  j.2: int = id j.3;
+  jmp .col_loop;
+.return:
+  print output.2;
+}
+@mat_bitsel(m: int, cols: int, i: int, j: int): int {
+  index.1: int = call @mat_packed_index i j cols;
+  ret_val.1: bool = call @bitsel m index.1;
+  br ret_val.1 .ret_one .ret_zero;
+.ret_one:
+  one.1: int = const 1;
+  ret one.1;
+.ret_zero:
+  zero.1: int = const 0;
+  ret zero.1;
+}
+@mat_packed_index(i: int, j: int, cols: int): int {
+  index.1: int = mul i cols;
+  index.2: int = add index.1 j;
+  ret index.2;
+}
+@pow2(n: int): int {
+  one.1: int = const 1;
+  two.1: int = const 2;
+  i.1: int = const 0;
+  result.3: int = id one.1;
+.loop:
+  i_lt_n.1: bool = lt i.1 n;
+  br i_lt_n.1 .multiply .return;
+.multiply:
+  result.3: int = mul result.3 two.1;
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.return:
+  ret result.3;
+}
+@bitsel(m.2: int, i.1: int): bool {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  two.1: int = const 2;
+.loop:
+  i_eq_zero.1: bool = eq i.1 zero.1;
+  br i_eq_zero.1 .return .divide;
+.divide:
+  m.2: int = div m.2 two.1;
+  i.1: int = sub i.1 one.1;
+  jmp .loop;
+.return:
+  m_bit.1: bool = call @is_odd m.2;
+  ret m_bit.1;
+}
+@abs(n: int): int {
+  zero.1: int = const 0;
+  is_neg.1: bool = lt n zero.1;
+  n.2: int = id n;
+  br is_neg.1 .negative .positive;
+.negative:
+  n.2: int = sub zero.1 n;
+.positive:
+  ret n.2;
+}
+@is_even(n: int): bool {
+  n0.1: int = call @abs n;
+  one.1: int = const 1;
+  two.1: int = const 2;
+  np1.1: int = add n0.1 one.1;
+  half.1: int = div n0.1 two.1;
+  np1_half.1: int = div np1.1 two.1;
+  ret_val.1: bool = eq half.1 np1_half.1;
+  ret ret_val.1;
+}
+@is_odd(n: int): bool {
+  is_even.1: bool = call @is_even n;
+  ret_val.1: bool = not is_even.1;
+  ret ret_val.1;
+}

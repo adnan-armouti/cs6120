@@ -1,0 +1,39 @@
+@main(x: int) {
+  tmp0.1: bool = call @is_decreasing x;
+  print tmp0.1;
+}
+@is_decreasing(tmp16.1: int): bool {
+  tmp1.1: int = const 1;
+  tmp2.1: int = const -1;
+  prev.2: int = mul tmp1.1 tmp2.1;
+.label4:
+  tmp7.1: int = const 0;
+  tmp8.1: bool = gt tmp16.1 tmp7.1;
+  br tmp8.1 .label5 .label6;
+.label5:
+  tmp9.1: int = call @last_digit tmp16.1;
+  tmp10.1: bool = lt tmp9.1 prev.2;
+  br tmp10.1 .label11 .label12;
+.label11:
+  tmp14.1: bool = const false;
+  ret tmp14.1;
+  jmp .label13;
+.label12:
+  jmp .label13;
+.label13:
+  tmp15.1: int = const 10;
+  tmp16.1: int = div tmp16.1 tmp15.1;
+  prev.2: int = id tmp9.1;
+  jmp .label4;
+.label6:
+  tmp17.1: bool = const true;
+  ret tmp17.1;
+}
+@last_digit(x: int): int {
+  tmp18.1: int = const 10;
+  tmp19.1: int = div x tmp18.1;
+  tmp20.1: int = const 10;
+  tmp21.1: int = mul tmp19.1 tmp20.1;
+  tmp22.1: int = sub x tmp21.1;
+  ret tmp22.1;
+}

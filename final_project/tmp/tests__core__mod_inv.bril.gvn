@@ -1,0 +1,32 @@
+@main(v28.1: int, p: int) {
+  v0.1: int = const 2;
+  v31.1: int = sub p v0.1;
+  v4.1: int = const 1;
+.for.cond.6:
+  v9.1: int = const 0;
+  v10.1: bool = gt v31.1 v9.1;
+  br v10.1 .for.body.6 .for.end.6;
+.for.body.6:
+  v15.1: int = div v31.1 v0.1;
+  v17.1: int = mul v15.1 v0.1;
+  v18.1: bool = eq v31.1 v17.1;
+  br v18.1 .then.11 .else.11;
+.then.11:
+  jmp .endif.11;
+.else.11:
+  v21.1: int = mul v4.1 v28.1;
+  v4.1: int = call @mod v21.1 p;
+.endif.11:
+  v26.1: int = mul v28.1 v28.1;
+  v28.1: int = call @mod v26.1 p;
+  v31.1: int = div v31.1 v0.1;
+  jmp .for.cond.6;
+.for.end.6:
+  print v4.1;
+}
+@mod(n: int, p: int): int {
+  v3.1: int = div n p;
+  v5.1: int = mul v3.1 p;
+  v6.1: int = sub n v5.1;
+  ret v6.1;
+}

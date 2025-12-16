@@ -1,0 +1,22 @@
+@main(num.1: int) {
+  zer.1: int = const 0;
+  one.1: int = const 1;
+  fac.1: int = const 2;
+.loopcheck:
+  ispos.1: bool = lt one.1 num.1;
+  br ispos.1 .loopbody .loopend;
+.loopbody:
+  quo.1: int = div num.1 fac.1;
+  tmp.1: int = mul quo.1 fac.1;
+  mod.1: int = sub num.1 tmp.1;
+  iszero.1: bool = eq mod.1 zer.1;
+  br iszero.1 .ifyes .ifno;
+.ifyes:
+  print fac.1;
+  num.1: int = div num.1 fac.1;
+  jmp .loopcheck;
+.ifno:
+  fac.1: int = add fac.1 one.1;
+  jmp .loopcheck;
+.loopend:
+}

@@ -1,0 +1,164 @@
+@main(n1: int, n2: int, n3: int, n4: int, n5: int, n6: int, n7: int, n8: int, n9: int) {
+  nine.1: int = const 9;
+  four.1: int = const 4;
+  matrix.1: ptr<int> = call @pack nine.1 n1 n2 n3 n4 n5 n6 n7 n8 n9;
+  array.1: ptr<int> = call @char_poly matrix.1;
+  call @print_array array.1 four.1;
+  free array.1;
+  ret;
+}
+@pack(size: int, n1: int, n2: int, n3: int, n4: int, n5: int, n6: int, n7: int, n8: int, n9: int): ptr<int> {
+  one.1: int = const 1;
+  i.1: int = const 0;
+  array.1: ptr<int> = alloc size;
+  loc.1: ptr<int> = ptradd array.1 i.1;
+  store loc.1 n1;
+  i.2: int = add i.1 one.1;
+  loc.2: ptr<int> = ptradd array.1 i.2;
+  store loc.2 n2;
+  i.3: int = add i.2 one.1;
+  loc.3: ptr<int> = ptradd array.1 i.3;
+  store loc.3 n3;
+  i.4: int = add i.3 one.1;
+  loc.4: ptr<int> = ptradd array.1 i.4;
+  store loc.4 n4;
+  i.5: int = add i.4 one.1;
+  loc.5: ptr<int> = ptradd array.1 i.5;
+  store loc.5 n5;
+  i.6: int = add i.5 one.1;
+  loc.6: ptr<int> = ptradd array.1 i.6;
+  store loc.6 n6;
+  i.7: int = add i.6 one.1;
+  loc.7: ptr<int> = ptradd array.1 i.7;
+  store loc.7 n7;
+  i.8: int = add i.7 one.1;
+  loc.8: ptr<int> = ptradd array.1 i.8;
+  store loc.8 n8;
+  i.9: int = add i.8 one.1;
+  loc.9: ptr<int> = ptradd array.1 i.9;
+  store loc.9 n9;
+  ret array.1;
+}
+@matget(matrix: ptr<int>, r: int, c: int): int {
+  three.1: int = const 3;
+  trip_r.1: int = mul three.1 r;
+  index.1: int = add c trip_r.1;
+  ptr.1: ptr<int> = ptradd matrix index.1;
+  res.1: int = load ptr.1;
+  ret res.1;
+}
+@mod(a: int, b: int): int {
+  acc.1: int = div a b;
+  acc.2: int = mul b acc.1;
+  acc.3: int = sub a acc.2;
+  ret acc.3;
+}
+@det_2x2(a: int, b: int, c: int, d: int): int {
+  ad.1: int = mul a d;
+  bc.1: int = mul b c;
+  res.1: int = sub ad.1 bc.1;
+  ret res.1;
+}
+@det(matrix: ptr<int>): int {
+  two.1: int = const 2;
+  one.1: int = const 1;
+  zero.1: int = const 0;
+  three.1: int = const 3;
+  i.3: int = id zero.1;
+  det.2: int = id zero.1;
+.loop:
+  to_add.1: int = call @matget matrix zero.1 i.3;
+  col.1: int = add i.3 one.1;
+  col.2: int = call @mod col.1 three.1;
+  tmp.1: int = call @matget matrix one.1 col.2;
+  to_add.2: int = mul to_add.1 tmp.1;
+  tmp.2: int = call @matget matrix two.1 col.2;
+  to_sub.2: int = mul to_add.1 tmp.2;
+  col.3: int = add i.3 two.1;
+  col.4: int = call @mod col.3 three.1;
+  tmp.3: int = call @matget matrix two.1 col.4;
+  to_add.3: int = mul to_add.2 tmp.3;
+  tmp.4: int = call @matget matrix one.1 col.4;
+  to_sub.3: int = mul to_sub.2 tmp.4;
+  det.3: int = add det.2 to_add.3;
+  det.4: int = sub det.3 to_sub.3;
+  i.3: int = add i.3 one.1;
+  i_lt_three.1: bool = lt i.3 three.1;
+  det.2: int = id det.4;
+  br i_lt_three.1 .loop .done;
+.done:
+  ret det.4;
+}
+@trace(matrix: ptr<int>): int {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  two.1: int = const 2;
+  val1.1: int = call @matget matrix zero.1 zero.1;
+  val2.1: int = call @matget matrix one.1 one.1;
+  val3.1: int = call @matget matrix two.1 two.1;
+  sum1.1: int = add val1.1 val2.1;
+  sum2.1: int = add sum1.1 val3.1;
+  ret sum2.1;
+}
+@trace_adj(matrix: ptr<int>): int {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  two.1: int = const 2;
+  a_00.1: int = call @matget matrix zero.1 zero.1;
+  a_01.1: int = call @matget matrix zero.1 one.1;
+  a_02.1: int = call @matget matrix zero.1 two.1;
+  a_10.1: int = call @matget matrix one.1 zero.1;
+  a_11.1: int = call @matget matrix one.1 one.1;
+  a_12.1: int = call @matget matrix one.1 two.1;
+  a_20.1: int = call @matget matrix two.1 zero.1;
+  a_21.1: int = call @matget matrix two.1 one.1;
+  a_22.1: int = call @matget matrix two.1 two.1;
+  val1.1: int = call @det_2x2 a_11.1 a_12.1 a_21.1 a_22.1;
+  val2.1: int = call @det_2x2 a_00.1 a_02.1 a_20.1 a_22.1;
+  val3.1: int = call @det_2x2 a_00.1 a_01.1 a_10.1 a_11.1;
+  sum1.1: int = add val1.1 val2.1;
+  sum2.1: int = add sum1.1 val3.1;
+  ret sum2.1;
+}
+@char_poly(matrix: ptr<int>): ptr<int> {
+  neg_one.1: int = const -1;
+  cub_1.1: int = const 1;
+  cub.1: int = mul neg_one.1 cub_1.1;
+  quad.1: int = call @trace matrix;
+  lin_1.1: int = call @trace_adj matrix;
+  lin.1: int = mul neg_one.1 lin_1.1;
+  cons.1: int = call @det matrix;
+  free matrix;
+  one.1: int = const 1;
+  i.1: int = const 0;
+  four.1: int = const 4;
+  array.1: ptr<int> = alloc four.1;
+  loc.1: ptr<int> = ptradd array.1 i.1;
+  store loc.1 cub.1;
+  i.2: int = add i.1 one.1;
+  loc.2: ptr<int> = ptradd array.1 i.2;
+  store loc.2 quad.1;
+  i.3: int = add i.2 one.1;
+  loc.3: ptr<int> = ptradd array.1 i.3;
+  store loc.3 lin.1;
+  i.4: int = add i.3 one.1;
+  loc.4: ptr<int> = ptradd array.1 i.4;
+  store loc.4 cons.1;
+  ret array.1;
+}
+@print_array(array: ptr<int>, size: int) {
+  i.1: int = const 0;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .done;
+.body:
+  loc.1: ptr<int> = ptradd array i.1;
+  val.1: int = load loc.1;
+  print val.1;
+.loop_end:
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret;
+}

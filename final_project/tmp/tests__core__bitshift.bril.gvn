@@ -1,0 +1,47 @@
+@pow(x: int, n: int): int {
+  v2.1: int = const 1;
+  v3.1: bool = eq n v2.1;
+  br v3.1 .then.0 .else.0;
+.then.0:
+  ret x;
+.else.0:
+  v7.1: int = const 2;
+  v8.1: int = div n v7.1;
+  half.1: int = call @pow x v8.1;
+  v11.1: int = mul half.1 half.1;
+  v14.1: int = const 2;
+  v15.1: int = call @mod n v14.1;
+  v16.1: int = const 1;
+  v17.1: bool = eq v15.1 v16.1;
+  br v17.1 .then.12 .else.12;
+.then.12:
+  v11.1: int = mul v11.1 x;
+  jmp .endif.12;
+.else.12:
+.endif.12:
+  ret v11.1;
+}
+@mod(a: int, b: int): int {
+  v3.1: int = div a b;
+  v5.1: int = mul v3.1 b;
+  v6.1: int = sub a v5.1;
+  ret v6.1;
+}
+@LEFTSHIFT(x: int, step: int): int {
+  v0.1: int = const 2;
+  p.1: int = call @pow v0.1 step;
+  v4.1: int = mul x p.1;
+  ret v4.1;
+}
+@RIGHTSHIFT(x: int, step: int): int {
+  v0.1: int = const 2;
+  p.1: int = call @pow v0.1 step;
+  v4.1: int = div x p.1;
+  ret v4.1;
+}
+@main(a: int, b: int, c: int, d: int) {
+  ans1.1: int = call @LEFTSHIFT a b;
+  print ans1.1;
+  ans2.1: int = call @RIGHTSHIFT c d;
+  print ans2.1;
+}

@@ -1,0 +1,96 @@
+@genarray(size: int, iskernel: bool): ptr<float> {
+  arr.1: ptr<float> = alloc size;
+  v0.1: float = const 0.0;
+  br iskernel .set.val.is.kernel .set.val.is.not.kernel;
+.set.val.is.kernel:
+  kernelval.1: float = const 0.3;
+  v0.2: float = fadd v0.1 kernelval.1;
+  jmp .continue;
+.set.val.is.not.kernel:
+  arrval.1: float = const 60.0;
+  v0.2: float = fadd v0.1 arrval.1;
+.continue:
+  i.3: int = const 0;
+  one.1: int = const 1;
+  arrptr.2: ptr<float> = id arr.1;
+.for.cond:
+  cond.1: bool = lt i.3 size;
+  br cond.1 .for.body .return;
+.for.body:
+  store arrptr.2 v0.2;
+.for.end:
+  i.3: int = add i.3 one.1;
+  arrptr.2: ptr<float> = ptradd arrptr.2 one.1;
+  jmp .for.cond;
+.return:
+  ret arr.1;
+}
+@convolve(kernel: ptr<float>, kernelsize: int, array: ptr<float>, arraysize: int): ptr<float> {
+  zero.1: float = const 0.0;
+  one.1: int = const 1;
+  t.1: int = sub arraysize kernelsize;
+  outputsize.1: int = add t.1 one.1;
+  output.1: ptr<float> = alloc outputsize.1;
+  i.3: int = const 0;
+  outputptr.3: ptr<float> = id output.1;
+.outer.for.cond:
+  cond.1: bool = lt i.3 outputsize.1;
+  br cond.1 .outer.for.body .return;
+.outer.for.body:
+  store outputptr.3 zero.1;
+  j.3: int = const 0;
+  kernelptr.2: ptr<float> = id kernel;
+.inner.for.cond:
+  condinner.1: bool = lt j.3 kernelsize;
+  br condinner.1 .inner.for.body .outer.for.end;
+.inner.for.body:
+  arrindex.1: int = add i.3 j.3;
+  arrptr.1: ptr<float> = ptradd array arrindex.1;
+  arrvalue.1: float = load arrptr.1;
+  kernelvalue.1: float = load kernelptr.2;
+  currvalue.1: float = load outputptr.3;
+  incrvalue.1: float = fmul arrvalue.1 kernelvalue.1;
+  storevalue.1: float = fadd currvalue.1 incrvalue.1;
+  store outputptr.3 storevalue.1;
+.inner.for.end:
+  j.3: int = add j.3 one.1;
+  kernelptr.2: ptr<float> = ptradd kernelptr.2 one.1;
+  jmp .inner.for.cond;
+.outer.for.end:
+  i.3: int = add i.3 one.1;
+  outputptr.3: ptr<float> = ptradd outputptr.3 one.1;
+  jmp .outer.for.cond;
+.return:
+  ret output.1;
+}
+@printoutput(out: ptr<float>, kernelsize: int, arraysize: int) {
+  one.1: int = const 1;
+  t.1: int = sub arraysize kernelsize;
+  outputsize.1: int = add t.1 one.1;
+  i.2: int = const 0;
+.for.cond:
+  cond.1: bool = lt i.2 outputsize.1;
+  br cond.1 .for.body .return;
+.for.body:
+  loc.1: ptr<float> = ptradd out i.2;
+  val.1: float = load loc.1;
+  print val.1;
+.for.end:
+  i.2: int = add i.2 one.1;
+  jmp .for.cond;
+.return:
+  ret;
+}
+@main {
+  t.1: bool = const true;
+  f.1: bool = const false;
+  kernelsize.1: int = const 3;
+  arraysize.1: int = const 7;
+  kernel.1: ptr<float> = call @genarray kernelsize.1 t.1;
+  array.1: ptr<float> = call @genarray arraysize.1 f.1;
+  output.1: ptr<float> = call @convolve kernel.1 kernelsize.1 array.1 arraysize.1;
+  call @printoutput output.1 kernelsize.1 arraysize.1;
+  free kernel.1;
+  free array.1;
+  free output.1;
+}

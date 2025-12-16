@@ -1,0 +1,32 @@
+@main(x: int, y: int) {
+  v4.1: bool = gt x y;
+  br v4.1 .then.1 .else.1;
+.then.1:
+  greater.2: int = id x;
+  jmp .endif.1;
+.else.1:
+  greater.2: int = id y;
+.endif.1:
+.foreverloop:
+  modX.1: int = call @getMod greater.2 x;
+  modY.1: int = call @getMod greater.2 y;
+  zero.1: int = const 0;
+  xZero.1: bool = eq modX.1 zero.1;
+  yZero.1: bool = eq modY.1 zero.1;
+  bothZero.1: bool = and xZero.1 yZero.1;
+  br bothZero.1 .then.2 .else.2;
+.then.2:
+  print greater.2;
+  jmp .loopend;
+.else.2:
+  one.1: int = const 1;
+  greater.2: int = add greater.2 one.1;
+  jmp .foreverloop;
+.loopend:
+}
+@getMod(val: int, mod: int): int {
+  divisor.1: int = div val mod;
+  multiple.1: int = mul divisor.1 mod;
+  rem.1: int = sub val multiple.1;
+  ret rem.1;
+}

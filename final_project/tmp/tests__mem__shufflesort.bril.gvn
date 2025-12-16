@@ -1,0 +1,178 @@
+@shuffle(arr: ptr<int>, size: int, rng: ptr<int>) {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  i.2: int = sub size one.1;
+.loop:
+  cond.1: bool = gt i.2 zero.1;
+  br cond.1 .body .done;
+.body:
+  call @rand rng;
+  j.1: int = load rng;
+  j.2: int = call @abs j.1;
+  mod_j.1: int = add i.2 one.1;
+  j.3: int = call @mod j.2 mod_j.1;
+  call @swap arr i.2 j.3;
+  i.2: int = sub i.2 one.1;
+  jmp .loop;
+.done:
+  ret;
+}
+@shufflesort(arr: ptr<int>, size: int, rng: ptr<int>, max: int): bool {
+  sorted.4: bool = const false;
+  one.1: int = const 1;
+  i.2: int = const 0;
+.loop:
+  cond.1: bool = le i.2 max;
+  br cond.1 .body .done;
+.body:
+  call @shuffle arr size rng;
+  sorted.3: bool = call @chk_sorted arr size;
+  i.2: int = add i.2 one.1;
+  sorted.4: bool = id sorted.3;
+  br sorted.3 .done .loop;
+.done:
+  ret sorted.4;
+}
+@main(n1: int, n2: int, n3: int, n4: int, n5: int, seed: int) {
+  size.1: int = const 5;
+  max_attempts.1: int = const 100;
+  arr.1: ptr<int> = alloc size.1;
+  one.1: int = const 1;
+  i.1: int = const 0;
+  loc.1: ptr<int> = ptradd arr.1 i.1;
+  store loc.1 n1;
+  i.2: int = add i.1 one.1;
+  loc.2: ptr<int> = ptradd arr.1 i.2;
+  store loc.2 n2;
+  i.3: int = add i.2 one.1;
+  loc.3: ptr<int> = ptradd arr.1 i.3;
+  store loc.3 n3;
+  i.4: int = add i.3 one.1;
+  loc.4: ptr<int> = ptradd arr.1 i.4;
+  store loc.4 n4;
+  i.5: int = add i.4 one.1;
+  loc.5: ptr<int> = ptradd arr.1 i.5;
+  store loc.5 n5;
+  rng.1: ptr<int> = alloc one.1;
+  store rng.1 seed;
+  sorted.1: bool = call @shufflesort arr.1 size.1 rng.1 max_attempts.1;
+  br sorted.1 .sorted .exit;
+.sorted:
+  call @print_arr arr.1 size.1;
+.exit:
+  free arr.1;
+  free rng.1;
+}
+@chk_sorted(arr: ptr<int>, size: int): bool {
+  sorted.3: bool = const true;
+  i.1: int = const 1;
+  i.2: int = id i.1;
+.loop:
+  cond.1: bool = lt i.2 size;
+  br cond.1 .body .exit;
+.body:
+  curr_loc.1: ptr<int> = ptradd arr i.2;
+  curr_val.1: int = load curr_loc.1;
+  prev_idx.1: int = sub i.2 i.1;
+  prev_loc.1: ptr<int> = ptradd arr prev_idx.1;
+  prev_val.1: int = load prev_loc.1;
+  cond.2: bool = le prev_val.1 curr_val.1;
+  br cond.2 .le .gt;
+.le:
+  i.2: int = add i.2 i.1;
+  jmp .loop;
+.gt:
+  sorted.3: bool = const false;
+  jmp .exit;
+.exit:
+  ret sorted.3;
+}
+@print_arr(arr: ptr<int>, size: int) {
+  i.1: int = const 0;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .exit;
+.body:
+  loc.1: ptr<int> = ptradd arr i.1;
+  val.1: int = load loc.1;
+  print val.1;
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.exit:
+  ret;
+}
+@abs(i: int): int {
+  zero.1: int = const 0;
+  neg_one.1: int = const -1;
+  neg.1: bool = lt i zero.1;
+  i.2: int = id i;
+  br neg.1 .neg .pos;
+.neg:
+  i.2: int = mul i neg_one.1;
+.pos:
+  ret i.2;
+}
+@mod(a: int, b: int): int {
+  dv.1: int = div a b;
+  mv.1: int = mul b dv.1;
+  rem.1: int = sub a mv.1;
+  ret rem.1;
+}
+@swap(arr: ptr<int>, i: int, j: int) {
+  arr_i.1: ptr<int> = ptradd arr i;
+  arr_j.1: ptr<int> = ptradd arr j;
+  val_i.1: int = load arr_i.1;
+  val_j.1: int = load arr_j.1;
+  store arr_i.1 val_j.1;
+  store arr_j.1 val_i.1;
+}
+@xor(x: bool, y: bool): bool {
+  xn.1: bool = not x;
+  yn.1: bool = not y;
+  xyn.1: bool = and x yn.1;
+  xny.1: bool = and xn.1 y;
+  res.1: bool = or xyn.1 xny.1;
+  ret res.1;
+}
+@getbit(x.2: int, position: int): bool {
+  one.1: int = const 1;
+  two.1: int = const 2;
+  i.1: int = const 0;
+.loop_cond:
+  cond.1: bool = lt i.1 position;
+  br cond.1 .loop_body .loop_exit;
+.loop_body:
+  x.2: int = div x.2 two.1;
+  i.1: int = add i.1 one.1;
+  jmp .loop_cond;
+.loop_exit:
+  halfx.1: int = div x.2 two.1;
+  twohalfx.1: int = mul halfx.1 two.1;
+  iszero.1: bool = eq twohalfx.1 x.2;
+  res.1: bool = not iszero.1;
+  ret res.1;
+}
+@rand(state: ptr<int>) {
+  s.1: int = load state;
+  two.1: int = const 2;
+  one.1: int = const 1;
+  head0_pos.1: int = const 11;
+  head1_pos.1: int = const 13;
+  head2_pos.1: int = const 14;
+  head3_pos.1: int = const 16;
+  head0.1: bool = call @getbit s.1 head0_pos.1;
+  head1.1: bool = call @getbit s.1 head1_pos.1;
+  head2.1: bool = call @getbit s.1 head2_pos.1;
+  head3.1: bool = call @getbit s.1 head3_pos.1;
+  fb.1: bool = call @xor head0.1 head1.1;
+  fb.2: bool = call @xor fb.1 head2.1;
+  fb.3: bool = call @xor fb.2 head3.1;
+  s.2: int = mul s.1 two.1;
+  s.4: int = id s.2;
+  br fb.3 .add_one .end;
+.add_one:
+  s.4: int = add s.2 one.1;
+.end:
+  store state s.4;
+}

@@ -1,0 +1,53 @@
+@main(input: int) {
+  zero.1: int = const 0;
+  ten.1: int = const 10;
+  digits.1: int = call @getDigits input;
+  tmp.2: int = id input;
+  sum.3: int = id zero.1;
+.loop:
+  b.1: bool = gt tmp.2 zero.1;
+  br b.1 .body .done;
+.body:
+  digit.1: int = call @mod tmp.2 ten.1;
+  pow.1: int = call @power digit.1 digits.1;
+  sum.3: int = add sum.3 pow.1;
+  tmp.2: int = div tmp.2 ten.1;
+  jmp .loop;
+.done:
+  res.1: bool = eq input sum.3;
+  print res.1;
+}
+@getDigits(n: int): int {
+  ten.1: int = const 10;
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  div.1: int = div n ten.1;
+  cond.1: bool = eq div.1 zero.1;
+  br cond.1 .then .else;
+.then:
+  ret one.1;
+.else:
+  rec.1: int = call @getDigits div.1;
+  res.1: int = add rec.1 one.1;
+  ret res.1;
+}
+@mod(a: int, b: int): int {
+  q.1: int = div a b;
+  aq.1: int = mul b q.1;
+  mod.1: int = sub a aq.1;
+  ret mod.1;
+}
+@power(base: int, exp.1: int): int {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  res.3: int = id one.1;
+.loop:
+  b.1: bool = eq exp.1 zero.1;
+  br b.1 .done .body;
+.body:
+  res.3: int = mul res.3 base;
+  exp.1: int = sub exp.1 one.1;
+  jmp .loop;
+.done:
+  ret res.3;
+}

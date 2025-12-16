@@ -1,0 +1,76 @@
+@pack(n1: int, n2: int, n3: int, n4: int, n5: int): ptr<int> {
+  one.1: int = const 1;
+  i.1: int = const 0;
+  size.1: int = const 5;
+  array.1: ptr<int> = alloc size.1;
+  loc.1: ptr<int> = ptradd array.1 i.1;
+  store loc.1 n1;
+  i.2: int = add i.1 one.1;
+  loc.2: ptr<int> = ptradd array.1 i.2;
+  store loc.2 n2;
+  i.3: int = add i.2 one.1;
+  loc.3: ptr<int> = ptradd array.1 i.3;
+  store loc.3 n3;
+  i.4: int = add i.3 one.1;
+  loc.4: ptr<int> = ptradd array.1 i.4;
+  store loc.4 n4;
+  i.5: int = add i.4 one.1;
+  loc.5: ptr<int> = ptradd array.1 i.5;
+  store loc.5 n5;
+  ret array.1;
+}
+@print_array(array: ptr<int>, size: int) {
+  i.1: int = const 0;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .done;
+.body:
+  loc.1: ptr<int> = ptradd array i.1;
+  val.1: int = load loc.1;
+  print val.1;
+.loop_end:
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret;
+}
+@compare_and_swap(array: ptr<int>, l: int, r: int) {
+  v2.1: ptr<int> = ptradd array l;
+  v3.1: int = load v2.1;
+  v6.1: ptr<int> = ptradd array r;
+  v7.1: int = load v6.1;
+  v11.1: bool = lt v7.1 v3.1;
+  br v11.1 .then.8 .else.8;
+.then.8:
+  v14.1: ptr<int> = ptradd array l;
+  store v14.1 v7.1;
+  v19.1: ptr<int> = ptradd array r;
+  store v19.1 v3.1;
+  jmp .endif.8;
+.else.8:
+.endif.8:
+}
+@sorting_network_five(array: ptr<int>) {
+  v0.1: int = const 0;
+  v1.1: int = const 1;
+  v2.1: int = const 2;
+  v3.1: int = const 3;
+  v4.1: int = const 4;
+  call @compare_and_swap array v0.1 v3.1;
+  call @compare_and_swap array v1.1 v4.1;
+  call @compare_and_swap array v0.1 v2.1;
+  call @compare_and_swap array v1.1 v3.1;
+  call @compare_and_swap array v0.1 v1.1;
+  call @compare_and_swap array v2.1 v4.1;
+  call @compare_and_swap array v1.1 v2.1;
+  call @compare_and_swap array v3.1 v4.1;
+  call @compare_and_swap array v2.1 v3.1;
+}
+@main(n1: int, n2: int, n3: int, n4: int, n5: int) {
+  array.1: ptr<int> = call @pack n1 n2 n3 n4 n5;
+  call @sorting_network_five array.1;
+  size.1: int = const 5;
+  call @print_array array.1 size.1;
+  free array.1;
+}

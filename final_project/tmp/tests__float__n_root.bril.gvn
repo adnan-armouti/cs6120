@@ -1,0 +1,42 @@
+@pow(x: float, k: int): float {
+  xx.3: float = const 1.0;
+  one.1: int = const 1;
+  i.2: int = const 0;
+.while:
+  b.1: bool = lt i.2 k;
+  br b.1 .continue .endwhile;
+.continue:
+  xx.3: float = fmul xx.3 x;
+  i.2: int = add i.2 one.1;
+  jmp .while;
+.endwhile:
+  ret xx.3;
+}
+@n_root(x: float, n: int): float {
+  one.1: int = const 1;
+  two_f.1: float = const 2.0;
+  xxx.3: float = fdiv x two_f.1;
+  n_minus_one.1: int = sub n one.1;
+  i.1: int = const 0;
+  num_iter.1: int = const 20;
+.while:
+  b.1: bool = lt i.1 num_iter.1;
+  br b.1 .continue .endwhile;
+.continue:
+  pow_n_minus_one.1: float = call @pow xxx.3 n_minus_one.1;
+  pow_n.1: float = fmul pow_n_minus_one.1 xxx.3;
+  numerator.1: float = fsub pow_n.1 x;
+  denominator.1: float = fmul x pow_n_minus_one.1;
+  frac.1: float = fdiv numerator.1 denominator.1;
+  xxx.3: float = fsub xxx.3 frac.1;
+  i.1: int = add i.1 one.1;
+  jmp .while;
+.endwhile:
+  ret xxx.3;
+}
+@main {
+  x.1: float = const 8.0;
+  n.1: int = const 5;
+  result.1: float = call @n_root x.1 n.1;
+  print result.1;
+}

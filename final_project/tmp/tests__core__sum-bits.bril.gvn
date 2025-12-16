@@ -1,0 +1,23 @@
+@main(input.2: int) {
+  sum.1: int = const 0;
+  two.1: int = const 2;
+  sum.3: int = id sum.1;
+.loop:
+  cond.1: bool = eq input.2 sum.1;
+  br cond.1 .done .body;
+.body:
+  bit.1: int = call @mod input.2 two.1;
+  input.2: int = div input.2 two.1;
+  sum.3: int = add sum.3 bit.1;
+  jmp .loop;
+.done:
+  print sum.3;
+  ret;
+}
+@mod(dividend: int, divisor: int): int {
+  quotient.1: int = div dividend divisor;
+  two.1: int = const 2;
+  prod.1: int = mul two.1 quotient.1;
+  diff.1: int = sub dividend prod.1;
+  ret diff.1;
+}

@@ -1,0 +1,77 @@
+@mod2(a: int): bool {
+  two.1: int = const 2;
+  tmp.1: int = div a two.1;
+  tmp2.1: int = mul tmp.1 two.1;
+  tmp3.1: int = sub a tmp2.1;
+  one.1: int = const 1;
+  ans.1: bool = eq one.1 tmp3.1;
+  ret ans.1;
+}
+@loop_subroutine(a.2: int, b.2: int, c: bool): int {
+  i.3: int = const 0;
+  n.1: int = const 63;
+  one.1: int = const 1;
+  two.1: int = const 2;
+  to_add.3: int = id one.1;
+  ans.2: int = id i.3;
+.loop:
+  cond.1: bool = le i.3 n.1;
+  br cond.1 .here .end;
+.here:
+  mod2a.1: bool = call @mod2 a.2;
+  mod2b.1: bool = call @mod2 b.2;
+  cond_add.3: bool = and mod2a.1 mod2b.1;
+  br c .doOr .stay;
+.doOr:
+  cond_add.3: bool = or mod2a.1 mod2b.1;
+.stay:
+  ans.4: int = id ans.2;
+  br cond_add.3 .add .end_loop;
+.add:
+  ans.4: int = add ans.2 to_add.3;
+.end_loop:
+  a.2: int = div a.2 two.1;
+  b.2: int = div b.2 two.1;
+  to_add.3: int = mul to_add.3 two.1;
+  i.3: int = add i.3 one.1;
+  ans.2: int = id ans.4;
+  jmp .loop;
+.end:
+  ret ans.2;
+}
+@OR(a: int, b: int): int {
+  oper.1: bool = const true;
+  v1.1: int = call @loop_subroutine a b oper.1;
+  ret v1.1;
+}
+@AND(a: int, b: int): int {
+  oper.1: bool = const false;
+  v1.1: int = call @loop_subroutine a b oper.1;
+  ret v1.1;
+}
+@XOR(a: int, b: int): int {
+  and_val.1: int = call @AND a b;
+  or_val.1: int = call @OR a b;
+  ans.1: int = sub or_val.1 and_val.1;
+  ret ans.1;
+}
+@main(a: int, b: int, c: int) {
+  one.1: int = const 1;
+  zero.1: int = const 0;
+  sel.1: int = sub c one.1;
+  less.1: bool = lt sel.1 zero.1;
+  equal.1: bool = eq sel.1 zero.1;
+  br less.1 .and_op .useless_lbl;
+.useless_lbl:
+  br equal.1 .or_op .xor_op;
+.and_op:
+  ans.3: int = call @AND a b;
+  jmp .end;
+.or_op:
+  ans.3: int = call @OR a b;
+  jmp .end;
+.xor_op:
+  ans.3: int = call @XOR a b;
+.end:
+  print ans.3;
+}

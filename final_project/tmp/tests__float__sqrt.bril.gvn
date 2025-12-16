@@ -1,0 +1,33 @@
+@main {
+  v0.1: float = const 327;
+  v1.1: float = const 1e-05;
+  notdone.2: bool = const true;
+  x.2: float = id v0.1;
+.for.cond.4:
+  br notdone.2 .for.body.4 .for.end.4;
+.for.body.4:
+  v8.1: float = fdiv v0.1 x.2;
+  v11.1: float = fadd x.2 v8.1;
+  v12.1: float = const 0.5;
+  v14.1: float = fmul v12.1 v11.1;
+  v17.1: float = fsub v14.1 x.2;
+  v20.1: float = const 0;
+  v21.1: bool = flt v17.1 v20.1;
+  br v21.1 .then.18 .else.18;
+.then.18:
+  v17.1: float = fsub v20.1 v17.1;
+  jmp .endif.18;
+.else.18:
+.endif.18:
+  v28.1: bool = flt v17.1 v1.1;
+  br v28.1 .then.25 .else.25;
+.then.25:
+  notdone.2: bool = const false;
+  jmp .endif.25;
+.else.25:
+.endif.25:
+  x.2: float = id v14.1;
+  jmp .for.cond.4;
+.for.end.4:
+  print x.2;
+}

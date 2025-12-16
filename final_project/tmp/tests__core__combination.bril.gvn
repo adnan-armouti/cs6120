@@ -1,0 +1,42 @@
+@main(n: int, k: int) {
+  final.1: int = call @combo n k;
+  print final.1;
+}
+@combo(n: int, k: int): int {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  nneg.1: bool = lt n zero.1;
+  kneg.1: bool = lt k zero.1;
+  eitherneg.1: bool = or nneg.1 kneg.1;
+  br eitherneg.1 .negatives .natural;
+.negatives:
+  ret zero.1;
+.natural:
+  kzero.1: bool = eq k zero.1;
+  br kzero.1 .zeroes .positive;
+.zeroes:
+  ret one.1;
+.positive:
+  nltk.1: bool = lt n k;
+  br nltk.1 .negatives .valid;
+.valid:
+  nfac.1: int = call @factorial n;
+  kfac.1: int = call @factorial k;
+  nmink.1: int = sub n k;
+  nkfac.1: int = call @factorial nmink.1;
+  comboden.1: int = mul kfac.1 nkfac.1;
+  combo.1: int = div nfac.1 comboden.1;
+  ret combo.1;
+}
+@factorial(x: int): int {
+  one.1: int = const 1;
+  basee.1: bool = eq x one.1;
+  br basee.1 .base .recurs;
+.base:
+  ret one.1;
+.recurs:
+  oneless.1: int = sub x one.1;
+  stepback.1: int = call @factorial oneless.1;
+  fact.1: int = mul x stepback.1;
+  ret fact.1;
+}

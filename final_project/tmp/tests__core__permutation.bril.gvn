@@ -1,0 +1,32 @@
+@permutation(n: int, k: int): int {
+  v3.1: bool = gt k n;
+  br v3.1 .then.0 .else.0;
+.then.0:
+  v4.1: int = const 0;
+  ret v4.1;
+.else.0:
+  v6.1: int = call @factorial n;
+  v9.1: int = sub n k;
+  v10.1: int = call @factorial v9.1;
+  v11.1: int = div v6.1 v10.1;
+  ret v11.1;
+}
+@factorial(n: int): int {
+  v2.1: int = const 1;
+  v3.1: int = sub n v2.1;
+  v9.1: int = id n;
+.for.cond.0:
+  v5.1: int = const 0;
+  v6.1: bool = gt v3.1 v5.1;
+  br v6.1 .for.body.0 .for.end.0;
+.for.body.0:
+  v9.1: int = mul v9.1 v3.1;
+  v3.1: int = sub v3.1 v2.1;
+  jmp .for.cond.0;
+.for.end.0:
+  ret v9.1;
+}
+@main(n: int, k: int) {
+  res.1: int = call @permutation n k;
+  print res.1;
+}

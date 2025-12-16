@@ -1,0 +1,113 @@
+@main {
+  v44.1: float = const 3.141592653589793;
+  v45.1: float = const 50;
+  v48.1: float = fmul v45.1 v44.1;
+  v49.1: float = const 180;
+  v50.1: float = fdiv v48.1 v49.1;
+  sine.1: float = call @cordic v50.1;
+  print sine.1;
+}
+@cordic(v36.1: float): float {
+  f0.1: float = const 0.7853981633974483;
+  f1.1: float = const 0.4636476090008061;
+  f2.1: float = const 0.24497866312686414;
+  f3.1: float = const 0.12435499454676144;
+  f4.1: float = const 0.06241880999595735;
+  f5.1: float = const 0.031239833430268277;
+  f6.1: float = const 0.015623728620476831;
+  f7.1: float = const 0.007812341060101111;
+  f8.1: float = const 0.0039062301319669718;
+  f9.1: float = const 0.0019531225164788188;
+  f10.1: float = const 0.0009765621895593195;
+  f11.1: float = const 0.0004882812111948983;
+  f12.1: float = const 0.00024414062014936177;
+  f13.1: float = const 0.00012207031189367021;
+  f14.1: float = const 6.103515617420877e-05;
+  f15.1: float = const 3.05175781155261e-05;
+  f16.1: float = const 1.525878906131576e-05;
+  f17.1: float = const 7.62939453110197e-06;
+  f18.1: float = const 3.8146972656065e-06;
+  f19.1: float = const 1.90734863281019e-06;
+  size.1: int = const 20;
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  tbl.1: ptr<float> = alloc size.1;
+  index_ptr.1: ptr<float> = ptradd tbl.1 zero.1;
+  store index_ptr.1 f0.1;
+  index_ptr.2: ptr<float> = ptradd index_ptr.1 one.1;
+  store index_ptr.2 f1.1;
+  index_ptr.3: ptr<float> = ptradd index_ptr.2 one.1;
+  store index_ptr.3 f2.1;
+  index_ptr.4: ptr<float> = ptradd index_ptr.3 one.1;
+  store index_ptr.4 f3.1;
+  index_ptr.5: ptr<float> = ptradd index_ptr.4 one.1;
+  store index_ptr.5 f4.1;
+  index_ptr.6: ptr<float> = ptradd index_ptr.5 one.1;
+  store index_ptr.6 f5.1;
+  index_ptr.7: ptr<float> = ptradd index_ptr.6 one.1;
+  store index_ptr.7 f6.1;
+  index_ptr.8: ptr<float> = ptradd index_ptr.7 one.1;
+  store index_ptr.8 f7.1;
+  index_ptr.9: ptr<float> = ptradd index_ptr.8 one.1;
+  store index_ptr.9 f8.1;
+  index_ptr.10: ptr<float> = ptradd index_ptr.9 one.1;
+  store index_ptr.10 f9.1;
+  index_ptr.11: ptr<float> = ptradd index_ptr.10 one.1;
+  store index_ptr.11 f10.1;
+  index_ptr.12: ptr<float> = ptradd index_ptr.11 one.1;
+  store index_ptr.12 f11.1;
+  index_ptr.13: ptr<float> = ptradd index_ptr.12 one.1;
+  store index_ptr.13 f12.1;
+  index_ptr.14: ptr<float> = ptradd index_ptr.13 one.1;
+  store index_ptr.14 f13.1;
+  index_ptr.15: ptr<float> = ptradd index_ptr.14 one.1;
+  store index_ptr.15 f14.1;
+  index_ptr.16: ptr<float> = ptradd index_ptr.15 one.1;
+  store index_ptr.16 f15.1;
+  index_ptr.17: ptr<float> = ptradd index_ptr.16 one.1;
+  store index_ptr.17 f16.1;
+  index_ptr.18: ptr<float> = ptradd index_ptr.17 one.1;
+  store index_ptr.18 f17.1;
+  index_ptr.19: ptr<float> = ptradd index_ptr.18 one.1;
+  store index_ptr.19 f18.1;
+  index_ptr.20: ptr<float> = ptradd index_ptr.19 one.1;
+  store index_ptr.20 f19.1;
+  v39.1: float = const 1;
+  v31.1: float = const 0;
+  v2.1: float = const 0.60735;
+  v4.1: int = const 0;
+.for.cond.3:
+  v6.1: int = const 20;
+  v7.1: bool = lt v4.1 v6.1;
+  br v7.1 .for.body.3 .for.end.3;
+.for.body.3:
+  tbl_ptr.1: ptr<float> = ptradd tbl.1 v4.1;
+  tbl_i.1: float = load tbl_ptr.1;
+  v8.1: float = const 0;
+  v12.1: bool = flt v36.1 v8.1;
+  br v12.1 .then.9 .else.9;
+.then.9:
+  v14.1: float = const 1;
+  sigma.3: float = fsub v8.1 v14.1;
+  jmp .endif.9;
+.else.9:
+  sigma.3: float = const 1;
+.endif.9:
+  v21.1: float = fmul sigma.3 v39.1;
+  v23.1: float = fmul v21.1 v31.1;
+  v24.1: float = fsub v2.1 v23.1;
+  v27.1: float = fmul v2.1 sigma.3;
+  v29.1: float = fmul v27.1 v39.1;
+  v31.1: float = fadd v29.1 v31.1;
+  v35.1: float = fmul sigma.3 tbl_i.1;
+  v36.1: float = fsub v36.1 v35.1;
+  v38.1: float = const 2;
+  v39.1: float = fdiv v39.1 v38.1;
+  v41.1: int = const 1;
+  v4.1: int = add v4.1 v41.1;
+  v2.1: float = id v24.1;
+  jmp .for.cond.3;
+.for.end.3:
+  free tbl.1;
+  ret v31.1;
+}

@@ -1,0 +1,52 @@
+@main {
+  x1.1: float = const -2.7;
+  n1.1: int = const 124;
+  x_to_n1.1: float = call @exp_by_squaring_iterative x1.1 n1.1;
+  print x_to_n1.1;
+  x2.1: float = const 0.1218;
+  n2.1: int = const -150;
+  x_to_n2.1: float = call @exp_by_squaring_iterative x2.1 n2.1;
+  print x_to_n2.1;
+}
+@exp_by_squaring_iterative(x: float, n: int): float {
+  zero.1: int = const 0;
+  one_float.1: float = const 1;
+  one_int.1: int = const 1;
+  two.1: int = const 2;
+  lt0.1: bool = lt n zero.1;
+  n.4: int = id n;
+  x.4: float = id x;
+  br lt0.1 .negate .cont.1;
+.negate:
+  x.4: float = fdiv one_float.1 x;
+  n.4: int = sub zero.1 n;
+.cont.1:
+  is0.1: bool = eq n.4 zero.1;
+  br is0.1 .ret1 .cont.2;
+.ret1:
+  ret one_float.1;
+.cont.2:
+.while:
+  guard.1: bool = gt n.4 one_int.1;
+  br guard.1 .while.body .while.end;
+.while.body:
+  half.1: int = div n.4 two.1;
+  doublehalf.1: int = mul half.1 two.1;
+  iseven.1: bool = eq doublehalf.1 n.4;
+  isodd.1: bool = not iseven.1;
+  y.4: float = id one_float.1;
+  n.5: int = id n.4;
+  br isodd.1 .isodd .cont.3;
+.isodd:
+  y.4: float = fmul x.4 one_float.1;
+  dec.1: int = const 1;
+  n.5: int = sub n.4 dec.1;
+.cont.3:
+  x.4: float = fmul x.4 x.4;
+  n.4: int = div n.5 two.1;
+  one_float.1: float = id y.4;
+  jmp .while;
+.while.end:
+  result.1: float = fmul x.4 one_float.1;
+  ret result.1;
+}

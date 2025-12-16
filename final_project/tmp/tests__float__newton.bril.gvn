@@ -1,0 +1,37 @@
+@main {
+  n.1: float = const 99999;
+  two.1: float = const 2;
+  x.1: float = fdiv n.1 two.1;
+  target.1: float = const 1e-05;
+  prev_x.2: float = id n.1;
+.for.cond.1:
+  d.1: float = call @diff prev_x.2 x.1;
+  v6.1: bool = fgt d.1 target.1;
+  br v6.1 .for.body.1 .for.end.1;
+.for.body.1:
+  x.3: float = call @sqrt x.1 n.1;
+  prev_x.2: float = id x.1;
+  x.1: float = id x.3;
+  jmp .for.cond.1;
+.for.end.1:
+  print x.1;
+}
+@sqrt(x: float, n: float): float {
+  two.1: float = const 2;
+  v0.1: float = fmul x x;
+  v1.1: float = fsub v0.1 n;
+  v2.1: float = fmul two.1 x;
+  v3.1: float = fdiv v1.1 v2.1;
+  v4.1: float = fsub x v3.1;
+  ret v4.1;
+}
+@diff(a: float, b: float): float {
+  c.1: bool = fgt a b;
+  br c.1 .then.1 .else.1;
+.then.1:
+  v5.2: float = fsub a b;
+  ret v5.2;
+.else.1:
+  v5.1: float = fsub b a;
+  ret v5.1;
+}

@@ -1,0 +1,224 @@
+@main(n: int, seed: int) {
+  id.1: int = const 3;
+  one.1: int = const 1;
+  rng.1: ptr<int> = alloc one.1;
+  store rng.1 seed;
+  msize.1: int = mul n n;
+  arr.1: ptr<int> = call @rand_array msize.1 rng.1;
+  call @print_array msize.1 arr.1;
+  print id.1;
+  dest.1: ptr<int> = alloc msize.1;
+  call @next_board msize.1 n arr.1 dest.1;
+  call @print_array msize.1 dest.1;
+  free rng.1;
+  free arr.1;
+  free dest.1;
+}
+@next_board(msize: int, n: int, board: ptr<int>, dest: ptr<int>) {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+.compare:
+  exit.1: bool = ge zero.1 msize;
+  br exit.1 .exit .continue;
+.continue:
+  curr.1: ptr<int> = ptradd board zero.1;
+  cval.1: int = load curr.1;
+  neighbors.1: int = call @alive msize n zero.1 board;
+  nval.1: int = call @next_cell cval.1 neighbors.1;
+  nptr.1: ptr<int> = ptradd dest zero.1;
+  store nptr.1 nval.1;
+  zero.1: int = add zero.1 one.1;
+  jmp .compare;
+.exit:
+}
+@next_cell(x: int, neighbors: int): int {
+  one.1: int = const 1;
+  two.1: int = const 2;
+  three.1: int = const 3;
+  four.1: int = const 4;
+  x_alive.1: bool = eq x one.1;
+  br x_alive.1 .alive .dead;
+.alive:
+  dies.1: bool = lt neighbors two.1;
+  br dies.1 .should_die .alive1;
+.alive1:
+  lives.1: bool = lt neighbors four.1;
+  br lives.1 .should_live .should_die;
+.dead:
+  lives.2: bool = eq neighbors three.1;
+  br lives.2 .should_live .should_die;
+.should_live:
+  jmp .exit;
+.should_die:
+  one.1: int = const 0;
+  jmp .exit;
+.exit:
+  ret one.1;
+}
+@test_neighbors(msize: int, n: int, board: ptr<int>) {
+  id.1: int = const 223;
+  i.1: int = const 0;
+  one.1: int = const 1;
+.comparison:
+  exit.1: bool = ge i.1 msize;
+  br exit.1 .exit .body;
+.body:
+  alive.1: int = call @alive msize n i.1 board;
+  print id.1 i.1 alive.1;
+  i.1: int = add i.1 one.1;
+  jmp .comparison;
+.exit:
+}
+@alive(msize: int, n: int, i: int, board: ptr<int>): int {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  skip.1: bool = lt i n;
+  sum.6: int = id zero.1;
+  br skip.1 .d .a;
+.a:
+  pos.1: int = sub i n;
+  curr.1: ptr<int> = ptradd board pos.1;
+  cval.1: int = load curr.1;
+  sum.2: int = add zero.1 cval.1;
+  modulo.1: int = call @mod pos.1 n;
+  lw.1: bool = eq modulo.1 zero.1;
+  sum.3: int = id sum.2;
+  br lw.1 .a.bis .b;
+.a.bis:
+  pos.2: int = sub i n;
+  modulo.2: int = call @mod pos.2 n;
+  modulo.3: int = add modulo.2 one.1;
+  rw.1: bool = eq modulo.3 n;
+  sum.6: int = id sum.3;
+  br rw.1 .d .c;
+.b:
+  pos.5: int = sub i n;
+  pos.6: int = sub pos.5 one.1;
+  curr.3: ptr<int> = ptradd board pos.6;
+  cval.3: int = load curr.3;
+  sum.3: int = add sum.2 cval.3;
+  jmp .a.bis;
+.c:
+  pos.3: int = sub i n;
+  pos.4: int = add pos.3 one.1;
+  curr.2: ptr<int> = ptradd board pos.4;
+  cval.2: int = load curr.2;
+  sum.6: int = add sum.3 cval.2;
+  jmp .d;
+.d:
+  modulo.4: int = call @mod i n;
+  lw.2: bool = eq modulo.4 zero.1;
+  sum.7: int = id sum.6;
+  br lw.2 .d.bis .e;
+.d.bis:
+  modulo.5: int = call @mod i n;
+  modulo.6: int = add modulo.5 one.1;
+  rw.2: bool = eq modulo.6 n;
+  sum.9: int = id sum.7;
+  br rw.2 .g .f;
+.e:
+  pos.13: int = sub i one.1;
+  curr.8: ptr<int> = ptradd board pos.13;
+  cval.8: int = load curr.8;
+  sum.7: int = add sum.6 cval.8;
+  jmp .d.bis;
+.f:
+  pos.7: int = add i one.1;
+  curr.4: ptr<int> = ptradd board pos.7;
+  cval.4: int = load curr.4;
+  sum.9: int = add sum.7 cval.4;
+  jmp .g;
+.g:
+  next_pos.1: int = add i n;
+  exit.1: bool = ge next_pos.1 msize;
+  sum.10: int = id sum.9;
+  br exit.1 .exit .g.bis;
+.g.bis:
+  modulo.7: int = call @mod i n;
+  lw.3: bool = eq modulo.7 zero.1;
+  sum.12: int = id sum.9;
+  br lw.3 .h .g.bis2;
+.g.bis2:
+  pos.8: int = add i n;
+  pos.9: int = sub pos.8 one.1;
+  curr.5: ptr<int> = ptradd board pos.9;
+  cval.5: int = load curr.5;
+  sum.12: int = add sum.9 cval.5;
+  jmp .h;
+.h:
+  pos.10: int = add i n;
+  curr.6: ptr<int> = ptradd board pos.10;
+  cval.6: int = load curr.6;
+  sum.13: int = add sum.12 cval.6;
+  modulo.8: int = call @mod i n;
+  modulo.9: int = add modulo.8 one.1;
+  rw.3: bool = eq modulo.9 n;
+  sum.10: int = id sum.13;
+  br rw.3 .exit .i;
+.i:
+  pos.11: int = add i n;
+  pos.12: int = add pos.11 one.1;
+  curr.7: ptr<int> = ptradd board pos.12;
+  cval.7: int = load curr.7;
+  sum.10: int = add sum.13 cval.7;
+  jmp .exit;
+.exit:
+  ret sum.10;
+}
+@rand(seq: ptr<int>, max: int): int {
+  a.1: int = const 1588635695;
+  c.1: int = const 0;
+  m.1: int = const 4294967291;
+  x.1: int = load seq;
+  ax.1: int = mul a.1 x.1;
+  axpc.1: int = add ax.1 c.1;
+  next.1: int = call @mod axpc.1 m.1;
+  store seq next.1;
+  val.1: int = call @mod next.1 max;
+  ret val.1;
+}
+@rand_array(n: int, rng: ptr<int>): ptr<int> {
+  one.1: int = const 1;
+  two.1: int = const 2;
+  i.1: int = const 0;
+  arr.1: ptr<int> = alloc n;
+.compare:
+  done.1: bool = ge i.1 n;
+  br done.1 .exit .continue;
+.continue:
+  r.1: int = call @rand rng two.1;
+  curr.1: ptr<int> = ptradd arr.1 i.1;
+  store curr.1 r.1;
+  i.1: int = add i.1 one.1;
+  jmp .compare;
+.exit:
+  ret arr.1;
+}
+@print_array(n: int, arr: ptr<int>) {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  id.1: int = const 13;
+.compare:
+  exit.1: bool = ge zero.1 n;
+  br exit.1 .exit .continue;
+.continue:
+  curr.1: ptr<int> = ptradd arr zero.1;
+  val.1: int = load curr.1;
+  print id.1 zero.1 val.1;
+  zero.1: int = add zero.1 one.1;
+  jmp .compare;
+.exit:
+}
+@mod(a: int, b: int): int {
+  quotient.1: int = div a b;
+  whole.1: int = mul quotient.1 b;
+  remainder.1: int = sub a whole.1;
+  zero.1: int = const 0;
+  exit.1: bool = ge remainder.1 zero.1;
+  remainder.3: int = id remainder.1;
+  br exit.1 .exit .adjust;
+.adjust:
+  remainder.3: int = add remainder.1 b;
+.exit:
+  ret remainder.3;
+}

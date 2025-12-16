@@ -1,0 +1,81 @@
+@main {
+  a.1: float = const 2.0;
+  b.1: float = const 10.0;
+  n.1: float = const 8.0;
+  left.1: float = call @left_riemann a.1 b.1 n.1;
+  print left.1;
+  midpoint.1: float = call @midpoint_riemann a.1 b.1 n.1;
+  print midpoint.1;
+  right.1: float = call @right_riemann a.1 b.1 n.1;
+  print right.1;
+}
+@square_function(x: float): float {
+  square.1: float = fmul x x;
+  ret square.1;
+}
+@left_riemann(a: float, b: float, n: float): float {
+  sum.3: float = const 0.0;
+  one.1: float = const 1.0;
+  negative_one.1: float = fsub sum.3 one.1;
+  diff.1: float = fsub b a;
+  delta.1: float = fdiv diff.1 n;
+  i.3: float = fsub n one.1;
+.while.header:
+  cond.1: bool = feq i.3 negative_one.1;
+  br cond.1 .while.end .while.body;
+.while.body:
+  offset.1: float = fmul delta.1 i.3;
+  x.1: float = fadd a offset.1;
+  f_x.1: float = call @square_function x.1;
+  sum.3: float = fadd sum.3 f_x.1;
+  i.3: float = fsub i.3 one.1;
+  jmp .while.header;
+.while.end:
+  sum.4: float = fmul sum.3 delta.1;
+  ret sum.4;
+}
+@right_riemann(a: float, b: float, n: float): float {
+  zero.1: float = const 0.0;
+  one.1: float = const 1.0;
+  diff.1: float = fsub b a;
+  delta.1: float = fdiv diff.1 n;
+  sum.3: float = id zero.1;
+  i.3: float = id n;
+.while.header:
+  cond.1: bool = feq i.3 zero.1;
+  br cond.1 .while.end .while.body;
+.while.body:
+  offset.1: float = fmul delta.1 i.3;
+  x.1: float = fadd a offset.1;
+  f_x.1: float = call @square_function x.1;
+  sum.3: float = fadd sum.3 f_x.1;
+  i.3: float = fsub i.3 one.1;
+  jmp .while.header;
+.while.end:
+  sum.4: float = fmul sum.3 delta.1;
+  ret sum.4;
+}
+@midpoint_riemann(a: float, b: float, n: float): float {
+  sum.3: float = const 0.0;
+  one.1: float = const 1.0;
+  negative_one.1: float = fsub sum.3 one.1;
+  two.1: float = const 2.0;
+  diff.1: float = fsub b a;
+  delta.1: float = fdiv diff.1 n;
+  i.3: float = fsub n one.1;
+.while.header:
+  cond.1: bool = feq i.3 negative_one.1;
+  br cond.1 .while.end .while.body;
+.while.body:
+  offset.1: float = fmul delta.1 i.3;
+  half_delta.1: float = fdiv delta.1 two.1;
+  offset.2: float = fadd offset.1 half_delta.1;
+  x.1: float = fadd a offset.2;
+  f_x.1: float = call @square_function x.1;
+  sum.3: float = fadd sum.3 f_x.1;
+  i.3: float = fsub i.3 one.1;
+  jmp .while.header;
+.while.end:
+  sum.4: float = fmul sum.3 delta.1;
+  ret sum.4;
+}

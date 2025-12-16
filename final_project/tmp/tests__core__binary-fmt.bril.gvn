@@ -1,0 +1,21 @@
+@main(n: int) {
+  call @printBinary n;
+}
+@printBinary(n: int) {
+  zero.1: int = const 0;
+  cond.1: bool = eq n zero.1;
+  br cond.1 .end .rec;
+.rec:
+  two.1: int = const 2;
+  v0.1: int = call @mod n two.1;
+  v1.1: int = div n two.1;
+  call @printBinary v1.1;
+  print v0.1;
+.end:
+}
+@mod(a0: int, a1: int): int {
+  v0.1: int = div a0 a1;
+  v1.1: int = mul v0.1 a1;
+  v2.1: int = sub a0 v1.1;
+  ret v2.1;
+}

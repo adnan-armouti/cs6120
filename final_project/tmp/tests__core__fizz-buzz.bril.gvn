@@ -1,0 +1,49 @@
+@main(input: int) {
+  index.2: int = const 1;
+.for.cond.0:
+  v4.1: bool = lt index.2 input;
+  br v4.1 .for.body.0 .for.end.0;
+.for.body.0:
+  v6.1: int = const 3;
+  v7.1: int = div index.2 v6.1;
+  v9.1: int = const 3;
+  v10.1: int = mul v7.1 v9.1;
+  v12.1: bool = eq v10.1 index.2;
+  v14.1: int = const 5;
+  v15.1: int = div index.2 v14.1;
+  v17.1: int = const 5;
+  v18.1: int = mul v15.1 v17.1;
+  v20.1: bool = eq v18.1 index.2;
+  br v12.1 .then.21 .else.21;
+.then.21:
+  br v20.1 .then.23 .else.23;
+.then.23:
+  v25.1: int = const 0;
+  v26.1: int = const 1;
+  v27.1: int = sub v25.1 v26.1;
+  print v27.1;
+  jmp .endif.23;
+.else.23:
+  v29.1: int = const 0;
+  v30.1: int = const 2;
+  v31.1: int = sub v29.1 v30.1;
+  print v31.1;
+.endif.23:
+  jmp .endif.21;
+.else.21:
+  br v20.1 .then.33 .else.33;
+.then.33:
+  v35.1: int = const 0;
+  v36.1: int = const 3;
+  v37.1: int = sub v35.1 v36.1;
+  print v37.1;
+  jmp .endif.33;
+.else.33:
+  print index.2;
+.endif.33:
+.endif.21:
+  v42.1: int = const 1;
+  index.2: int = add index.2 v42.1;
+  jmp .for.cond.0;
+.for.end.0:
+}

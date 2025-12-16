@@ -1,0 +1,22 @@
+@main {
+  v0.1: int = const 5;
+  call @generateNthRow v0.1;
+}
+@generateNthRow(x: int) {
+  v16.1: int = const 1;
+  print v16.1;
+  i.2: int = const 0;
+.for.cond.3:
+  v7.1: bool = lt i.2 x;
+  br v7.1 .for.body.3 .for.end.3;
+.for.body.3:
+  v10.1: int = sub x i.2;
+  v12.1: int = const 1;
+  v13.1: int = add v10.1 v12.1;
+  v16.1: int = mul v16.1 v13.1;
+  print v16.1;
+  v21.1: int = const 1;
+  i.2: int = add i.2 v21.1;
+  jmp .for.cond.3;
+.for.end.3:
+}

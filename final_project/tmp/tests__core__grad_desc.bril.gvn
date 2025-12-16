@@ -1,0 +1,23 @@
+@main(w.2: int, t: int, lr: int, steps: int) {
+  s.1: int = const 1000;
+  i.1: int = const 0;
+.loop:
+  cond.1: bool = lt i.1 steps;
+  br cond.1 .body .done;
+.body:
+  err.1: int = sub w.2 t;
+  two.1: int = const 2;
+  grad.1: int = mul two.1 err.1;
+  theta.1: int = mul lr grad.1;
+  delta.1: int = div theta.1 s.1;
+  w.2: int = sub w.2 delta.1;
+  one.1: int = const 1;
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  err2.1: int = sub w.2 t;
+  loss.1: int = mul err2.1 err2.1;
+  print w.2;
+  print loss.1;
+  ret;
+}

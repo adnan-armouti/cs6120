@@ -1,0 +1,274 @@
+@fillarray: ptr<float> {
+  a00.1: float = const 34;
+  a01.1: float = const 28;
+  a02.1: float = const 38;
+  a03.1: float = const 29;
+  a10.1: float = const 26;
+  a11.1: float = const 78;
+  a12.1: float = const 91;
+  a13.1: float = const 83;
+  a20.1: float = const 67;
+  a21.1: float = const 92;
+  a22.1: float = const 56;
+  a31.1: float = const 826;
+  a33.1: float = const 43;
+  size.1: int = const 16;
+  return_ptr.1: ptr<float> = alloc size.1;
+  one.1: int = const 1;
+  store return_ptr.1 a00.1;
+  arr.2: ptr<float> = ptradd return_ptr.1 one.1;
+  store arr.2 a01.1;
+  arr.3: ptr<float> = ptradd arr.2 one.1;
+  store arr.3 a02.1;
+  arr.4: ptr<float> = ptradd arr.3 one.1;
+  store arr.4 a03.1;
+  arr.5: ptr<float> = ptradd arr.4 one.1;
+  store arr.5 a10.1;
+  arr.6: ptr<float> = ptradd arr.5 one.1;
+  store arr.6 a11.1;
+  arr.7: ptr<float> = ptradd arr.6 one.1;
+  store arr.7 a12.1;
+  arr.8: ptr<float> = ptradd arr.7 one.1;
+  store arr.8 a13.1;
+  arr.9: ptr<float> = ptradd arr.8 one.1;
+  store arr.9 a20.1;
+  arr.10: ptr<float> = ptradd arr.9 one.1;
+  store arr.10 a21.1;
+  arr.11: ptr<float> = ptradd arr.10 one.1;
+  store arr.11 a22.1;
+  arr.12: ptr<float> = ptradd arr.11 one.1;
+  store arr.12 a21.1;
+  arr.13: ptr<float> = ptradd arr.12 one.1;
+  store arr.13 a20.1;
+  arr.14: ptr<float> = ptradd arr.13 one.1;
+  store arr.14 a31.1;
+  arr.15: ptr<float> = ptradd arr.14 one.1;
+  store arr.15 a02.1;
+  arr.16: ptr<float> = ptradd arr.15 one.1;
+  store arr.16 a33.1;
+  ret return_ptr.1;
+}
+@zeros(sqsize: int): ptr<float> {
+  arr.1: ptr<float> = alloc sqsize;
+  i.1: int = const 0;
+  one.1: int = const 1;
+  zero.1: float = const 0;
+.loop:
+  cond.1: bool = lt i.1 sqsize;
+  br cond.1 .body .done;
+.body:
+  loc.1: ptr<float> = ptradd arr.1 i.1;
+  store loc.1 zero.1;
+.loop_end:
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret arr.1;
+}
+@printarray(size: int, arr: ptr<float>) {
+  i.1: int = const 0;
+  one.1: int = const 1;
+.loop:
+  cond.1: bool = lt i.1 size;
+  br cond.1 .body .done;
+.body:
+  loc.1: ptr<float> = ptradd arr i.1;
+  val.1: float = load loc.1;
+  print val.1;
+.loop_end:
+  i.1: int = add i.1 one.1;
+  jmp .loop;
+.done:
+  ret;
+}
+@matmul(size: int, arr1: ptr<float>, arr2: ptr<float>, dest: ptr<float>) {
+  one.1: int = const 1;
+  row.1: int = const 0;
+  row.2: int = id row.1;
+.row.loop:
+  cond.1: bool = lt row.2 size;
+  br cond.1 .row.body .row.done;
+.row.body:
+  col.2: int = id row.1;
+.col.loop:
+  cond.2: bool = lt col.2 size;
+  br cond.2 .col.body .col.done;
+.col.body:
+  sum.3: float = const 0.0;
+  i.2: int = id row.1;
+.sum.loop:
+  cond.3: bool = lt i.2 size;
+  br cond.3 .sum.body .sum.done;
+.sum.body:
+  lidx.1: int = mul row.2 size;
+  lidx.2: int = add lidx.1 i.2;
+  ridx.1: int = mul i.2 size;
+  ridx.2: int = add ridx.1 col.2;
+  lvalloc.1: ptr<float> = ptradd arr1 lidx.2;
+  lval.1: float = load lvalloc.1;
+  rvalloc.1: ptr<float> = ptradd arr2 ridx.2;
+  rval.1: float = load rvalloc.1;
+  prod.1: float = fmul lval.1 rval.1;
+  sum.3: float = fadd sum.3 prod.1;
+.sum.loop_end:
+  i.2: int = add i.2 one.1;
+  jmp .sum.loop;
+.sum.done:
+  idx.1: int = mul row.2 size;
+  idx.2: int = add idx.1 col.2;
+  loc.1: ptr<float> = ptradd dest idx.2;
+  store loc.1 sum.3;
+.col.loop_end:
+  col.2: int = add col.2 one.1;
+  jmp .col.loop;
+.col.done:
+.row.loop_end:
+  row.2: int = add row.2 one.1;
+  jmp .row.loop;
+.row.done:
+  ret;
+}
+@transpose(size: int, input: ptr<float>, output: ptr<float>) {
+  one.1: int = const 1;
+  row.1: int = const 0;
+  row.2: int = id row.1;
+.row.loop:
+  cond.1: bool = lt row.2 size;
+  br cond.1 .row.body .row.done;
+.row.body:
+  col.2: int = id row.1;
+.col.loop:
+  cond.2: bool = lt col.2 size;
+  br cond.2 .col.body .col.done;
+.col.body:
+  srcidx.1: int = mul row.2 size;
+  srcidx.2: int = add srcidx.1 col.2;
+  dstidx.1: int = mul col.2 size;
+  dstidx.2: int = add dstidx.1 row.2;
+  srcptr.1: ptr<float> = ptradd input srcidx.2;
+  dstptr.1: ptr<float> = ptradd output dstidx.2;
+  value.1: float = load srcptr.1;
+  store dstptr.1 value.1;
+.col.loop_end:
+  col.2: int = add col.2 one.1;
+  jmp .col.loop;
+.col.done:
+.row.loop_end:
+  row.2: int = add row.2 one.1;
+  jmp .row.loop;
+.row.done:
+  ret;
+}
+@sqrt(input: float): float {
+  v1.1: float = const 1e-05;
+  notdone.2: bool = const true;
+  x.2: float = id input;
+.for.cond.4:
+  br notdone.2 .for.body.4 .for.end.4;
+.for.body.4:
+  v8.1: float = fdiv input x.2;
+  v11.1: float = fadd x.2 v8.1;
+  v12.1: float = const 0.5;
+  v14.1: float = fmul v12.1 v11.1;
+  v17.1: float = fsub v14.1 x.2;
+  v20.1: float = const 0;
+  v21.1: bool = flt v17.1 v20.1;
+  br v21.1 .then.18 .else.18;
+.then.18:
+  v17.1: float = fsub v20.1 v17.1;
+  jmp .endif.18;
+.else.18:
+.endif.18:
+  v28.1: bool = flt v17.1 v1.1;
+  br v28.1 .then.25 .else.25;
+.then.25:
+  notdone.2: bool = const false;
+  jmp .endif.25;
+.else.25:
+.endif.25:
+  x.2: float = id v14.1;
+  jmp .for.cond.4;
+.for.end.4:
+  ret x.2;
+}
+@cholesky(size: int, arr1: ptr<float>, arr2: ptr<float>) {
+  one.1: int = const 1;
+  i.1: int = const 0;
+  i.2: int = id i.1;
+.i.loop:
+  condi.1: bool = lt i.2 size;
+  br condi.1 .i.body .i.done;
+.i.body:
+  j.2: int = id i.1;
+.j.loop:
+  condj.1: bool = le j.2 i.2;
+  br condj.1 .j.body .j.done;
+.j.body:
+  k.2: int = id i.1;
+.k.loop:
+  condk.1: bool = lt k.2 j.2;
+  br condk.1 .k.body .k.done;
+.k.body:
+  ik_index.1: int = mul i.2 size;
+  ik_index.2: int = add ik_index.1 k.2;
+  jk_index.1: int = mul j.2 size;
+  jk_index.2: int = add jk_index.1 k.2;
+  ij_index.2: int = add ik_index.1 j.2;
+  ik_ptr.1: ptr<float> = ptradd arr2 ik_index.2;
+  b_ik.1: float = load ik_ptr.1;
+  jk_ptr.1: ptr<float> = ptradd arr2 jk_index.2;
+  b_jk.1: float = load jk_ptr.1;
+  ij_ptr.1: ptr<float> = ptradd arr1 ij_index.2;
+  a_ij.1: float = load ij_ptr.1;
+  value.1: float = fmul b_ik.1 b_jk.1;
+  value.2: float = fsub a_ij.1 value.1;
+  store ij_ptr.1 value.2;
+.k.loop_end:
+  k.2: int = add k.2 one.1;
+  jmp .k.loop;
+.k.done:
+  ij_index.3: int = mul i.2 size;
+  ij_index.4: int = add ij_index.3 j.2;
+  jj_index.1: int = mul j.2 size;
+  jj_index.2: int = add jj_index.1 j.2;
+  a_ij_ptr.1: ptr<float> = ptradd arr1 ij_index.4;
+  b_ij_ptr.1: ptr<float> = ptradd arr2 ij_index.4;
+  jj_ptr.1: ptr<float> = ptradd arr2 jj_index.2;
+  a_ij.2: float = load a_ij_ptr.1;
+  b_jj.1: float = load jj_ptr.1;
+  value.3: float = fdiv a_ij.2 b_jj.1;
+  store b_ij_ptr.1 value.3;
+.j.loop_end:
+  j.2: int = add j.2 one.1;
+  jmp .j.loop;
+.j.done:
+  ii_index.1: int = mul i.2 size;
+  ii_index.2: int = add ii_index.1 i.2;
+  a_ii_ptr.1: ptr<float> = ptradd arr1 ii_index.2;
+  b_ii_ptr.1: ptr<float> = ptradd arr2 ii_index.2;
+  value.4: float = load a_ii_ptr.1;
+  sqrt_value.1: float = call @sqrt value.4;
+  store b_ii_ptr.1 sqrt_value.1;
+.i.loop_end:
+  i.2: int = add i.2 one.1;
+  jmp .i.loop;
+.i.done:
+  ret;
+}
+@main {
+  size.1: int = const 4;
+  sqsize.1: int = mul size.1 size.1;
+  arr1.1: ptr<float> = call @fillarray;
+  arr1_transposed.1: ptr<float> = call @fillarray;
+  hermitian.1: ptr<float> = call @fillarray;
+  res.1: ptr<float> = call @zeros sqsize.1;
+  call @transpose size.1 arr1.1 arr1_transposed.1;
+  call @matmul size.1 arr1.1 arr1_transposed.1 hermitian.1;
+  call @cholesky size.1 hermitian.1 res.1;
+  call @printarray sqsize.1 res.1;
+  free arr1.1;
+  free arr1_transposed.1;
+  free hermitian.1;
+  free res.1;
+  ret;
+}

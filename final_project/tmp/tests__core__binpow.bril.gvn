@@ -1,0 +1,34 @@
+@main(x: int, n: int) {
+  acc.1: int = const 1;
+  y.1: int = call @bin_pow x n acc.1;
+  print y.1;
+}
+@is_even(x: int): bool {
+  two.1: int = const 2;
+  half.1: int = div x two.1;
+  reconstruct.1: int = mul half.1 two.1;
+  same.1: bool = eq x reconstruct.1;
+  ret same.1;
+}
+@bin_pow(x: int, n: int, acc: int): int {
+  zero.1: int = const 0;
+  one.1: int = const 1;
+  two.1: int = const 2;
+  cond0.1: bool = eq n zero.1;
+  br cond0.1 .then.0 .else.0;
+.then.0:
+  ret acc;
+.else.0:
+  is_even.1: bool = call @is_even n;
+  br is_even.1 .then.1 .else.1;
+.then.1:
+  x2.1: int = mul x x;
+  n2.2: int = div n two.1;
+  val.2: int = call @bin_pow x2.1 n2.2 acc;
+  ret val.2;
+.else.1:
+  n2.1: int = sub n one.1;
+  acc2.1: int = mul x acc;
+  val.1: int = call @bin_pow x n2.1 acc2.1;
+  ret val.1;
+}
